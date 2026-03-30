@@ -15,6 +15,7 @@ import { TrustStrip } from "@/components/sections/TrustStrip";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { ScrollAmbient } from "@/components/scroll/ScrollAmbient";
 import { ScrollConnector } from "@/components/scroll/ScrollConnector";
+import { ScrollFlowDrift } from "@/components/scroll/ScrollFlowDrift";
 import { ScrollSecondaryLine } from "@/components/scroll/ScrollSecondaryLine";
 import { ScrollToTop } from "@/components/scroll/ScrollToTop";
 import {
@@ -32,6 +33,7 @@ export function LandingPageShell({ data }: LandingPageShellProps) {
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top,_#f0fdfa,_#f8fafc_45%,_#ffffff_80%)]">
       <ScrollAmbient />
+      <ScrollFlowDrift />
       <ScrollSecondaryLine />
       <ScrollConnector />
       <Navbar />
