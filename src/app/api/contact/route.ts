@@ -17,7 +17,7 @@ export async function POST(request: Request) {
   try {
     body = (await request.json()) as ContactPayload;
   } catch {
-    return NextResponse.json({ error: "Cuerpo no valido" }, { status: 400 });
+    return NextResponse.json({ error: "Cuerpo no válido" }, { status: 400 });
   }
 
   if (body.website && String(body.website).trim() !== "") {
@@ -29,10 +29,10 @@ export async function POST(request: Request) {
   const message = typeof body.message === "string" ? body.message.trim() : "";
 
   if (name.length < 2) {
-    return NextResponse.json({ error: "Indica un nombre valido" }, { status: 400 });
+    return NextResponse.json({ error: "Indica un nombre válido" }, { status: 400 });
   }
   if (!EMAIL_RE.test(email)) {
-    return NextResponse.json({ error: "Correo no valido" }, { status: 400 });
+    return NextResponse.json({ error: "Correo no válido" }, { status: 400 });
   }
   if (message.length < 10) {
     return NextResponse.json(

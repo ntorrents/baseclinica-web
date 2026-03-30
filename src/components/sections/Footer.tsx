@@ -8,7 +8,7 @@ export function Footer() {
             Aviso Legal
           </a>
           <a href="#" className="hover:text-slate-900">
-            Politica de Privacidad
+            Política de privacidad
           </a>
           <a href="mailto:hola@baseclinica.com" className="hover:text-slate-900">
             hola@baseclinica.com

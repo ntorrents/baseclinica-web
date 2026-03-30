@@ -21,10 +21,10 @@ export function ErpSolution({
     <SectionContainer id="erp">
       <div className="mb-10 max-w-3xl">
         <p className="text-sm font-semibold uppercase tracking-wide text-sky-700">
-          Solucion 2: ERP medico
+          Solución 2: ERP médico
         </p>
         <h2 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-4xl">
-          Automatiza agenda, facturacion y gestion clinica en una sola plataforma
+          Automatiza agenda, facturación y gestión clínica en una sola plataforma
         </h2>
       </div>
 
@@ -42,11 +42,11 @@ export function ErpSolution({
 
       <div className="mt-8 rounded-2xl border border-emerald-200 bg-emerald-50 p-6">
         <h3 className="text-xl font-semibold text-emerald-900">
-          Ciberseguridad y proteccion de datos medicos
+          Ciberseguridad y protección de datos médicos
         </h3>
         <p className="mt-3 text-emerald-900/90">
           Arquitectura orientada a confidencialidad, control de acceso y trazabilidad
-          para trabajar con datos sensibles bajo buenas practicas de cumplimiento
+          para trabajar con datos sensibles bajo buenas prácticas de cumplimiento
           legal.
         </p>
       </div>
@@ -60,7 +60,7 @@ export function ErpSolution({
         />
         <DeviceMockup
           src={mobileShot}
-          alt="Captura del ERP en vista movil"
+          alt="Captura del ERP en vista móvil"
           device="mobile"
           padColor={mobilePadColor}
         />

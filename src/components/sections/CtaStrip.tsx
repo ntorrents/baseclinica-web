@@ -10,7 +10,7 @@ export function CtaStrip() {
             id="cta-final-heading"
             className="text-2xl font-semibold text-white sm:text-3xl"
           >
-            Listo para unificar web y operaciones en tu clinica?
+            ¿Listo para unificar web y operaciones en tu clínica?
           </h2>
           <p className="mt-2 max-w-xl text-sm text-teal-100">
             Cuéntanos tu caso y te recomendamos el nivel Esencial, Crecimiento o

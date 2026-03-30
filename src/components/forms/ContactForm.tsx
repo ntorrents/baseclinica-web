@@ -3,11 +3,11 @@
 import { FormEvent, useState } from "react";
 
 const interests = [
-  { value: "", label: "Selecciona una opcion (opcional)" },
+  { value: "", label: "Selecciona una opción (opcional)" },
   { value: "web", label: "Solo web corporativa" },
   { value: "erp", label: "Solo ERP / CRM" },
   { value: "integral", label: "Pack integral (web + ERP)" },
-  { value: "asesoria", label: "No estoy seguro / asesoria" },
+  { value: "asesoria", label: "No estoy seguro / asesoría" },
 ];
 
 export function ContactForm() {
@@ -78,7 +78,7 @@ export function ContactForm() {
         </div>
         <div>
           <label htmlFor="contact-email" className="block text-sm font-medium text-slate-700">
-            Correo electronico
+            Correo electrónico
           </label>
           <input
             id="contact-email"
@@ -94,7 +94,7 @@ export function ContactForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="contact-phone" className="block text-sm font-medium text-slate-700">
-            Telefono (opcional)
+            Teléfono (opcional)
           </label>
           <input
             id="contact-phone"
@@ -106,7 +106,7 @@ export function ContactForm() {
         </div>
         <div>
           <label htmlFor="contact-company" className="block text-sm font-medium text-slate-700">
-            Clinica / proyecto (opcional)
+            Clínica / proyecto (opcional)
           </label>
           <input
             id="contact-company"
@@ -120,7 +120,7 @@ export function ContactForm() {
 
       <div>
         <label htmlFor="contact-interest" className="block text-sm font-medium text-slate-700">
-          Que te interesa
+          Qué te interesa
         </label>
         <select
           id="contact-interest"
@@ -175,13 +175,13 @@ export function ContactForm() {
           href="mailto:hola@baseclinica.com"
           className="text-sm font-semibold text-teal-800 underline decoration-teal-300 underline-offset-4 hover:text-teal-950"
         >
-          O escribenos directamente por correo
+          O escríbenos directamente por correo
         </a>
       </div>
 
       <p className="text-xs text-slate-500">
         Al enviar este formulario aceptas que tratemos tus datos para responderte, conforme a la
-        informacion legal de esta web. No usamos tus datos con fines comerciales sin consentimiento.
+        información legal de esta web. No usamos tus datos con fines comerciales sin consentimiento.
       </p>
     </form>
   );

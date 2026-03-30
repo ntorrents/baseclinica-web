@@ -45,19 +45,19 @@ const pillars = [
   {
     title: "Cumplimiento RGPD",
     description:
-      "Procesos y documentacion alineados al tratamiento licito de datos personales y de salud, con base para tu responsabilidad proactiva.",
+      "Procesos y documentación alineados al tratamiento lícito de datos personales y de salud, con base para tu responsabilidad proactiva.",
     Icon: IconShield,
   },
   {
     title: "Copias de seguridad diarias",
     description:
-      "Respaldo automatizado de la informacion critica para minimizar el riesgo de perdida y acelerar la recuperacion ante incidentes.",
+      "Respaldo automatizado de la información crítica para minimizar el riesgo de pérdida y acelerar la recuperación ante incidentes.",
     Icon: IconBackup,
   },
   {
-    title: "Cifrado de datos medicos",
+    title: "Cifrado de datos médicos",
     description:
-      "Proteccion en transito y en reposo segun buenas practicas sectoriales, reduciendo la exposicion de historiales y documentacion clinica.",
+      "Protección en tránsito y en reposo según buenas prácticas sectoriales, reduciendo la exposición de historiales y documentación clínica.",
     Icon: IconLock,
   },
 ] as const;
@@ -98,7 +98,7 @@ export function SecurityTrust() {
             Infraestructura de confianza
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            Seguridad y gobernanza pensadas para entornos clinicos
+            Seguridad y gobernanza pensadas para entornos clínicos
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-slate-400 sm:text-base">
             Transparencia operativa y controles que comunican seriedad a tu equipo y a tus

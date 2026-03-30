@@ -13,9 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BaseClinica | ERP + Web Corporativa para Clinicas",
+  title: "BaseClinica | ERP + web corporativa para clínicas",
   description:
-    "Landing de conversion para vender ERP medico y diseno web corporativo en pack integral.",
+    "Landing de conversión para vender ERP médico y diseño web corporativo en pack integral.",
+  icons: {
+    icon: "/bc-icon.svg",
+    shortcut: "/bc-icon.svg",
+  },
 };
 
 export default function RootLayout({

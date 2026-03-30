@@ -66,7 +66,7 @@ export function Navbar() {
             aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}
           >
-            <span className="sr-only">Menu</span>
+            <span className="sr-only">Menú</span>
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               {open ? (
                 <path

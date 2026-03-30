@@ -10,7 +10,7 @@ export function ProcessSection({ steps }: ProcessSectionProps) {
     <SectionContainer id="proceso">
       <div className="mb-10 max-w-3xl">
         <p className="text-sm font-semibold uppercase tracking-wide text-sky-700">
-          Como trabajamos
+          Cómo trabajamos
         </p>
         <h2 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-4xl">
           De la idea al sistema en uso, sin sorpresas

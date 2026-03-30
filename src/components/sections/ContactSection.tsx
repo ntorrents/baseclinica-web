@@ -13,7 +13,7 @@ export function ContactSection() {
             Cuéntanos tu clínica y te proponemos el siguiente paso
           </h2>
           <p className="mt-4 text-slate-600">
-            Respuesta orientativa en horario laboral. Si prefieres llamada o visita, indicalo en el
+            Respuesta orientativa en horario laboral. Si prefieres llamada o visita, indícalo en el
             mensaje y te proponemos franja.
           </p>
           <ul className="mt-6 space-y-2 text-sm text-slate-600">
@@ -21,7 +21,7 @@ export function ContactSection() {
               <span className="text-teal-600" aria-hidden>
                 —
               </span>
-              Diagnostico rapido sin compromiso
+              Diagnóstico rápido sin compromiso
             </li>
             <li className="flex gap-2">
               <span className="text-teal-600" aria-hidden>

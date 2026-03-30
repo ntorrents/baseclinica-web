@@ -13,12 +13,12 @@ export function ServicePacksDetail({ categories }: ServicePacksDetailProps) {
           Servicios en detalle
         </p>
         <h2 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-4xl">
-          Planes por nivel dentro de cada linea de producto
+          Planes por nivel dentro de cada línea de producto
         </h2>
         <p className="mt-4 text-slate-600">
-          Las tarjetas superiores resumen las tres grandes opciones; aqui desglosamos
+          Las tarjetas superiores resumen las tres grandes opciones; aquí desglosamos
           variantes concretas para que elijas el punto de entrada (o el salto) que mejor
-          encaje con tu clinica. Los importes son orientativos hasta cerrar alcance.
+          encaje con tu clínica. Los importes son orientativos hasta cerrar alcance.
         </p>
       </div>
 

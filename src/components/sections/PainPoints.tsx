@@ -13,7 +13,7 @@ export function PainPoints({ items }: PainPointsProps) {
           El problema
         </p>
         <h2 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-4xl">
-          La mayoria de clinicas pierde tiempo y oportunidades por procesos desconectados
+          La mayoría de clínicas pierde tiempo y oportunidades por procesos desconectados
         </h2>
       </div>
 
