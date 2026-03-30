@@ -39,7 +39,7 @@ export const portfolioCase: PortfolioCase = {
   description:
     "Ejemplo real de diseno web premium orientado a conversion, confianza visual y posicionamiento de marca en el sector salud/estetica.",
   liveUrl: "https://www.c3linic.com",
-  image: "/images/portfolio-c3linic.svg",
+  image: "/images/portfolio-c3linic.png",
 };
 
 export const erpFeatures: ErpFeature[] = [

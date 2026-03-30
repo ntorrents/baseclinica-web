@@ -33,13 +33,13 @@ export function Portfolio({ data }: PortfolioProps) {
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-200/70">
+        <div className="relative aspect-[16/10] w-full max-h-[min(420px,70vw)] overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-xl shadow-slate-200/70 lg:max-h-[460px]">
           <Image
             src={data.image}
             alt={`Preview del proyecto ${data.name}`}
-            width={1400}
-            height={900}
-            className="h-auto w-full object-cover"
+            fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover object-top"
           />
         </div>
       </div>

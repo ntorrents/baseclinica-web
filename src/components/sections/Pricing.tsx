@@ -15,6 +15,14 @@ export function Pricing({ plans }: PricingProps) {
         <h2 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-4xl">
           Elige el servicio que necesites o maximiza valor con el Pack Integral
         </h2>
+        <p className="mt-4 text-slate-600">
+          <a
+            href="#servicios-detalle"
+            className="font-semibold text-teal-700 underline decoration-teal-300 underline-offset-4 hover:text-teal-900"
+          >
+            Ver desglose completo por niveles y precios orientativos
+          </a>
+        </p>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">

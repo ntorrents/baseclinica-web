@@ -38,3 +38,29 @@ export type PricingPlan = {
   highlighted?: boolean;
   badge?: string;
 };
+
+export type ServicePackTier = {
+  name: string;
+  price: string;
+  description: string;
+  features: string[];
+  recommended?: boolean;
+};
+
+export type ServicePackCategory = {
+  id: "web" | "erp" | "integral";
+  title: string;
+  subtitle: string;
+  tiers: ServicePackTier[];
+};
+
+export type ProcessStep = {
+  step: string;
+  title: string;
+  description: string;
+};
+
+export type FaqItem = {
+  question: string;
+  answer: string;
+};
