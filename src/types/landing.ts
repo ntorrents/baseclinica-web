@@ -41,6 +41,21 @@ export type PricingPlan = {
   badge?: string;
 };
 
+export type ErpScreensConfig = {
+  desktop: { src: string; padColor: string };
+  mobile: { src: string; padColor: string };
+};
+
+/** Contenido variable por nicho para la misma plantilla visual */
+export type LandingData = {
+  hero: HeroData;
+  painPoints: PainPoint[];
+  portfolio: PortfolioCase;
+  erpFeatures: ErpFeature[];
+  erpScreens: ErpScreensConfig;
+  pricingPlans: PricingPlan[];
+};
+
 export type ServicePackTier = {
   name: string;
   price: string;

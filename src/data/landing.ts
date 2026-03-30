@@ -1,12 +1,13 @@
 import {
   ErpFeature,
   HeroData,
+  LandingData,
   PainPoint,
   PortfolioCase,
   PricingPlan,
 } from "@/types/landing";
 
-export const heroData: HeroData = {
+const defaultHero: HeroData = {
   eyebrow: "Digitalizacion integral para micro-clinicas",
   title: "Gestiona tu clinica y eleva tu marca con una sola solucion",
   subtitle:
@@ -15,7 +16,7 @@ export const heroData: HeroData = {
   secondaryCta: { label: "Ver Pack Integral", href: "#pricing" },
 };
 
-export const painPoints: PainPoint[] = [
+const defaultPainPoints: PainPoint[] = [
   {
     title: "Caos en WhatsApp y agenda manual",
     description:
@@ -33,7 +34,7 @@ export const painPoints: PainPoint[] = [
   },
 ];
 
-export const portfolioCase: PortfolioCase = {
+const defaultPortfolio: PortfolioCase = {
   name: "C3linic",
   category: "Clinica estetica y salud",
   description:
@@ -43,8 +44,7 @@ export const portfolioCase: PortfolioCase = {
   imagePadColor: "#fbf9f7",
 };
 
-/** Rutas y color de relleno (letterbox) al mostrar capturas ERP completas */
-export const erpScreens = {
+const defaultErpScreens = {
   desktop: {
     src: "/images/erp-desktop.png",
     padColor: "#f9fbfc",
@@ -55,7 +55,7 @@ export const erpScreens = {
   },
 } as const;
 
-export const erpFeatures: ErpFeature[] = [
+const defaultErpFeatures: ErpFeature[] = [
   {
     title: "Agenda online inteligente",
     description:
@@ -73,7 +73,7 @@ export const erpFeatures: ErpFeature[] = [
   },
 ];
 
-export const pricingPlans: PricingPlan[] = [
+const defaultPricingPlans: PricingPlan[] = [
   {
     name: "Solo Web Corporativa",
     price: "Desde 1490 EUR",
@@ -115,3 +115,87 @@ export const pricingPlans: PricingPlan[] = [
     badge: "Ahorro exclusivo",
   },
 ];
+
+const defaultLanding: LandingData = {
+  hero: defaultHero,
+  painPoints: defaultPainPoints,
+  portfolio: defaultPortfolio,
+  erpFeatures: defaultErpFeatures,
+  erpScreens: defaultErpScreens,
+  pricingPlans: defaultPricingPlans,
+};
+
+const fisioHero: HeroData = {
+  eyebrow: "Digitalizacion para gabinetes de fisioterapia",
+  title: "Ordena camillas, agenda y facturacion sin perder el foco en el paciente",
+  subtitle:
+    "ERP medico y web corporativa pensados para fisioterapeutas y clinicas de rehabilitacion: menos friccion administrativa y mas tiempo en sala.",
+  primaryCta: { label: "Ver el Software", href: "#erp" },
+  secondaryCta: { label: "Ver Pack Integral", href: "#pricing" },
+};
+
+const fisioPainPoints: PainPoint[] = [
+  {
+    title: "Camillas y salas mal coordinadas",
+    description:
+      "Cuellos de botella entre turnos, equipos compartidos y cambios de ultima hora que rompen el ritmo del dia.",
+  },
+  {
+    title: "Planes y sesiones en post-its o hojas sueltas",
+    description:
+      "Dificultad para ver el historial completo del paciente y seguir el plan de ejercicios con criterio clinico.",
+  },
+  {
+    title: "Web generica que no refleja tu especialidad",
+    description:
+      "Pocos pacientes nuevos por falta de mensaje claro sobre terapias, lesion deportiva o rehabilitacion.",
+  },
+];
+
+const dermoHero: HeroData = {
+  eyebrow: "Digitalizacion para clinicas esteticas",
+  title: "Imagen premium y operativa diaria alineadas en tu centro de estetica",
+  subtitle:
+    "Web que transmite confianza y tratamientos de calidad, mas ERP para citas, cobros y historial sin caos en recepcion.",
+  primaryCta: { label: "Ver el Software", href: "#erp" },
+  secondaryCta: { label: "Ver Pack Integral", href: "#pricing" },
+};
+
+const dermoPainPoints: PainPoint[] = [
+  {
+    title: "Agenda llena de tratamientos y retoques",
+    description:
+      "Huecos mal aprovechados, sobrecitas y recordatorios manuales que consumen tiempo en recepcion.",
+  },
+  {
+    title: "Consentimientos y fichas repartidos",
+    description:
+      "Riesgo de perder trazabilidad entre visitas previas, fotos y protocolos por paciente.",
+  },
+  {
+    title: "Presencia online que no vende tu nivel real",
+    description:
+      "Pacientes comparan clinicas online; sin una web acorde, pierdes conversion frente a la competencia.",
+  },
+];
+
+export const NICHE_DEFAULT_KEY = "default";
+
+export const landingByNiche: Record<string, LandingData> = {
+  default: defaultLanding,
+  fisio: {
+    ...defaultLanding,
+    hero: fisioHero,
+    painPoints: fisioPainPoints,
+  },
+  dermo: {
+    ...defaultLanding,
+    hero: dermoHero,
+    painPoints: dermoPainPoints,
+  },
+};
+
+export function getLandingData(niche: string): LandingData {
+  const key = niche.trim().toLowerCase();
+  return landingByNiche[key] ?? landingByNiche[NICHE_DEFAULT_KEY];
+}
