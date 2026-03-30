@@ -6,12 +6,16 @@ type ErpSolutionProps = {
   features: ErpFeature[];
   desktopShot: string;
   mobileShot: string;
+  desktopPadColor?: string;
+  mobilePadColor?: string;
 };
 
 export function ErpSolution({
   features,
   desktopShot,
   mobileShot,
+  desktopPadColor,
+  mobilePadColor,
 }: ErpSolutionProps) {
   return (
     <SectionContainer id="erp">
@@ -52,11 +56,13 @@ export function ErpSolution({
           src={desktopShot}
           alt="Captura del ERP en vista de escritorio"
           device="laptop"
+          padColor={desktopPadColor}
         />
         <DeviceMockup
           src={mobileShot}
           alt="Captura del ERP en vista movil"
           device="mobile"
+          padColor={mobilePadColor}
         />
       </div>
     </SectionContainer>

@@ -12,7 +12,10 @@ export function SectionContainer({
   className = "",
 }: SectionContainerProps) {
   return (
-    <section id={id} className={`relative z-10 py-20 sm:py-24 ${className}`}>
+    <section
+      id={id}
+      className={`relative z-10 py-20 sm:py-24 ${id ? "scroll-mt-24" : ""} ${className}`}
+    >
       <div className="mx-auto w-full max-w-6xl px-6 lg:px-8">{children}</div>
     </section>
   );

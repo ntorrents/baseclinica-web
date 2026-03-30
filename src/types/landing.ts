@@ -22,6 +22,8 @@ export type PortfolioCase = {
   description: string;
   liveUrl: string;
   image: string;
+  /** Color de las bandas al mostrar la captura completa (object-contain); alinear con bordes de la imagen */
+  imagePadColor?: string;
 };
 
 export type ErpFeature = {

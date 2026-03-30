@@ -40,7 +40,20 @@ export const portfolioCase: PortfolioCase = {
     "Ejemplo real de diseno web premium orientado a conversion, confianza visual y posicionamiento de marca en el sector salud/estetica.",
   liveUrl: "https://www.c3linic.com",
   image: "/images/portfolio-c3linic.png",
+  imagePadColor: "#fbf9f7",
 };
+
+/** Rutas y color de relleno (letterbox) al mostrar capturas ERP completas */
+export const erpScreens = {
+  desktop: {
+    src: "/images/erp-desktop.png",
+    padColor: "#f9fbfc",
+  },
+  mobile: {
+    src: "/images/erp-mobile.png",
+    padColor: "#f9fbfc",
+  },
+} as const;
 
 export const erpFeatures: ErpFeature[] = [
   {

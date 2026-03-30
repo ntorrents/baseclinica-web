@@ -29,10 +29,10 @@ export function Pricing({ plans }: PricingProps) {
         {plans.map((plan) => (
           <article
             key={plan.name}
-            className={`relative rounded-2xl border p-6 shadow-sm ${
+            className={`relative origin-center rounded-2xl border p-6 shadow-sm transition-all duration-300 ease-out will-change-transform hover:z-10 hover:scale-105 hover:shadow-xl ${
               plan.highlighted
-                ? "border-teal-300 bg-teal-50 shadow-teal-100"
-                : "border-slate-200 bg-white"
+                ? "border-teal-300 bg-teal-50 shadow-teal-100 hover:shadow-teal-200/80"
+                : "border-slate-200 bg-white hover:shadow-slate-200/90"
             }`}
           >
             {plan.badge ? (
