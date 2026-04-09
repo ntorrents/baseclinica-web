@@ -14,7 +14,7 @@ export function CtaStrip() {
           </h2>
           <p className="mt-2 max-w-xl text-sm text-teal-100">
             Cuéntanos tu caso y te recomendamos el nivel Esencial, Crecimiento o
-            Profesional — en web, ERP o Pack Integral.
+            Profesional — en web, app o Pack Integral.
           </p>
         </div>
         <div className="flex shrink-0 flex-wrap justify-center gap-3">

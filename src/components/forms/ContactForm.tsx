@@ -1,12 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useState } from "react";
+import { CONTACT_EMAIL } from "@/config/contact";
 
 const interests = [
   { value: "", label: "Selecciona una opción (opcional)" },
   { value: "web", label: "Solo web corporativa" },
-  { value: "erp", label: "Solo ERP / CRM" },
-  { value: "integral", label: "Pack integral (web + ERP)" },
+  { value: "erp", label: "Solo app de gestión interna" },
+  { value: "integral", label: "Pack integral (web + app de gestión)" },
   { value: "asesoria", label: "No estoy seguro / asesoría" },
 ];
 
@@ -146,7 +148,7 @@ export function ContactForm() {
           required
           rows={5}
           minLength={10}
-          placeholder="Cuéntanos tu situación, número de profesionales, si ya tienes web o ERP..."
+          placeholder="Cuéntanos tu situación, número de profesionales, si ya tienes web o app de gestión..."
           className="mt-1.5 w-full resize-y rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-slate-900 outline-none ring-teal-500/20 transition placeholder:text-slate-400 focus:border-teal-500 focus:ring-2"
         />
       </div>
@@ -172,7 +174,7 @@ export function ContactForm() {
           {status === "sending" ? "Enviando..." : "Enviar mensaje"}
         </button>
         <a
-          href="mailto:hola@baseclinica.com"
+          href={`mailto:${CONTACT_EMAIL}`}
           className="text-sm font-semibold text-teal-800 underline decoration-teal-300 underline-offset-4 hover:text-teal-950"
         >
           O escríbenos directamente por correo
@@ -180,8 +182,12 @@ export function ContactForm() {
       </div>
 
       <p className="text-xs text-slate-500">
-        Al enviar este formulario aceptas que tratemos tus datos para responderte, conforme a la
-        información legal de esta web. No usamos tus datos con fines comerciales sin consentimiento.
+        Al enviar aceptas el tratamiento de tus datos para responderte, según nuestra{" "}
+        <Link href="/politica-privacidad" className="underline decoration-slate-400 underline-offset-2 hover:text-slate-800">
+          Política de privacidad
+        </Link>
+        . No usamos tus datos con fines comerciales adicionales sin base legal o consentimiento
+        cuando proceda.
       </p>
     </form>
   );

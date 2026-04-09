@@ -33,8 +33,12 @@ export type ErpFeature = {
 
 export type PricingPlan = {
   name: string;
-  price: string;
+  monthlyPrice: string;
+  annualPrice: string;
+  priceCaption?: string;
   description: string;
+  target: string;
+  unlockHint?: string;
   features: string[];
   cta: Cta;
   highlighted?: boolean;
@@ -58,7 +62,12 @@ export type LandingData = {
 
 export type ServicePackTier = {
   name: string;
+  /** Precio con facturación mensual (o pago único si no hay variante anual). */
   price: string;
+  /** Precio anual del mismo plan (p. ej. software con 10% dto.); si falta, no cambia al alternar. */
+  priceAnnual?: string;
+  /** Texto breve bajo el precio (p. ej. cómo se compone la cuota en packs web+app). */
+  priceContext?: string;
   description: string;
   features: string[];
   recommended?: boolean;

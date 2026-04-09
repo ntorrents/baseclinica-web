@@ -48,6 +48,17 @@ export function ServicePacksDetail({ categories }: ServicePacksDetailProps) {
                   ) : null}
                   <h4 className="text-lg font-semibold text-slate-900">{tier.name}</h4>
                   <p className="mt-2 text-lg font-bold text-teal-800">{tier.price}</p>
+                  {tier.priceAnnual &&
+                  tier.priceAnnual !== tier.price ? (
+                    <p className="mt-1 text-xs text-slate-500">
+                      Anual (10% dto. en software): {tier.priceAnnual}
+                    </p>
+                  ) : null}
+                  {tier.priceContext ? (
+                    <p className="mt-2 text-xs leading-relaxed text-slate-500">
+                      {tier.priceContext}
+                    </p>
+                  ) : null}
                   <p className="mt-2 text-sm text-slate-600">{tier.description}</p>
                   <ul className="mt-4 flex-1 space-y-2 text-sm text-slate-700">
                     {tier.features.map((f) => (

@@ -11,7 +11,7 @@ const defaultHero: HeroData = {
   eyebrow: "Digitalización integral para microclínicas",
   title: "Gestiona tu clínica y eleva tu marca con una sola solución",
   subtitle:
-    "Unimos ERP médico y web corporativa para que ganes tiempo, automatices tareas y proyectes una imagen premium con cumplimiento legal.",
+    "Unimos app de gestión interna y web corporativa para que ganes tiempo, automatices tareas y proyectes una imagen premium con cumplimiento legal.",
   primaryCta: { label: "Ver el Software", href: "#erp" },
   secondaryCta: { label: "Ver Pack Integral", href: "#pricing" },
 };
@@ -76,9 +76,12 @@ const defaultErpFeatures: ErpFeature[] = [
 const defaultPricingPlans: PricingPlan[] = [
   {
     name: "Solo Web Corporativa",
-    price: "Desde 890 EUR",
-    description:
-      "Diseño y desarrollo web orientado a captación y posicionamiento.",
+    monthlyPrice: "Desde 890 EUR (pago único)",
+    annualPrice: "Desde 890 EUR (pago único)",
+    priceCaption: "Mantenimiento y mejoras en planes de Web por niveles",
+    description: "Diseño y desarrollo web orientado a captación y posicionamiento.",
+    target: "Clínicas que quieren mejorar imagen y captación.",
+    unlockHint: "SEO avanzado e informes se desbloquean en niveles superiores.",
     features: [
       "Diseño premium sector salud",
       "Copy y estructura orientada a conversión",
@@ -88,26 +91,35 @@ const defaultPricingPlans: PricingPlan[] = [
     cta: { label: "Quiero mi Web", href: "#contacto" },
   },
   {
-    name: "Solo ERP Médico",
-    price: "Desde 49 EUR/mes",
+    name: "Solo App de Gestión Interna",
+    monthlyPrice: "Desde 49 EUR/mes",
+    annualPrice: "Desde 529 EUR/año (10% dto.)",
+    priceCaption: "10% de descuento con facturación anual del software",
     description:
-      "Software SaaS para digitalizar operaciones, agenda y facturación clínica.",
+      "Software para digitalizar agenda, pacientes, facturación y control interno.",
+    target: "Equipos que necesitan orden operativo sin complejidad técnica.",
+    unlockHint: "Roles, métricas y multi-sede se desbloquean en planes Clinic y Multi-sede.",
     features: [
       "Agenda y gestión de pacientes",
       "Facturación y seguimiento",
       "Panel de control de actividad",
       "Soporte de onboarding",
     ],
-    cta: { label: "Quiero el ERP", href: "#contacto" },
+    cta: { label: "Quiero la App", href: "#contacto" },
   },
   {
-    name: "Pack Integral (Web + ERP)",
-    price: "Oferta combinada",
+    name: "Pack Integral (Web + App)",
+    monthlyPrice: "Desde 750 EUR + desde 49 EUR/mes",
+    annualPrice: "Desde 750 EUR + desde 529 EUR/año (10% dto.)",
+    priceCaption:
+      "Niveles Plus y Avanzado: cuota mensual conjunta (app + mantenimiento web) con descuento frente a contratar por separado.",
     description:
       "La opción más rentable para lanzar tu transformación digital completa.",
+    target: "Centros que quieren resolver marca y operativa en una sola decisión.",
+    unlockHint: "Al subir de plan se desbloquean más horas de cambios y analítica avanzada.",
     features: [
       "Todo lo incluido en Solo Web",
-      "Todo lo incluido en Solo ERP",
+      "Todo lo incluido en la App de Gestión",
       "Descuento especial por contratación conjunta",
       "Acompañamiento estratégico de implementación",
     ],
@@ -131,7 +143,7 @@ const fisioHero: HeroData = {
   title:
     "Ordena camillas, agenda y facturación sin perder el foco en el paciente",
   subtitle:
-    "ERP médico y web corporativa pensados para fisioterapeutas y clínicas de rehabilitación: menos fricción administrativa y más tiempo en sala.",
+    "App de gestión interna y web corporativa pensadas para fisioterapeutas y clínicas de rehabilitación: menos fricción administrativa y más tiempo en sala.",
   primaryCta: { label: "Ver el Software", href: "#erp" },
   secondaryCta: { label: "Ver Pack Integral", href: "#pricing" },
 };
@@ -159,7 +171,7 @@ const dermoHero: HeroData = {
   title:
     "Imagen premium y operativa diaria alineadas en tu centro de estética",
   subtitle:
-    "Web que transmite confianza y tratamientos de calidad, más ERP para citas, cobros y historial sin caos en recepción.",
+    "Web que transmite confianza y tratamientos de calidad, más app de gestión para citas, cobros e historial sin caos en recepción.",
   primaryCta: { label: "Ver el Software", href: "#erp" },
   secondaryCta: { label: "Ver Pack Integral", href: "#pricing" },
 };

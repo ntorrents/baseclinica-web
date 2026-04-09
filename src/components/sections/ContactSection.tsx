@@ -27,7 +27,7 @@ export function ContactSection() {
               <span className="text-teal-600" aria-hidden>
                 —
               </span>
-              Mismo interlocutor para Pack Integral (web + ERP)
+              Mismo interlocutor para Pack Integral (web + app)
             </li>
             <li className="flex gap-2">
               <span className="text-teal-600" aria-hidden>

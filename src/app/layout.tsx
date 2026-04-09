@@ -12,13 +12,28 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://baseclinica.com";
+
 export const metadata: Metadata = {
-  title: "BaseClinica | ERP + web corporativa para clínicas",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "BaseClinica | App de gestión y web corporativa para clínicas",
+    template: "%s | BaseClinica",
+  },
   description:
-    "Landing de conversión para vender ERP médico y diseño web corporativo en pack integral.",
+    "Software de gestión interna y diseño web para microclínicas: agenda, pacientes, facturación y presencia online. Pack integral con un solo proveedor.",
   icons: {
     icon: "/bc-icon.svg",
     shortcut: "/bc-icon.svg",
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_ES",
+    siteName: "BaseClinica",
+    title: "BaseClinica | App de gestión y web corporativa para clínicas",
+    description:
+      "Software de gestión interna y diseño web para microclínicas. Pack integral opcional.",
   },
 };
 

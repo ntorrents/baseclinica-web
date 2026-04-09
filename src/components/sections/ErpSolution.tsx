@@ -21,10 +21,10 @@ export function ErpSolution({
     <SectionContainer id="erp">
       <div className="mb-10 max-w-3xl">
         <p className="text-sm font-semibold uppercase tracking-wide text-sky-700">
-          Solución 2: ERP médico
+          Solución 2: App de gestión interna
         </p>
         <h2 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-4xl">
-          Automatiza agenda, facturación y gestión clínica en una sola plataforma
+          Automatiza agenda, facturación y gestión clínica en una app fácil de usar
         </h2>
       </div>
 
@@ -54,13 +54,13 @@ export function ErpSolution({
       <div className="mt-12 grid items-end gap-8 lg:grid-cols-[2fr_1fr]">
         <DeviceMockup
           src={desktopShot}
-          alt="Captura del ERP en vista de escritorio"
+          alt="Captura de la app en vista de escritorio"
           device="laptop"
           padColor={desktopPadColor}
         />
         <DeviceMockup
           src={mobileShot}
-          alt="Captura del ERP en vista móvil"
+          alt="Captura de la app en vista móvil"
           device="mobile"
           padColor={mobilePadColor}
         />

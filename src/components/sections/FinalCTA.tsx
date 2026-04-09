@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { CONTACT_EMAIL } from "@/config/contact";
 
 export function FinalCTA() {
   return (
@@ -48,7 +49,7 @@ export function FinalCTA() {
                 Pedir reunión
               </a>
               <a
-                href="mailto:hola@baseclinica.com?subject=Demo%20BaseClinica"
+                href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Demo BaseClinica")}`}
                 className="inline-flex rounded-xl border-2 border-white/35 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-white/60 hover:bg-white/15"
               >
                 Escribir por correo

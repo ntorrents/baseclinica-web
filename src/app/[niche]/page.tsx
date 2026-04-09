@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { niche } = await params;
   const data = getLandingData(niche);
   return {
-    title: `${data.hero.eyebrow} | BaseClinica`,
+    title: data.hero.eyebrow,
     description: data.hero.subtitle.slice(0, 155),
   };
 }
