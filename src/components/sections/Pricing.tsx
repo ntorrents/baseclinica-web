@@ -84,7 +84,7 @@ export function Pricing({
             }`}
           >
             {plan.badge ? (
-              <span className="absolute -top-3 left-6 rounded-full bg-teal-600 px-3 py-1 text-xs font-semibold text-white">
+              <span className="absolute -top-3 left-6 rounded-full bg-teal-800 px-3 py-1 text-xs font-semibold text-white">
                 {plan.badge}
               </span>
             ) : null}

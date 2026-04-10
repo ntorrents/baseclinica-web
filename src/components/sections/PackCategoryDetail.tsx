@@ -113,7 +113,7 @@ export function PackCategoryDetail({
             }`}
           >
             {tier.recommended ? (
-              <span className="absolute -top-3 right-4 rounded-full bg-teal-600 px-3 py-1 text-xs font-semibold text-white">
+              <span className="absolute -top-3 right-4 rounded-full bg-teal-800 px-3 py-1 text-xs font-semibold text-white">
                 Recomendado
               </span>
             ) : null}
