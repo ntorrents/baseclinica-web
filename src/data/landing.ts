@@ -93,7 +93,7 @@ const defaultPricingPlans: PricingPlan[] = [
   {
     name: "Solo App de Gestión Interna",
     monthlyPrice: "Desde 49 EUR/mes",
-    annualPrice: "Desde 529 EUR/año (10% dto.)",
+    annualPrice: "Desde 530 EUR/año",
     priceCaption: "10% de descuento con facturación anual del software",
     description:
       "Software para digitalizar agenda, pacientes, facturación y control interno.",
@@ -110,7 +110,7 @@ const defaultPricingPlans: PricingPlan[] = [
   {
     name: "Pack Integral (Web + App)",
     monthlyPrice: "Desde 750 EUR + desde 49 EUR/mes",
-    annualPrice: "Desde 750 EUR + desde 529 EUR/año (10% dto.)",
+    annualPrice: "Desde 750 EUR + desde 530 EUR/año",
     priceCaption:
       "Niveles Plus y Avanzado: cuota mensual conjunta (app + mantenimiento web) con descuento frente a contratar por separado.",
     description:

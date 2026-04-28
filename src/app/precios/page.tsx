@@ -35,6 +35,19 @@ export default function PricingPage() {
       <ScrollConnector />
       <Navbar />
       <main>
+        <header className="relative mx-auto max-w-6xl px-6 pb-4 pt-24 text-center sm:px-8 sm:pb-6 sm:pt-28 sm:text-left">
+          <p className="text-sm font-semibold uppercase tracking-wide text-teal-700">
+            Precios
+          </p>
+          <h1 className="mt-2 text-balance text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+            Elige tu punto de partida. Amplía cuando quieras.
+          </h1>
+          <p className="mx-auto mt-4 max-w-2xl text-pretty text-base leading-relaxed text-slate-600 sm:mx-0">
+            Tres familias de producto (web, app o pack integral) y niveles dentro de cada una.
+            Usa el resumen para orientarte o entra en cada pestaña para ver planes y la tabla de
+            lo que incluye cada uno.
+          </p>
+        </header>
         <PreciosHub
           plans={data.pricingPlans}
           categories={servicePackCategories}

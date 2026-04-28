@@ -31,7 +31,7 @@ export const servicePackCategories: ServicePackCategory[] = [
       {
         name: "Crecimiento",
         price: "Desde 1.290 EUR + 15 EUR/mes (mantenimiento)",
-        priceAnnual: "Desde 1.290 EUR + 162 EUR/año mant. (10% dto.)",
+        priceAnnual: "Desde 1.290 EUR + 160 EUR/año mant.",
         description:
           "Más alcance orgánico y flexibilidad para actualizar contenido con soporte.",
         features: [
@@ -45,7 +45,7 @@ export const servicePackCategories: ServicePackCategory[] = [
       {
         name: "Profesional",
         price: "Desde 1.790 EUR + 40 EUR/mes",
-        priceAnnual: "Desde 1.790 EUR + 432 EUR/año (10% dto.)",
+        priceAnnual: "Desde 1.790 EUR + 430 EUR/año",
         description:
           "Nivel premium: evolución mensual, métricas y mejora continua de conversión.",
         features: [
@@ -69,7 +69,7 @@ export const servicePackCategories: ServicePackCategory[] = [
       {
         name: "Starter",
         price: "Desde 49 EUR/mes",
-        priceAnnual: "Desde 529 EUR/año (10% dto.)",
+        priceAnnual: "Desde 530 EUR/año",
         description:
           "Para profesionales en solitario o microequipos que centralizan agenda y cobros.",
         features: [
@@ -83,7 +83,7 @@ export const servicePackCategories: ServicePackCategory[] = [
       {
         name: "Clinic",
         price: "Desde 89 EUR/mes",
-        priceAnnual: "Desde 961 EUR/año (10% dto.)",
+        priceAnnual: "Desde 960 EUR/año",
         description:
           "Clínicas con varios profesionales: desbloqueas módulos clave y puedes ampliar funcionalidades según tu necesidad.",
         features: [
@@ -98,7 +98,7 @@ export const servicePackCategories: ServicePackCategory[] = [
       {
         name: "Multi-sede",
         price: "Desde 249 EUR/mes",
-        priceAnnual: "Desde 2.693 EUR/año (10% dto.)",
+        priceAnnual: "Desde 2.690 EUR/año",
         description:
           "Desarrollo a medida partiendo de esta base: multi-sede, flujos propios y personalización fuerte.",
         features: [
@@ -120,7 +120,7 @@ export const servicePackCategories: ServicePackCategory[] = [
       {
         name: "Integral Base",
         price: "750 EUR (pago único) + 49 EUR/mes",
-        priceAnnual: "750 EUR (pago único) + 529 EUR/año (10% dto.)",
+        priceAnnual: "750 EUR (pago único) + 530 EUR/año",
         priceContext:
           "Cuota mensual: software Starter (49 €/mes). En web Esencial no hay mantenimiento mensual; el pack bonifica el setup web (750 €) frente a contratar web y app por separado (orientativo 890 € en web + 49 €/mes de app).",
         description:
@@ -135,7 +135,7 @@ export const servicePackCategories: ServicePackCategory[] = [
       {
         name: "Integral Plus",
         price: "1.090 EUR (pago único) + 99 EUR/mes",
-        priceAnnual: "1.090 EUR (pago único) + 1.069 EUR/año (10% dto.)",
+        priceAnnual: "1.090 EUR (pago único) + 1.070 EUR/año",
         priceContext:
           "Cuota mensual conjunta: software Clinic (89 €) + mantenimiento web Crecimiento (15 €), con descuento por pack frente a sumar ambas líneas por separado (104 €/mes).",
         description:
@@ -151,7 +151,7 @@ export const servicePackCategories: ServicePackCategory[] = [
       {
         name: "Integral Avanzado",
         price: "1.500 EUR (pago único) + 279 EUR/mes",
-        priceAnnual: "1.500 EUR (pago único) + 3.013 EUR/año (10% dto.)",
+        priceAnnual: "1.500 EUR (pago único) + 3.010 EUR/año",
         priceContext:
           "Cuota mensual conjunta: software multi-sede (249 €) + mantenimiento web Profesional (40 €), con descuento por pack frente a sumar ambas líneas por separado (289 €/mes).",
         description:
