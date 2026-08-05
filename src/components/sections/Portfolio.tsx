@@ -11,22 +11,22 @@ export function Portfolio({ data }: PortfolioProps) {
     <SectionContainer id="portfolio">
       <div className="grid items-center gap-10 lg:grid-cols-2">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-wide text-teal-700">
+          <p className="text-sm font-semibold uppercase tracking-wide text-blue-400">
             Solución 1: Tu web corporativa
           </p>
-          <h2 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-4xl">
+          <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">
             Diseño web premium para transmitir confianza desde la primera visita
           </h2>
-          <p className="mt-5 text-slate-600">{data.description}</p>
-          <div className="mt-6 rounded-xl border border-teal-200 bg-teal-50 p-4">
-            <p className="text-sm font-medium text-teal-900">
+          <p className="mt-5 text-slate-400">{data.description}</p>
+          <div className="mt-6 rounded-xl border border-white/10 bg-slate-900/50 p-4">
+            <p className="text-sm font-medium text-slate-200">
               Caso de éxito destacado: {data.name} – {data.category}
             </p>
             <a
               href={data.liveUrl}
               target="_blank"
               rel="noreferrer"
-              className="mt-2 inline-block font-semibold text-teal-700 underline decoration-2 underline-offset-4"
+              className="mt-2 inline-block font-semibold text-blue-400 underline decoration-2 underline-offset-4"
             >
               Ver ejemplo en vivo: www.c3linic.com
             </a>
@@ -34,7 +34,7 @@ export function Portfolio({ data }: PortfolioProps) {
         </div>
 
         <div
-          className="relative aspect-[16/10] w-full max-h-[min(480px,75vw)] overflow-hidden rounded-2xl border border-slate-200 shadow-xl shadow-slate-200/70 lg:max-h-[500px]"
+          className="relative aspect-[16/10] w-full max-h-[min(480px,75vw)] overflow-hidden rounded-2xl border border-white/10 shadow-xl shadow-slate-200/70 lg:max-h-[500px]"
           style={{
             backgroundColor: data.imagePadColor ?? "#fbf9f7",
           }}

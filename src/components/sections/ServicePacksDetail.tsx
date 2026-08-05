@@ -9,7 +9,7 @@ export function ServicePacksDetail({ categories }: ServicePacksDetailProps) {
   return (
     <SectionContainer id="servicios-detalle" className="bg-white/60">
       <div className="mb-10 max-w-3xl">
-        <p className="text-sm font-semibold uppercase tracking-wide text-teal-700">
+        <p className="text-sm font-semibold uppercase tracking-wide text-blue-700">
           Servicios en detalle
         </p>
         <h2 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-4xl">
@@ -37,17 +37,17 @@ export function ServicePacksDetail({ categories }: ServicePacksDetailProps) {
                   key={tier.name}
                   className={`relative flex flex-col rounded-2xl border p-6 shadow-sm ${
                     tier.recommended
-                      ? "border-teal-300 bg-teal-50/80 ring-1 ring-teal-200"
+                      ? "border-blue-300 bg-blue-50/80 ring-1 ring-blue-200"
                       : "border-slate-200 bg-white"
                   }`}
                 >
                   {tier.recommended ? (
-                    <span className="absolute -top-3 right-4 rounded-full bg-teal-800 px-3 py-1 text-xs font-semibold text-white">
+                    <span className="absolute -top-3 right-4 rounded-full bg-blue-800 px-3 py-1 text-xs font-semibold text-white">
                       Recomendado
                     </span>
                   ) : null}
                   <h4 className="text-lg font-semibold text-slate-900">{tier.name}</h4>
-                  <p className="mt-2 text-lg font-bold text-teal-800">{tier.price}</p>
+                  <p className="mt-2 text-lg font-bold text-blue-800">{tier.price}</p>
                   {tier.priceAnnual &&
                   tier.priceAnnual !== tier.price ? (
                     <p className="mt-1 text-xs text-slate-500">
@@ -63,7 +63,7 @@ export function ServicePacksDetail({ categories }: ServicePacksDetailProps) {
                   <ul className="mt-4 flex-1 space-y-2 text-sm text-slate-700">
                     {tier.features.map((f) => (
                       <li key={f} className="flex gap-2">
-                        <span className="mt-0.5 text-teal-600" aria-hidden>
+                        <span className="mt-0.5 text-blue-600" aria-hidden>
                           ·
                         </span>
                         <span>{f}</span>
@@ -72,7 +72,7 @@ export function ServicePacksDetail({ categories }: ServicePacksDetailProps) {
                   </ul>
                   <a
                     href="#contacto"
-                    className="mt-6 inline-flex justify-center rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-teal-400 hover:text-teal-800"
+                    className="mt-6 inline-flex justify-center rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-blue-400 hover:text-blue-800"
                   >
                     Solicitar este plan
                   </a>

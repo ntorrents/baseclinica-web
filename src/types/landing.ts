@@ -29,9 +29,12 @@ export type PortfolioCase = {
 export type ErpFeature = {
   title: string;
   description: string;
+  image?: string;
+  imagePadColor?: string;
 };
 
 export type PricingPlan = {
+  id?: "web" | "erp" | "integral";
   name: string;
   monthlyPrice: string;
   annualPrice: string;

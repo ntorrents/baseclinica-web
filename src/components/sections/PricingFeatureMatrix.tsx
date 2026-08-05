@@ -43,7 +43,7 @@ export function PricingFeatureMatrix() {
   return (
     <SectionContainer id="comparativa" className="bg-white/60">
       <div className="mb-8 max-w-3xl">
-        <p className="text-sm font-semibold uppercase tracking-wide text-teal-700">
+        <p className="text-sm font-semibold uppercase tracking-wide text-blue-700">
           Comparativa rápida
         </p>
         <h2 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-4xl">
@@ -66,7 +66,7 @@ export function PricingFeatureMatrix() {
                 <td className="px-4 py-3 text-slate-800">{row.feature}</td>
                 <td className="px-4 py-3 text-slate-600">{row.web}</td>
                 <td className="px-4 py-3 text-slate-600">{row.app}</td>
-                <td className="px-4 py-3 font-semibold text-teal-700">{row.pack}</td>
+                <td className="px-4 py-3 font-semibold text-blue-700">{row.pack}</td>
               </tr>
             ))}
           </tbody>

@@ -15,13 +15,13 @@ export function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="relative overflow-hidden rounded-3xl border border-teal-500/30 bg-gradient-to-br from-teal-700 via-teal-800 to-slate-900 px-8 py-12 shadow-2xl shadow-teal-900/40 sm:px-12 sm:py-14"
+          className="relative overflow-hidden rounded-3xl border border-blue-500/30 bg-gradient-to-br from-blue-700 via-blue-800 to-slate-900 px-8 py-12 shadow-2xl shadow-blue-900/40 sm:px-12 sm:py-14"
         >
           <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl" />
 
           <div className="relative max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-100/90">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-100/90">
               Siguiente paso
             </p>
             <h2
@@ -30,7 +30,7 @@ export function FinalCTA() {
             >
               Agenda una reunión de 20 minutos sin compromiso
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-teal-50/95 sm:text-lg">
+            <p className="mt-4 text-base leading-relaxed text-blue-50/95 sm:text-lg">
               Repasamos tu clínica, te mostramos el software y valoramos si el Pack Integral encaja.
               Recibes resumen y, si procede, propuesta cerrada.
             </p>
@@ -44,7 +44,7 @@ export function FinalCTA() {
             >
               <a
                 href="#contacto"
-                className="inline-flex rounded-xl bg-white px-6 py-3.5 text-sm font-bold text-teal-900 shadow-lg transition hover:scale-[1.03] hover:bg-teal-50 active:scale-[0.98]"
+                className="inline-flex rounded-xl bg-white px-6 py-3.5 text-sm font-bold text-blue-900 shadow-lg transition hover:scale-[1.03] hover:bg-blue-50 active:scale-[0.98]"
               >
                 Pedir reunión
               </a>

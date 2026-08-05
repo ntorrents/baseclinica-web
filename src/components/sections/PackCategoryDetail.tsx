@@ -39,7 +39,7 @@ export function CellContent({ value }: { value: string }) {
   if (t === "✓" || t.toLowerCase() === "sí" || t.toLowerCase() === "si") {
     return (
       <span
-        className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-teal-100 text-teal-700"
+        className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-blue-100 text-blue-700"
         aria-label="Incluido"
       >
         <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2">
@@ -56,7 +56,7 @@ export function CellContent({ value }: { value: string }) {
 function TierFeatureLine({ text }: { text: string }) {
   return (
     <li className="flex gap-2 text-xs leading-relaxed text-slate-600">
-      <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-teal-500/80" aria-hidden />
+      <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500/80" aria-hidden />
       <span>{text}</span>
     </li>
   );
@@ -64,7 +64,7 @@ function TierFeatureLine({ text }: { text: string }) {
 
 function AnnualDiscountPill() {
   return (
-    <span className="inline-flex items-center rounded-full border border-sky-200/80 bg-sky-50 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wide text-sky-700">
+    <span className="inline-flex items-center rounded-full border border-violet-200/80 bg-violet-50 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wide text-violet-700">
       10% anual
     </span>
   );
@@ -92,7 +92,7 @@ export function PackCategoryDetail({ category, unlockRows }: PackCategoryDetailP
         transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
         className="mb-10 max-w-3xl"
       >
-        <p className="text-sm font-semibold uppercase tracking-wide text-teal-700">{sectionEyebrow}</p>
+        <p className="text-sm font-semibold uppercase tracking-wide text-blue-700">{sectionEyebrow}</p>
         <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
           {category.title}
         </h2>
@@ -105,7 +105,7 @@ export function PackCategoryDetail({ category, unlockRows }: PackCategoryDetailP
                 onClick={() => setBilling("monthly")}
                 className={`rounded-full px-5 py-2 text-sm font-semibold transition-colors ${
                   billing === "monthly"
-                    ? "bg-teal-700 text-white shadow-sm"
+                    ? "bg-blue-700 text-white shadow-sm"
                     : "text-slate-600 hover:text-slate-900"
                 }`}
               >
@@ -116,7 +116,7 @@ export function PackCategoryDetail({ category, unlockRows }: PackCategoryDetailP
                 onClick={() => setBilling("annual")}
                 className={`rounded-full px-5 py-2 text-sm font-semibold transition-colors ${
                   billing === "annual"
-                    ? "bg-teal-700 text-white shadow-sm"
+                    ? "bg-blue-700 text-white shadow-sm"
                     : "text-slate-600 hover:text-slate-900"
                 }`}
               >
@@ -138,12 +138,12 @@ export function PackCategoryDetail({ category, unlockRows }: PackCategoryDetailP
             transition={{ duration: 0.32, delay: reduceMotion ? 0 : ti * 0.05 }}
             className={`relative flex min-h-0 flex-col rounded-2xl border p-6 shadow-sm transition-shadow duration-300 hover:shadow-md ${
               tier.recommended
-                ? "border-teal-300 bg-gradient-to-b from-teal-50/80 to-white ring-1 ring-teal-200/70"
+                ? "border-blue-300 bg-gradient-to-b from-blue-50/80 to-white ring-1 ring-blue-200/70"
                 : "border-slate-200/90 bg-white hover:border-slate-300"
             }`}
           >
             {tier.recommended ? (
-              <span className="absolute -top-2.5 right-4 rounded-full bg-teal-800 px-3 py-0.5 text-[11px] font-semibold text-white shadow-sm">
+              <span className="absolute -top-2.5 right-4 rounded-full bg-blue-800 px-3 py-0.5 text-[11px] font-semibold text-white shadow-sm">
                 Recomendado
               </span>
             ) : null}
@@ -172,8 +172,8 @@ export function PackCategoryDetail({ category, unlockRows }: PackCategoryDetailP
               href="#contacto"
               className={
                 tier.recommended
-                  ? "mt-4 inline-flex justify-center rounded-xl bg-teal-700 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-teal-800"
-                  : "mt-4 inline-flex justify-center rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-900 transition-colors hover:border-teal-400 hover:text-teal-800"
+                  ? "mt-4 inline-flex justify-center rounded-xl bg-blue-700 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-800"
+                  : "mt-4 inline-flex justify-center rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-900 transition-colors hover:border-blue-400 hover:text-blue-800"
               }
             >
               Solicitar este plan
@@ -203,8 +203,8 @@ export function PackCategoryDetail({ category, unlockRows }: PackCategoryDetailP
                 onClick={() => setMobilePlanIdx(i)}
                 className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
                   mobilePlanIdx === i
-                    ? "bg-teal-700 text-white shadow-sm"
-                    : "border border-slate-200 bg-white text-slate-700 hover:border-teal-300"
+                    ? "bg-blue-700 text-white shadow-sm"
+                    : "border border-slate-200 bg-white text-slate-700 hover:border-blue-300"
                 }`}
               >
                 {tier.name}
@@ -218,7 +218,7 @@ export function PackCategoryDetail({ category, unlockRows }: PackCategoryDetailP
             {unlockRows.map((row) => (
               <Fragment key={row.feature}>
                 {row.sectionTitle ? (
-                  <div className="border-b border-teal-100 bg-gradient-to-r from-teal-50 to-white px-4 py-2.5 text-[11px] font-bold uppercase tracking-wide text-teal-900">
+                  <div className="border-b border-blue-100 bg-gradient-to-r from-blue-50 to-white px-4 py-2.5 text-[11px] font-bold uppercase tracking-wide text-blue-900">
                     {row.sectionTitle}
                   </div>
                 ) : null}
@@ -250,7 +250,7 @@ export function PackCategoryDetail({ category, unlockRows }: PackCategoryDetailP
                         scope="col"
                         className={`w-[22%] border-b border-slate-200 px-3 py-3 text-center text-[11px] font-bold uppercase tracking-wide ${
                           tier.recommended
-                            ? "bg-teal-50 text-teal-900"
+                            ? "bg-blue-50 text-blue-900"
                             : "bg-slate-50 text-slate-700"
                         } ${colIdx === category.tiers.length - 1 ? "" : "border-r border-slate-100"}`}
                       >
@@ -266,14 +266,14 @@ export function PackCategoryDetail({ category, unlockRows }: PackCategoryDetailP
                         <tr>
                           <td
                             colSpan={1 + category.tiers.length}
-                            className="border-b border-teal-100 bg-gradient-to-r from-teal-50 via-teal-50/80 to-white px-4 py-2.5 text-[11px] font-bold uppercase tracking-wide text-teal-900"
+                            className="border-b border-blue-100 bg-gradient-to-r from-blue-50 via-blue-50/80 to-white px-4 py-2.5 text-[11px] font-bold uppercase tracking-wide text-blue-900"
                           >
                             {row.sectionTitle}
                           </td>
                         </tr>
                       ) : null}
-                      <tr className="group border-b border-slate-100 transition-colors hover:bg-teal-50/[0.25]">
-                        <th scope="row" className="border-r border-slate-100 bg-white px-3 py-3 text-left text-xs font-medium text-slate-800 group-hover:bg-teal-50/40">
+                      <tr className="group border-b border-slate-100 transition-colors hover:bg-blue-50/[0.25]">
+                        <th scope="row" className="border-r border-slate-100 bg-white px-3 py-3 text-left text-xs font-medium text-slate-800 group-hover:bg-blue-50/40">
                           {row.feature}
                         </th>
                         {row.values.map((v, i) => {
@@ -282,8 +282,8 @@ export function PackCategoryDetail({ category, unlockRows }: PackCategoryDetailP
                           return (
                             <td
                               key={`${row.feature}-${i}`}
-                              className={`px-3 py-3 text-center group-hover:bg-teal-50/20 ${
-                                isRec ? "bg-teal-50/30 group-hover:bg-teal-50/45" : ""
+                              className={`px-3 py-3 text-center group-hover:bg-blue-50/20 ${
+                                isRec ? "bg-blue-50/30 group-hover:bg-blue-50/45" : ""
                               } ${i < row.values.length - 1 ? "border-r border-slate-100/80" : ""}`}
                             >
                               <div className="flex justify-center">

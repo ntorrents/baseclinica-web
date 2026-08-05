@@ -22,11 +22,11 @@ export function ScrollAmbient() {
     >
       <motion.div
         style={{ y: yA, scale: scaleA }}
-        className="absolute -right-[20%] top-[8%] h-[min(28rem,50vw)] w-[min(28rem,50vw)] rounded-full bg-teal-300/25 blur-3xl"
+        className="absolute -right-[20%] top-[8%] h-[min(28rem,50vw)] w-[min(28rem,50vw)] rounded-full bg-blue-300/25 blur-3xl"
       />
       <motion.div
         style={{ y: yB }}
-        className="absolute -left-[15%] top-[38%] h-[min(22rem,45vw)] w-[min(22rem,45vw)] rounded-full bg-sky-400/20 blur-3xl"
+        className="absolute -left-[15%] top-[38%] h-[min(22rem,45vw)] w-[min(22rem,45vw)] rounded-full bg-violet-400/20 blur-3xl"
       />
       <motion.div
         style={{ y: yC }}

@@ -1,200 +1,168 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-const preciosAnchors = [
-  { href: "/precios", section: "overview" as const, label: "Resumen" },
-  { href: "/precios#web", section: "web" as const, label: "Web" },
-  { href: "/precios#erp", section: "erp" as const, label: "App" },
-  { href: "/precios#integral", section: "integral" as const, label: "Integral" },
+const MAIN_LINKS = [
+  { href: "/precios", label: "Precios" },
 ];
 
 export function Navbar() {
-  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const onPreciosPage = pathname === "/precios";
-  const [preciosSection, setPreciosSection] = useState<string>("overview");
 
   useEffect(() => {
-    if (!onPreciosPage) return;
-    const read = () => {
-      const h = window.location.hash.slice(1).toLowerCase();
-      if (h === "web" || h === "erp" || h === "integral") setPreciosSection(h);
-      else setPreciosSection("overview");
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
     };
-    read();
-    window.addEventListener("hashchange", read);
-    return () => window.removeEventListener("hashchange", read);
-  }, [onPreciosPage]);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <motion.header
-      initial={{ y: -16, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-      className="sticky top-0 z-[100]"
-    >
-      <div className="border-b border-white/20 bg-white/65 shadow-sm shadow-slate-900/5 backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/55">
-        <nav
-          className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-3.5 lg:px-8"
-          aria-label="Principal"
-        >
-          <motion.div
-            initial={{ opacity: 0, x: -8 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.06, duration: 0.35 }}
-          >
-            <Link
-              href="/"
-              className="text-lg font-bold tracking-tight text-slate-900 transition hover:text-teal-800"
-            >
-              <span className="text-teal-700">Base</span>Clinica
-            </Link>
-          </motion.div>
+    <>
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+          scrolled
+            ? "border-b border-white/10 bg-slate-950/70 py-3 shadow-lg shadow-black/20 backdrop-blur-xl"
+            : "bg-transparent py-5"
+        }`}
+      >
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 sm:px-8">
+          <Link href="/" className="group flex items-center gap-2">
+            <span className="text-xl font-black tracking-tight text-white transition-opacity group-hover:opacity-90">
+              <span className="text-blue-500">Base</span>Clinica
+            </span>
+          </Link>
 
-          <div className="hidden items-center gap-8 md:flex">
-            <motion.div
-              initial={{ opacity: 0, y: -6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.12, duration: 0.35 }}
-            >
+          <nav className="hidden items-center gap-8 md:flex">
+            {MAIN_LINKS.map((link) => (
               <Link
-                href="/precios"
-                className={`text-sm font-semibold transition hover:text-teal-800 ${
-                  onPreciosPage ? "text-teal-800" : "text-slate-700"
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-semibold transition-colors ${
+                  pathname === link.href
+                    ? "text-blue-400"
+                    : "text-slate-300 hover:text-white"
                 }`}
               >
-                Precios
+                {link.label}
               </Link>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: -6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.18, duration: 0.35 }}
+            ))}
+          </nav>
+
+          <div className="hidden items-center gap-4 md:flex">
+            <a
+              href="/#contacto"
+              className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_15px_rgba(37,99,235,0.4)] transition hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.6)]"
             >
-              <Link
-                href="/#contacto"
-                className="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-slate-900/15 transition hover:scale-[1.02] hover:bg-slate-800 active:scale-[0.98]"
-              >
-                Contacto
-              </Link>
-            </motion.div>
+              Contacto
+            </a>
           </div>
 
           <button
-            type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white/80 text-slate-800 md:hidden"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            onClick={() => setOpen((v) => !v)}
+            onClick={() => setMobileMenuOpen(true)}
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-300 hover:bg-white/10 transition-colors md:hidden"
+            aria-label="Abrir menú"
           >
-            <span className="sr-only">Menú</span>
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              {open ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
             </svg>
           </button>
-        </nav>
+        </div>
+      </motion.header>
 
-        <AnimatePresence>
-          {open ? (
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-sm md:hidden"
+          >
             <motion.div
-              id="mobile-nav"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              className="overflow-hidden border-t border-slate-100 bg-white/90 backdrop-blur-md md:hidden"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+              className="absolute inset-y-0 right-0 w-full max-w-sm bg-slate-950 p-6 shadow-2xl shadow-black border-l border-white/10 flex flex-col"
             >
-              <ul className="flex flex-col gap-1 px-6 py-4">
-                <li>
-                  <Link
-                    href="/precios"
-                    className={`block rounded-lg px-3 py-2.5 text-sm font-semibold ${
-                      onPreciosPage
-                        ? "bg-teal-50 text-teal-900"
-                        : "font-medium text-slate-700 hover:bg-teal-50 hover:text-teal-900"
-                    }`}
-                    onClick={() => setOpen(false)}
+              <div className="flex items-center justify-between border-b border-white/10 pb-6">
+                <Link
+                  href="/"
+                  className="text-xl font-black tracking-tight text-white"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <span className="text-blue-500">Base</span>Clinica
+                </Link>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="rounded-lg p-2 text-slate-400 hover:bg-white/10 transition-colors"
+                  aria-label="Cerrar menú"
+                >
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
-                    Precios
-                  </Link>
-                </li>
-                {onPreciosPage ? (
-                  <>
-                    <li className="px-3 pt-1 text-[10px] font-bold uppercase tracking-wide text-teal-700">
-                      Secciones
-                    </li>
-                    {preciosAnchors.map((a) => (
-                      <li key={a.href}>
-                        <a
-                          href={a.href}
-                          className={`block rounded-lg px-3 py-2 text-sm font-medium ${
-                            preciosSection === a.section
-                              ? "bg-teal-100 text-teal-950"
-                              : "text-slate-600 hover:bg-teal-50 hover:text-teal-900"
-                          }`}
-                          onClick={() => setOpen(false)}
-                        >
-                          {a.label}
-                        </a>
-                      </li>
-                    ))}
-                  </>
-                ) : null}
-                <li className="mt-2 border-t border-slate-100 pt-3">
-                  <Link
-                    href="/#contacto"
-                    className="block rounded-xl bg-slate-900 py-3 text-center text-sm font-semibold text-white"
-                    onClick={() => setOpen(false)}
-                  >
-                    Contacto
-                  </Link>
-                </li>
-              </ul>
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
-      </div>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
 
-      {onPreciosPage ? (
-        <nav
-          className="border-t border-teal-100/80 bg-teal-50/50 backdrop-blur-sm"
-          aria-label="Secciones de precios"
-        >
-          <div className="mx-auto flex max-w-6xl flex-wrap justify-center gap-x-2 gap-y-1 px-6 py-2 text-[11px] font-bold uppercase tracking-wide lg:px-8">
-            {preciosAnchors.map((a) => (
-              <a
-                key={a.href}
-                href={a.href}
-                className={`rounded-md px-2.5 py-1 transition ${
-                  preciosSection === a.section
-                    ? "bg-teal-700 text-white"
-                    : "text-teal-900 hover:bg-white/90 hover:text-teal-950"
-                }`}
-              >
-                {a.label}
-              </a>
-            ))}
-          </div>
-        </nav>
-      ) : null}
-    </motion.header>
+              <div className="flex-1 py-8 flex flex-col gap-6">
+                {MAIN_LINKS.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`text-2xl font-bold transition-colors ${
+                      pathname === link.href
+                        ? "text-blue-400"
+                        : "text-slate-300 hover:text-white"
+                    }`}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="border-t border-white/10 pt-6">
+                <a
+                  href="/#contacto"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex w-full items-center justify-center rounded-xl bg-blue-600 px-6 py-4 text-lg font-semibold text-white shadow-md transition hover:bg-blue-500"
+                >
+                  Contacto
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

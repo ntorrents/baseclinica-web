@@ -14,7 +14,7 @@ export function LegalDocumentShell({ title, children }: LegalDocumentShellProps)
       <Navbar />
       <main className="mx-auto max-w-3xl px-6 py-12 pb-20 lg:px-8">
         <nav className="mb-8 text-sm text-slate-600">
-          <Link href="/" className="font-medium text-teal-800 hover:text-teal-950">
+          <Link href="/" className="font-medium text-blue-800 hover:text-blue-950">
             Inicio
           </Link>
           <span className="mx-2 text-slate-400" aria-hidden>

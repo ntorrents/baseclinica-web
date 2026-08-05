@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useEffect } from "react";
 import { CONTACT_EMAIL } from "@/config/contact";
 
 const interests = [
@@ -13,10 +13,31 @@ const interests = [
 ];
 
 export function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">(
-    "idle",
-  );
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [selectedModules, setSelectedModules] = useState<string | null>(null);
+
+  useEffect(() => {
+    const checkParams = () => {
+      const params = new URLSearchParams(window.location.search);
+      setSelectedModules(params.get("modules"));
+    };
+    
+    checkParams();
+    
+    window.addEventListener('popstate', checkParams);
+    
+    const originalPushState = history.pushState;
+    history.pushState = function (...args) {
+      originalPushState.apply(this, args);
+      checkParams();
+    };
+    
+    return () => {
+      history.pushState = originalPushState;
+      window.removeEventListener('popstate', checkParams);
+    };
+  }, []);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -25,13 +46,18 @@ export function ContactForm() {
     const form = e.currentTarget;
     const fd = new FormData(form);
 
+    let finalMessage = String(fd.get("message") ?? "");
+    if (selectedModules) {
+      finalMessage = `[CONFIGURACIÓN DEL USUARIO]\nMódulos seleccionados: ${selectedModules}\n-------------------\n\n${finalMessage}`;
+    }
+
     const body = {
       name: String(fd.get("name") ?? ""),
       email: String(fd.get("email") ?? ""),
       phone: String(fd.get("phone") ?? ""),
       company: String(fd.get("company") ?? ""),
       interest: String(fd.get("interest") ?? ""),
-      message: String(fd.get("message") ?? ""),
+      message: finalMessage,
       website: String(fd.get("website") ?? ""),
     };
 
@@ -64,9 +90,17 @@ export function ContactForm() {
     >
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden />
 
+      {selectedModules && (
+        <div className="rounded-xl border border-blue-500/30 bg-blue-900/20 p-4 shadow-sm mb-4">
+          <p className="text-sm text-blue-200">
+            <strong>✓ Hemos guardado tu configuración.</strong> Se adjuntará automáticamente a tu mensaje (Módulos: {selectedModules.split(',').length}).
+          </p>
+        </div>
+      )}
+
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="contact-name" className="block text-sm font-medium text-slate-700">
+          <label htmlFor="contact-name" className="block text-sm font-medium text-slate-300">
             Nombre y apellidos
           </label>
           <input
@@ -75,11 +109,11 @@ export function ContactForm() {
             type="text"
             required
             autoComplete="name"
-            className="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-slate-900 outline-none ring-teal-500/20 transition focus:border-teal-500 focus:ring-2"
+            className="mt-1.5 w-full rounded-lg border border-white/20 bg-slate-900/50 px-3 py-2.5 text-white outline-none ring-blue-500/20 transition focus:border-blue-500 focus:ring-2"
           />
         </div>
         <div>
-          <label htmlFor="contact-email" className="block text-sm font-medium text-slate-700">
+          <label htmlFor="contact-email" className="block text-sm font-medium text-slate-300">
             Correo electrónico
           </label>
           <input
@@ -88,14 +122,14 @@ export function ContactForm() {
             type="email"
             required
             autoComplete="email"
-            className="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-slate-900 outline-none ring-teal-500/20 transition focus:border-teal-500 focus:ring-2"
+            className="mt-1.5 w-full rounded-lg border border-white/20 bg-slate-900/50 px-3 py-2.5 text-white outline-none ring-blue-500/20 transition focus:border-blue-500 focus:ring-2"
           />
         </div>
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="contact-phone" className="block text-sm font-medium text-slate-700">
+          <label htmlFor="contact-phone" className="block text-sm font-medium text-slate-300">
             Teléfono (opcional)
           </label>
           <input
@@ -103,11 +137,11 @@ export function ContactForm() {
             name="phone"
             type="tel"
             autoComplete="tel"
-            className="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-slate-900 outline-none ring-teal-500/20 transition focus:border-teal-500 focus:ring-2"
+            className="mt-1.5 w-full rounded-lg border border-white/20 bg-slate-900/50 px-3 py-2.5 text-white outline-none ring-blue-500/20 transition focus:border-blue-500 focus:ring-2"
           />
         </div>
         <div>
-          <label htmlFor="contact-company" className="block text-sm font-medium text-slate-700">
+          <label htmlFor="contact-company" className="block text-sm font-medium text-slate-300">
             Clínica / proyecto (opcional)
           </label>
           <input
@@ -115,19 +149,19 @@ export function ContactForm() {
             name="company"
             type="text"
             autoComplete="organization"
-            className="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-slate-900 outline-none ring-teal-500/20 transition focus:border-teal-500 focus:ring-2"
+            className="mt-1.5 w-full rounded-lg border border-white/20 bg-slate-900/50 px-3 py-2.5 text-white outline-none ring-blue-500/20 transition focus:border-blue-500 focus:ring-2"
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="contact-interest" className="block text-sm font-medium text-slate-700">
+        <label htmlFor="contact-interest" className="block text-sm font-medium text-slate-300">
           Qué te interesa
         </label>
         <select
           id="contact-interest"
           name="interest"
-          className="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-slate-900 outline-none ring-teal-500/20 transition focus:border-teal-500 focus:ring-2"
+          className="mt-1.5 w-full rounded-lg border border-white/20 bg-slate-900/50 px-3 py-2.5 text-white outline-none ring-blue-500/20 transition focus:border-blue-500 focus:ring-2"
           defaultValue=""
         >
           {interests.map((o) => (
@@ -139,7 +173,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="contact-message" className="block text-sm font-medium text-slate-700">
+        <label htmlFor="contact-message" className="block text-sm font-medium text-slate-300">
           Mensaje
         </label>
         <textarea
@@ -149,7 +183,7 @@ export function ContactForm() {
           rows={5}
           minLength={10}
           placeholder="Cuéntanos tu situación, número de profesionales, si ya tienes web o app de gestión..."
-          className="mt-1.5 w-full resize-y rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-slate-900 outline-none ring-teal-500/20 transition placeholder:text-slate-400 focus:border-teal-500 focus:ring-2"
+          className="mt-1.5 w-full resize-y rounded-lg border border-white/20 bg-slate-900/50 px-3 py-2.5 text-white outline-none ring-blue-500/20 transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-2"
         />
       </div>
 
@@ -160,7 +194,7 @@ export function ContactForm() {
       ) : null}
 
       {status === "success" ? (
-        <p className="text-sm font-medium text-teal-800" role="status" aria-live="polite">
+        <p className="text-sm font-medium text-blue-800" role="status" aria-live="polite">
           Mensaje recibido. Te responderemos lo antes posible.
         </p>
       ) : null}
@@ -175,7 +209,7 @@ export function ContactForm() {
         </button>
         <a
           href={`mailto:${CONTACT_EMAIL}`}
-          className="text-sm font-semibold text-teal-800 underline decoration-teal-300 underline-offset-4 hover:text-teal-950"
+          className="text-sm font-semibold text-blue-800 underline decoration-blue-300 underline-offset-4 hover:text-blue-950"
         >
           O escríbenos directamente por correo
         </a>

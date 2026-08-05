@@ -338,61 +338,46 @@ export const faqItems: FaqItem[] = [
   {
     question: "¿Los precios son fijos u orientativos?",
     answer:
-      "Las cifras son orientativas para microclínicas típicas; el presupuesto final depende del alcance (número de secciones, integraciones, sedes de la app). Siempre cerramos propuesta por escrito antes de iniciar.",
+      "Las cifras son reales para clínicas que se ajustan al estándar. El presupuesto final solo varía si decides añadir módulos específicos o personalizaciones complejas. Siempre cerramos la propuesta por escrito antes de iniciar.",
   },
   {
     question: "¿Puedo contratar solo la web y añadir la app después?",
     answer:
-      "Sí. Puedes empezar por la web o por la app; el Pack Integral aplica descuento cuando contratas ambos en la misma operación.",
+      "Sí, nuestra propuesta es 100% modular. Puedes empezar por la web o por el ERP de gestión, y añadir el resto de componentes cuando tu clínica lo requiera.",
   },
   {
     question: "¿Qué pasa con los datos de salud y el RGPD?",
     answer:
-      "Priorizamos buenas prácticas de seguridad y confidencialidad en la app; en la web tratamos formularios y textos legales de forma alineada a la normativa. Para casos complejos recomendamos asesoría jurídica especializada.",
+      "Priorizamos buenas prácticas de seguridad y confidencialidad en el ERP. Toda la arquitectura está diseñada para proteger la información médica y cumplir con la normativa vigente.",
   },
   {
     question: "¿Cuánto tarda un lanzamiento típico?",
     answer:
-      "Una web Esencial puede estar lista en pocas semanas según entrega de contenidos; combinaciones Integral dependen de la complejidad de la app y del número de usuarios a formar.",
+      "Una web puede estar lista en pocas semanas si disponemos de todos los contenidos. El software ERP se implanta de manera ágil, dependiendo principalmente del volumen de datos a cargar y de la formación inicial del equipo.",
   },
   {
-    question: "¿Hay permanencia en la app de gestión?",
+    question: "¿Hay permanencia en la app de gestión (ERP)?",
     answer:
-      "Sí. Hay un periodo de prueba de 30 días con la cuota en vigor. A partir de ahí, el acuerdo habitual incluye 6 meses de permanencia. Si se rescinde el contrato antes de cumplir ese plazo, puede aplicarse una compensación económica reducida, según lo acordado. Plazos, importes y condiciones se detallan por escrito en el contrato que se firma antes de iniciar la relación contractual.",
+      "Ofrecemos condiciones transparentes desde el primer día. Las condiciones de contratación (que incluyen periodos de prueba y plazos) se detallan por escrito antes de comenzar, sin cláusulas ocultas abusivas.",
   },
   {
-    question: "¿Qué es la app de gestión interna? ¿Es lo mismo que un ERP?",
+    question: "¿Qué incluye el Software de Gestión (ERP) exactamente?",
     answer:
-      "Es el software que usa tu equipo en la clínica: agenda, pacientes, cobros, stock, documentación, etc. No es la web pública que ven los pacientes. Lo llamamos app de gestión interna; a efectos prácticos cumple el papel de un ERP adaptado a consultas y microclínicas, sin ser un ERP contable genérico de gran empresa.",
+      "El ERP se adapta a ti mediante módulos. Como base incluye: Dashboard, Gestión completa de Pacientes, Historias Clínicas, Stock, Agenda, Finanzas y Roles de acceso. Además, puedes sumarle Citas Online Automáticas, Integración con WhatsApp, Firma Biométrica, Portal del Paciente, Gestión de Proveedores y Finanzas Pro.",
   },
   {
     question: "¿La web corporativa y la app de gestión son el mismo producto?",
     answer:
-      "No. La web es tu presencia online (captación, confianza, SEO). La app es para uso interno del centro. Puedes contratar uno u otro, o ambos: el Pack Integral une ambos con descuentos en el setup y un solo interlocutor.",
-  },
-  {
-    question: "¿Qué ventaja tiene el Pack Integral frente a web y app por separado?",
-    answer:
-      "Bonificas el coste inicial de la web, alineas lanzamiento de web y software, reduces fricción con un único proveedor y una implantación coordinada. La cuota mensual en niveles superiores refleja conjuntamente software y mantenimiento web, con un descuento frente a sumar cada línea por separado, tal como se detalla en precios.",
-  },
-  {
-    question: "¿Puedo subir de plan (web o app) cuando mi clínica crezca?",
-    answer:
-      "Sí. Los packs están pensados por niveles precisamente para eso. El salto de plan se acuerda con una propuesta que actualiza alcance, usuarios o sedes y la nueva cuota; no hace falta empezar por el nivel más alto.",
+      "No. La web es tu carta de presentación (captación, confianza, SEO). El ERP es para la operativa diaria interna de tu clínica. Puedes contratar ambos simultáneamente para ahorrar integraciones, o uno por separado.",
   },
   {
     question: "¿Podéis migrar datos desde mi agenda actual, Excel u otro programa?",
     answer:
-      "Depende del origen y del formato. En muchos casos se pueden importar listados básicos o coordinar una carga inicial; en otros conviene arranque manual asistido. Lo evaluamos en el diagnóstico y lo dejamos reflejado en la propuesta para no prometer migraciones que no sean realistas.",
-  },
-  {
-    question: "¿Quién aporta textos, fotos y contenidos de la web?",
-    answer:
-      "Tú aportas la información clínica, fotos y textos base; nosotros damos estructura, diseño, maquetación y buenas prácticas de copy y SEO según el nivel contratado. Si necesitas más apoyo redaccional o imágenes, se puede ampliar el alcance en propuesta.",
+      "Depende del origen y del formato. En la mayoría de los casos podemos importar de forma segura tu listado de pacientes, tarifas e historiales básicos. Lo evaluamos en la fase de diagnóstico.",
   },
   {
     question: "¿El mantenimiento web incluye cambios ilimitados?",
     answer:
-      "No de forma genérica: cada nivel de web define rondas de revisión, horas o cambios mensuales. El plan Profesional es el más amplio en evolución continua; en Esencial el alcance es más acotado. Lo concreto figura en contrato y en la tabla comparativa de cada pack.",
+      "El mantenimiento web premium incluye soporte continuo, optimización técnica y un pack de horas para modificaciones visuales o de texto cada mes. De este modo garantizamos que tu web evoluciona sin que el precio se dispare.",
   },
 ];

@@ -14,10 +14,10 @@ export function PainPoints({ items }: PainPointsProps) {
   return (
     <SectionContainer id="problema">
       <div className="mb-10 max-w-3xl">
-        <p className="text-sm font-semibold uppercase tracking-wide text-teal-700">
+        <p className="text-sm font-semibold uppercase tracking-wide text-blue-400">
           El problema
         </p>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+        <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
           La mayoría de clínicas pierde tiempo y oportunidades por procesos desconectados
         </h2>
       </div>
@@ -34,10 +34,10 @@ export function PainPoints({ items }: PainPointsProps) {
               delay: reduceMotion ? 0 : i * 0.07,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="rounded-2xl border border-slate-200/90 bg-white p-6 shadow-sm transition-shadow duration-300 hover:border-slate-300 hover:shadow-md"
+            className="rounded-2xl border border-white/10/90 bg-slate-900 p-6 shadow-none transition-shadow duration-300 hover:border-slate-300 hover:shadow-md"
           >
-            <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.description}</p>
+            <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+            <p className="mt-3 text-sm leading-relaxed text-slate-400">{item.description}</p>
           </motion.article>
         ))}
       </div>

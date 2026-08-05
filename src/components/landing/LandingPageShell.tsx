@@ -22,13 +22,16 @@ type LandingPageShellProps = {
 
 export function LandingPageShell({ data }: LandingPageShellProps) {
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_#f0fdfa,_#f8fafc_45%,_#ffffff_80%)]">
+    <div className="min-h-screen bg-slate-950 text-slate-200 selection:bg-blue-900/40">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-slate-950 to-slate-950 pointer-events-none" />
       <ScrollAmbient />
       <ScrollFlowDrift />
       <ScrollSecondaryLine />
       <ScrollConnector />
+      
       <Navbar />
-      <main>
+      
+      <main className="relative z-10">
         <Hero data={data.hero} />
         <Pricing plans={data.pricingPlans} />
         <PainPoints items={data.painPoints} />

@@ -34,7 +34,7 @@ function DriftSheen({ smooth }: DriftSheenProps) {
   const opacity = useTransform(smooth, [0, 0.35, 0.7, 1], [0.06, 0.14, 0.1, 0.16]);
   return (
     <motion.div
-      className="pointer-events-none absolute left-[12%] top-[22%] h-px w-[min(72vw,520px)] bg-gradient-to-r from-transparent via-teal-400/50 to-transparent blur-[0.5px]"
+      className="pointer-events-none absolute left-[12%] top-[22%] h-px w-[min(72vw,520px)] bg-gradient-to-r from-transparent via-blue-400/50 to-transparent blur-[0.5px]"
       style={{ x, opacity }}
       aria-hidden
     />
@@ -58,7 +58,7 @@ export function ScrollFlowDrift() {
 
       <DriftMark
         smooth={smooth}
-        className="absolute h-2 w-2 rounded-full bg-teal-500/35 shadow-sm shadow-teal-600/20"
+        className="absolute h-2 w-2 rounded-full bg-blue-500/35 shadow-sm shadow-blue-600/20"
         style={{ top: "11%", left: "14%" }}
         x0={0}
         x1={42}
@@ -67,7 +67,7 @@ export function ScrollFlowDrift() {
       />
       <DriftMark
         smooth={smooth}
-        className="absolute h-1.5 w-1.5 rounded-full bg-sky-400/40"
+        className="absolute h-1.5 w-1.5 rounded-full bg-violet-400/40"
         style={{ top: "24%", right: "18%", left: "auto" }}
         x0={0}
         x1={-36}
@@ -85,7 +85,7 @@ export function ScrollFlowDrift() {
       />
       <DriftMark
         smooth={smooth}
-        className="absolute h-1.5 w-1.5 rounded-full bg-teal-600/30"
+        className="absolute h-1.5 w-1.5 rounded-full bg-blue-600/30"
         style={{ top: "68%", right: "22%", left: "auto" }}
         x0={0}
         x1={-22}
@@ -94,7 +94,7 @@ export function ScrollFlowDrift() {
       />
       <DriftMark
         smooth={smooth}
-        className="absolute h-2 w-2 rounded-full bg-teal-400/25"
+        className="absolute h-2 w-2 rounded-full bg-blue-400/25"
         style={{ top: "86%", left: "28%" }}
         x0={0}
         x1={38}
@@ -104,7 +104,7 @@ export function ScrollFlowDrift() {
 
       <DriftMark
         smooth={smooth}
-        className="absolute h-px w-14 rounded-full bg-gradient-to-r from-teal-400/0 via-teal-400/35 to-teal-400/0"
+        className="absolute h-px w-14 rounded-full bg-gradient-to-r from-blue-400/0 via-blue-400/35 to-blue-400/0"
         style={{ top: "33%", left: "55%" }}
         x0={0}
         x1={-52}
@@ -113,7 +113,7 @@ export function ScrollFlowDrift() {
       />
       <DriftMark
         smooth={smooth}
-        className="absolute h-px w-12 rounded-full bg-gradient-to-r from-sky-400/0 via-sky-400/30 to-sky-400/0"
+        className="absolute h-px w-12 rounded-full bg-gradient-to-r from-violet-400/0 via-violet-400/30 to-violet-400/0"
         style={{ top: "76%", left: "42%" }}
         x0={0}
         x1={44}

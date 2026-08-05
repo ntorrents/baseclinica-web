@@ -8,6 +8,7 @@ type DeviceMockupProps = {
   device?: "laptop" | "mobile";
   /** Relleno alrededor de la captura (tone de los bordes de la imagen) */
   padColor?: string;
+  size?: "default" | "large";
 };
 
 export function DeviceMockup({
@@ -15,12 +16,13 @@ export function DeviceMockup({
   alt,
   device = "laptop",
   padColor = defaultPad,
+  size = "default",
 }: DeviceMockupProps) {
   const padStyle = { backgroundColor: padColor };
 
   if (device === "mobile") {
     return (
-      <div className="mx-auto w-[min(230px,82vw)] rounded-[2.25rem] border border-slate-200 bg-slate-900 p-2.5 shadow-xl shadow-teal-100/70">
+      <div className="mx-auto w-[min(230px,82vw)] rounded-[2.25rem] border border-slate-200 bg-slate-900 p-2.5 shadow-xl shadow-blue-100/70">
         <div className="mb-2 h-1.5 w-14 rounded-full bg-slate-700" />
         <div
           className="relative h-[min(520px,62vh)] w-full overflow-hidden rounded-[1.8rem]"
@@ -46,7 +48,9 @@ export function DeviceMockup({
         <span className="h-2.5 w-2.5 rounded-full bg-slate-300" />
       </div>
       <div
-        className="relative aspect-[16/10] w-full max-h-[min(440px,48vh)] overflow-hidden rounded-xl border border-slate-200 lg:max-h-[400px]"
+        className={`relative w-full overflow-hidden rounded-xl border border-slate-200 aspect-[1.68] ${
+          size === "default" ? "max-h-[min(440px,48vh)] lg:max-h-[400px]" : "max-h-none"
+        }`}
         style={padStyle}
       >
         <Image

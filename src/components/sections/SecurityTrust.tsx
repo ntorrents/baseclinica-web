@@ -94,7 +94,7 @@ export function SecurityTrust() {
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="mx-auto mb-12 max-w-2xl text-center"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-400/90">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-400/90">
             Infraestructura de confianza
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
@@ -117,9 +117,9 @@ export function SecurityTrust() {
             <motion.li
               key={pillar.title}
               variants={item}
-              className="group rounded-2xl border border-slate-700/80 bg-slate-900/60 p-7 shadow-xl shadow-black/30 backdrop-blur-sm transition duration-300 hover:border-teal-500/40 hover:bg-slate-900/80"
+              className="group rounded-2xl border border-slate-700/80 bg-slate-900/60 p-7 shadow-xl shadow-black/30 backdrop-blur-sm transition duration-300 hover:border-blue-500/40 hover:bg-slate-900/80"
             >
-              <div className="mb-5 inline-flex rounded-xl border border-teal-500/25 bg-teal-500/10 p-3 text-teal-300 transition group-hover:border-teal-400/50 group-hover:text-teal-200">
+              <div className="mb-5 inline-flex rounded-xl border border-blue-500/25 bg-blue-500/10 p-3 text-blue-300 transition group-hover:border-blue-400/50 group-hover:text-blue-200">
                 <pillar.Icon />
               </div>
               <h3 className="text-lg font-semibold text-white">{pillar.title}</h3>

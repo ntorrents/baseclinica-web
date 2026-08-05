@@ -8,12 +8,12 @@ import {
 } from "@/types/landing";
 
 const defaultHero: HeroData = {
-  eyebrow: "Digitalización integral para microclínicas",
-  title: "Gestiona tu clínica y eleva tu marca con una sola solución",
+  eyebrow: "Digitalización integral para clínicas",
+  title: "La tecnología que tu clínica necesita para captar pacientes y automatizar la gestión.",
   subtitle:
     "Unimos app de gestión interna y web corporativa para que ganes tiempo, automatices tareas y proyectes una imagen premium con cumplimiento legal.",
-  primaryCta: { label: "Ver el Software", href: "#erp" },
-  secondaryCta: { label: "Ver Pack Integral", href: "#pricing" },
+  primaryCta: { label: "Ver Packs y Precios", href: "#pricing" },
+  secondaryCta: { label: "Solicitar Demo de 15 min", href: "#contacto" },
 };
 
 const defaultPainPoints: PainPoint[] = [
@@ -57,75 +57,84 @@ const defaultErpScreens = {
 
 const defaultErpFeatures: ErpFeature[] = [
   {
-    title: "Agenda online inteligente",
-    description:
-      "Organiza citas, profesionales y salas en tiempo real con menos ausencias y mejor ocupación.",
+    title: "Dashboard e Indicadores",
+    description: "Visualiza de un vistazo la salud de tu clínica: ingresos, gastos, clientes activos y próximas citas.",
+    image: "/images/erp-dashboard.png",
+    imagePadColor: "#fbf9f7"
   },
   {
-    title: "Facturación y control administrativo",
-    description:
-      "Centraliza presupuestos, cobros y documentos para acelerar el cierre de caja diario.",
+    title: "Gestión de Pacientes",
+    description: "Acceso rápido a historiales clínicos, visitas, bonos, y consentimientos firmados por cada paciente.",
+    image: "/images/erp-clientes.png",
+    imagePadColor: "#fbf9f7"
   },
   {
-    title: "Historia clínica centralizada",
-    description:
-      "Acceso rápido y estructurado a los datos del paciente para decisiones más ágiles.",
+    title: "Control de Stock",
+    description: "Lleva un registro preciso de tus materiales clínicos, consumos y fechas de caducidad para evitar mermas.",
+    image: "/images/erp-stock.png",
+    imagePadColor: "#fbf9f7"
+  },
+  {
+    title: "Finanzas Pro",
+    description: "Centraliza presupuestos, ingresos y gastos fijos para acelerar el cierre de caja diario y la contabilidad.",
+    image: "/images/erp-finanzas.png",
+    imagePadColor: "#fbf9f7"
   },
 ];
 
 const defaultPricingPlans: PricingPlan[] = [
   {
-    name: "Solo Web Corporativa",
+    id: "web",
+    name: "Web & Captación",
     monthlyPrice: "Desde 890 EUR (pago único)",
     annualPrice: "Desde 890 EUR (pago único)",
-    priceCaption: "Mantenimiento y mejoras en planes de Web por niveles",
-    description: "Diseño y desarrollo web orientado a captación y posicionamiento.",
-    target: "Clínicas que quieren mejorar imagen y captación.",
-    unlockHint: "SEO avanzado e informes se desbloquean en niveles superiores.",
+    priceCaption: "Opcional: mantenimiento y evolución mensual.",
+    description: "Para clínicas que buscan una presencia digital premium, moderna y enfocada en captar más pacientes.",
+    target: "Ideal si ya tienes un ERP pero tu web está anticuada.",
     features: [
-      "Diseño premium sector salud",
-      "Copy y estructura orientada a conversión",
-      "SEO técnico base",
-      "Formularios y llamadas a la acción",
+      "Diseño Health-Tech premium",
+      "Copy persuasivo y conversión",
+      "Optimización SEO técnico",
+      "Textos legales y RGPD",
+      "Formularios de citas directos",
     ],
-    cta: { label: "Quiero mi Web", href: "#contacto" },
+    cta: { label: "Configurar Web", href: "#contacto" },
   },
   {
-    name: "Solo App de Gestión Interna",
+    id: "erp",
+    name: "Software ERP Clínica",
     monthlyPrice: "Desde 49 EUR/mes",
     annualPrice: "Desde 530 EUR/año",
-    priceCaption: "10% de descuento con facturación anual del software",
-    description:
-      "Software para digitalizar agenda, pacientes, facturación y control interno.",
-    target: "Equipos que necesitan orden operativo sin complejidad técnica.",
-    unlockHint: "Roles, métricas y multi-sede se desbloquean en planes Clinic y Multi-sede.",
+    priceCaption: "10% de descuento con facturación anual",
+    description: "Gestión interna sin fricciones. Agenda, historiales clínicos, facturación y recordatorios en una app rápida.",
+    target: "Ideal si tu web funciona pero gestionas con papel o Excel.",
     features: [
-      "Agenda y gestión de pacientes",
-      "Facturación y seguimiento",
-      "Panel de control de actividad",
-      "Soporte de onboarding",
+      "Agenda inteligente y recordatorios",
+      "Historiales clínicos centralizados",
+      "Facturación y control de caja",
+      "Múltiples profesionales y roles",
+      "Soporte rápido por email/chat",
     ],
-    cta: { label: "Quiero la App", href: "#contacto" },
+    cta: { label: "Configurar App", href: "#contacto" },
   },
   {
-    name: "Pack Integral (Web + App)",
-    monthlyPrice: "Desde 750 EUR + desde 49 EUR/mes",
-    annualPrice: "Desde 750 EUR + desde 530 EUR/año",
-    priceCaption:
-      "Niveles Plus y Avanzado: cuota mensual conjunta (app + mantenimiento web) con descuento frente a contratar por separado.",
-    description:
-      "La opción más rentable para lanzar tu transformación digital completa.",
-    target: "Centros que quieren resolver marca y operativa en una sola decisión.",
-    unlockHint: "Al subir de plan se desbloquean más horas de cambios y analítica avanzada.",
+    id: "integral",
+    name: "Pack Integral Digital",
+    monthlyPrice: "Desde 750 EUR + 49 EUR/mes",
+    annualPrice: "Desde 750 EUR + 530 EUR/año",
+    priceCaption: "Ahorro directo en la web al contratar ambas.",
+    description: "La solución total. Ahorra costes unificando proveedor y lanza tu web junto a tu software de gestión al mismo tiempo.",
+    target: "Ideal para clínicas de nueva apertura o rediseños completos.",
     features: [
-      "Todo lo incluido en Solo Web",
-      "Todo lo incluido en la App de Gestión",
-      "Descuento especial por contratación conjunta",
-      "Acompañamiento estratégico de implementación",
+      "Todo lo incluido en Web & Captación",
+      "Todo lo incluido en Software ERP",
+      "Descuento en implementación web",
+      "Onboarding y soporte unificado",
+      "Acompañamiento estratégico",
     ],
     cta: { label: "Quiero el Pack Integral", href: "#contacto" },
     highlighted: true,
-    badge: "Ahorro exclusivo",
+    badge: "Más Popular",
   },
 ];
 
