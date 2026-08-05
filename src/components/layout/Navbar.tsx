@@ -6,7 +6,11 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 const MAIN_LINKS = [
+  { href: "/#erp-solution", label: "Software ERP" },
   { href: "/precios", label: "Precios" },
+  { href: "/precios#configurador", label: "Configurador" },
+  { href: "/precios#proceso", label: "Cómo trabajamos" },
+  { href: "/precios#faq", label: "Preguntas Frecuentes" },
 ];
 
 export function Navbar() {

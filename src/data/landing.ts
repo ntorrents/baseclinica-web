@@ -8,12 +8,12 @@ import {
 } from "@/types/landing";
 
 const defaultHero: HeroData = {
-  eyebrow: "Digitalización integral para clínicas",
-  title: "La tecnología que tu clínica necesita para captar pacientes y automatizar la gestión.",
+  eyebrow: "Software Clínico 100% Modular y Adaptable",
+  title: "Web y Programa de Gestión hecho a la medida exacta de tu clínica.",
   subtitle:
-    "Unimos app de gestión interna y web corporativa para que ganes tiempo, automatices tareas y proyectes una imagen premium con cumplimiento legal.",
-  primaryCta: { label: "Ver Packs y Precios", href: "#pricing" },
-  secondaryCta: { label: "Solicitar Demo de 15 min", href: "#contacto" },
+    "No te adaptes al software, el software se adapta a ti. Solución modular para Dermoestética, Fisioterapia, Dental y más, diseñada para eliminar fricciones y hacer crecer tu negocio.",
+  primaryCta: { label: "Ver Creador de Precios", href: "#pricing" },
+  secondaryCta: { label: "Contactar por WhatsApp", href: "https://wa.me/34684347483?text=Hola,%20quería%20información%20sobre%20BaseClinica" },
 };
 
 const defaultPainPoints: PainPoint[] = [
@@ -57,26 +57,26 @@ const defaultErpScreens = {
 
 const defaultErpFeatures: ErpFeature[] = [
   {
-    title: "Dashboard e Indicadores",
-    description: "Visualiza de un vistazo la salud de tu clínica: ingresos, gastos, clientes activos y próximas citas.",
+    title: "Control total del flujo de pacientes",
+    description: "Visualiza de un vistazo la salud de tu clínica: ingresos, citas del día, agenda inteligente y recordatorios automáticos sin perder tiempo en recepción.",
     image: "/images/erp-dashboard.png",
     imagePadColor: "#fbf9f7"
   },
   {
-    title: "Gestión de Pacientes",
-    description: "Acceso rápido a historiales clínicos, visitas, bonos, y consentimientos firmados por cada paciente.",
+    title: "100% sin papel y firma digital",
+    description: "Firma digital en tablet vinculada a la ficha al instante. Acceso rápido a historiales clínicos, bonos y consentimientos centralizados.",
     image: "/images/erp-clientes.png",
     imagePadColor: "#fbf9f7"
   },
   {
-    title: "Control de Stock",
-    description: "Lleva un registro preciso de tus materiales clínicos, consumos y fechas de caducidad para evitar mermas.",
+    title: "Cero mermas en cabina",
+    description: "Control de consumos por tratamiento y alertas de caducidad automáticas para que nunca falte material ni caduque stock valioso.",
     image: "/images/erp-stock.png",
     imagePadColor: "#fbf9f7"
   },
   {
-    title: "Finanzas Pro",
-    description: "Centraliza presupuestos, ingresos y gastos fijos para acelerar el cierre de caja diario y la contabilidad.",
+    title: "Cierre de caja en 2 minutos",
+    description: "Cierre de caja diario sin descuadres ni sorpresas. Centraliza presupuestos, cobros fraccionados y tickets de forma intuitiva.",
     image: "/images/erp-finanzas.png",
     imagePadColor: "#fbf9f7"
   },

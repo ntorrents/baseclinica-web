@@ -98,6 +98,32 @@ export function ErpSolution({ features, desktopShot, mobileShot, desktopPadColor
             </div>
           </motion.div>
 
+          {/* Migration Guarantee Banner */}
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="w-full max-w-4xl mx-auto mt-4"
+          >
+            <div className="relative overflow-hidden rounded-2xl border border-emerald-500/30 bg-emerald-900/10 p-6 sm:p-8 backdrop-blur-sm">
+              <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-emerald-500/10 blur-2xl pointer-events-none" />
+              <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start text-center sm:text-left relative z-10">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-400">
+                  <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-emerald-100">Migración de Datos Asistida y Sin Dolor</h3>
+                  <p className="mt-2 text-slate-300 leading-relaxed">
+                    ¿Tienes un software antiguo o ficheros Excel? Nos encargamos de migrar todos tus pacientes e historiales de forma asistida y sin perder ningún dato. <strong className="text-white font-semibold">Cambio 0 traumático garantizado.</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </SectionContainer>
