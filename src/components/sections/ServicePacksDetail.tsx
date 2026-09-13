@@ -71,7 +71,7 @@ export function ServicePacksDetail({ categories }: ServicePacksDetailProps) {
                     ))}
                   </ul>
                   <a
-                    href="#contacto"
+                    href="/contacto"
                     className="mt-6 inline-flex justify-center rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-blue-400 hover:text-blue-800"
                   >
                     Solicitar este plan

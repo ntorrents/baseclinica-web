@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
     "",
     "/precios",
+    "/contacto",
     "/aviso-legal",
     "/politica-privacidad",
     "/fisio",
@@ -20,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${base}${path}`,
     lastModified,
     changeFrequency: path === "" ? "weekly" : "monthly",
-    priority: path === "" ? 1 : path === "/precios" ? 0.9 : 0.7,
+    priority:
+      path === "" ? 1 : path === "/precios" || path === "/contacto" ? 0.9 : 0.7,
   }));
 }

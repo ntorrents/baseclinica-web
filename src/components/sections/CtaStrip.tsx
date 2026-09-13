@@ -25,7 +25,7 @@ export function CtaStrip() {
             Ver planes detallados
           </a>
           <a
-            href="#contacto"
+            href="/contacto"
             className="rounded-xl border border-blue-200 bg-transparent px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-600"
           >
             Contactar

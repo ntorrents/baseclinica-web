@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { SectionContainer } from "@/components/ui/SectionContainer";
 import { PainPoint } from "@/types/landing";
 
 type PainPointsProps = {
@@ -12,35 +11,42 @@ export function PainPoints({ items }: PainPointsProps) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <SectionContainer id="problema">
-      <div className="mb-10 max-w-3xl">
-        <p className="text-sm font-semibold uppercase tracking-wide text-blue-400">
-          El problema
-        </p>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-          La mayoría de clínicas pierde tiempo y oportunidades por procesos desconectados
-        </h2>
-      </div>
+    <section id="problema" className="relative z-10 scroll-mt-24 overflow-hidden py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        <div className="mb-14 max-w-3xl">
+          <p className="section-eyebrow">El contexto</p>
+          <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-[var(--ink)] sm:text-5xl">
+            Si te suena familiar, estás en el sitio correcto
+          </h2>
+        </div>
 
-      <div className="grid gap-5 md:grid-cols-3">
-        {items.map((item, i) => (
-          <motion.article
-            key={item.title}
-            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-32px" }}
-            transition={{
-              duration: 0.38,
-              delay: reduceMotion ? 0 : i * 0.07,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="rounded-2xl border border-white/10/90 bg-slate-900 p-6 shadow-none transition-shadow duration-300 hover:border-slate-300 hover:shadow-md"
-          >
-            <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-slate-400">{item.description}</p>
-          </motion.article>
-        ))}
+        <div className="space-y-0">
+          {items.map((item, i) => (
+            <motion.article
+              key={item.title}
+              initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{
+                duration: 0.5,
+                delay: reduceMotion ? 0 : i * 0.1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className={`grid items-start gap-4 border-t border-[var(--line)] py-10 md:grid-cols-[7rem_1fr] md:gap-10 ${
+                i % 2 === 1 ? "md:pl-12 lg:pl-24" : ""
+              }`}
+            >
+              <span className="font-display text-5xl font-extrabold leading-none text-[var(--brand)]/25 md:text-6xl">
+                0{i + 1}
+              </span>
+              <div className={i % 2 === 1 ? "md:max-w-xl md:ml-auto" : "md:max-w-xl"}>
+                <h3 className="font-display text-2xl font-bold text-[var(--ink)]">{item.title}</h3>
+                <p className="mt-3 text-base leading-relaxed text-[var(--muted)]">{item.description}</p>
+              </div>
+            </motion.article>
+          ))}
+        </div>
       </div>
-    </SectionContainer>
+    </section>
   );
 }

@@ -169,7 +169,7 @@ export function PackCategoryDetail({ category, unlockRows }: PackCategoryDetailP
 
             <div className="flex-1 min-h-3" aria-hidden />
             <a
-              href="#contacto"
+              href="/contacto"
               className={
                 tier.recommended
                   ? "mt-4 inline-flex justify-center rounded-xl bg-blue-700 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-800"

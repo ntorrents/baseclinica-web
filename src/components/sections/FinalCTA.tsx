@@ -1,60 +1,60 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { CONTACT_EMAIL } from "@/config/contact";
 
 export function FinalCTA() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section
       aria-labelledby="final-cta-title"
-      className="relative z-10 scroll-mt-24 overflow-hidden py-16 sm:py-20"
+      className="relative z-10 scroll-mt-24 overflow-hidden bg-[var(--brand)] py-24 sm:py-32"
     >
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+      <motion.div
+        aria-hidden
+        animate={reduceMotion ? undefined : { x: ["-5%", "5%", "-5%"] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        className="pointer-events-none absolute -left-1/4 top-0 font-display text-[clamp(6rem,22vw,16rem)] font-extrabold leading-none text-white/[0.06] whitespace-nowrap"
+      >
+        BaseClinica · BaseClinica · BaseClinica
+      </motion.div>
+
+      <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="relative overflow-hidden rounded-3xl border border-blue-500/30 bg-gradient-to-br from-blue-700 via-blue-800 to-slate-900 px-8 py-12 shadow-2xl shadow-blue-900/40 sm:px-12 sm:py-14"
+          className="max-w-3xl"
         >
-          <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl" />
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/75">
+            Siguiente paso
+          </p>
+          <h2
+            id="final-cta-title"
+            className="font-display mt-3 text-3xl font-bold tracking-tight text-white sm:text-5xl"
+          >
+            Agenda una reunión de 20 minutos sin compromiso
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-white/90 sm:text-lg">
+            Repasamos tu clínica, te mostramos el software y valoramos si el Pack Integral encaja.
+          </p>
 
-          <div className="relative max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-100/90">
-              Siguiente paso
-            </p>
-            <h2
-              id="final-cta-title"
-              className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl"
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <Link
+              href="/contacto"
+              className="inline-flex rounded-xl bg-white px-6 py-3.5 text-sm font-bold text-[var(--brand-deep)] transition hover:bg-[var(--brand-soft)]"
             >
-              Agenda una reunión de 20 minutos sin compromiso
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-blue-50/95 sm:text-lg">
-              Repasamos tu clínica, te mostramos el software y valoramos si el Pack Integral encaja.
-              Recibes resumen y, si procede, propuesta cerrada.
-            </p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.12, duration: 0.45 }}
-              className="mt-8 flex flex-wrap items-center gap-4"
+              Ir a contacto
+            </Link>
+            <a
+              href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Demo BaseClinica")}`}
+              className="inline-flex rounded-xl border border-white/35 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10"
             >
-              <a
-                href="#contacto"
-                className="inline-flex rounded-xl bg-white px-6 py-3.5 text-sm font-bold text-blue-900 shadow-lg transition hover:scale-[1.03] hover:bg-blue-50 active:scale-[0.98]"
-              >
-                Pedir reunión
-              </a>
-              <a
-                href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Demo BaseClinica")}`}
-                className="inline-flex rounded-xl border-2 border-white/35 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-white/60 hover:bg-white/15"
-              >
-                Escribir por correo
-              </a>
-            </motion.div>
+              Escribir por correo
+            </a>
           </div>
         </motion.div>
       </div>

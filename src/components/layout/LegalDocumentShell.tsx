@@ -10,11 +10,11 @@ type LegalDocumentShellProps = {
 
 export function LegalDocumentShell({ title, children }: LegalDocumentShellProps) {
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_#f0fdfa,_#f8fafc_45%,_#ffffff_80%)]">
+    <div className="page-atmosphere min-h-screen">
       <Navbar />
-      <main className="mx-auto max-w-3xl px-6 py-12 pb-20 lg:px-8">
-        <nav className="mb-8 text-sm text-slate-600">
-          <Link href="/" className="font-medium text-blue-800 hover:text-blue-950">
+      <main className="mx-auto max-w-3xl px-6 py-12 pb-20 pt-28 lg:px-8">
+        <nav className="mb-8 text-sm text-[var(--muted)]">
+          <Link href="/" className="font-medium text-[var(--brand)] hover:text-[var(--brand-deep)]">
             Inicio
           </Link>
           <span className="mx-2 text-slate-400" aria-hidden>

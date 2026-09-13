@@ -4,15 +4,13 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Footer } from "@/components/sections/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { PainPoints } from "@/components/sections/PainPoints";
+import { PathChooser } from "@/components/sections/PathChooser";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { Pricing } from "@/components/sections/Pricing";
 import { SecurityTrust } from "@/components/sections/SecurityTrust";
 import { TrustStrip } from "@/components/sections/TrustStrip";
-import { ContactSection } from "@/components/sections/ContactSection";
-import { ScrollAmbient } from "@/components/scroll/ScrollAmbient";
-import { ScrollConnector } from "@/components/scroll/ScrollConnector";
-import { ScrollFlowDrift } from "@/components/scroll/ScrollFlowDrift";
-import { ScrollSecondaryLine } from "@/components/scroll/ScrollSecondaryLine";
+import { MarqueeBand } from "@/components/ui/MarqueeBand";
+import { ScrollProgress } from "@/components/scroll/ScrollProgress";
 import { ScrollToTop } from "@/components/scroll/ScrollToTop";
 import type { LandingData } from "@/types/landing";
 
@@ -20,20 +18,27 @@ type LandingPageShellProps = {
   data: LandingData;
 };
 
+const MARQUEE_MODULES = [
+  "Agenda",
+  "Pacientes",
+  "Stock",
+  "Caja",
+  "Facturas",
+  "Fiscalidad",
+  "Web premium",
+  "Pack integral",
+];
+
 export function LandingPageShell({ data }: LandingPageShellProps) {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 selection:bg-blue-900/40">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-slate-950 to-slate-950 pointer-events-none" />
-      <ScrollAmbient />
-      <ScrollFlowDrift />
-      <ScrollSecondaryLine />
-      <ScrollConnector />
-      
+    <div className="page-atmosphere min-h-screen text-[var(--ink)] selection:bg-[var(--brand-soft)] selection:text-[var(--brand-deep)]">
+      <ScrollProgress />
       <Navbar />
-      
+
       <main className="relative z-10">
         <Hero data={data.hero} />
-        <Pricing plans={data.pricingPlans} />
+        <MarqueeBand items={MARQUEE_MODULES} tone="brand" />
+        <PathChooser />
         <PainPoints items={data.painPoints} />
         <Portfolio data={data.portfolio} />
         <ErpSolution
@@ -43,11 +48,12 @@ export function LandingPageShell({ data }: LandingPageShellProps) {
           desktopPadColor={data.erpScreens.desktop.padColor}
           mobilePadColor={data.erpScreens.mobile.padColor}
         />
+        <Pricing plans={data.pricingPlans} />
         <SecurityTrust />
         <TrustStrip />
         <FinalCTA />
-        <ContactSection />
       </main>
+
       <Footer />
       <ScrollToTop />
     </div>

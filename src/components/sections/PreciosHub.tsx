@@ -17,7 +17,7 @@ export function PreciosHub({ plans }: PreciosHubProps) {
       className="mt-8 relative z-10"
     >
       <div id="precios-overview">
-        <Pricing plans={plans} ctaHref="#contacto" showDetailLink={false} />
+        <Pricing plans={plans} ctaHref="/contacto" showDetailLink={false} />
       </div>
     </motion.div>
   );

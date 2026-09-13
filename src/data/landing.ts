@@ -7,30 +7,35 @@ import {
   PricingPlan,
 } from "@/types/landing";
 
+const PAD = "#f4f5f7";
+
 const defaultHero: HeroData = {
-  eyebrow: "Software Clínico 100% Modular y Adaptable",
-  title: "Web y Programa de Gestión hecho a la medida exacta de tu clínica.",
+  eyebrow: "Software clínico modular",
+  title: "Web y gestión hechas a la medida de tu clínica.",
   subtitle:
-    "No te adaptes al software, el software se adapta a ti. Solución modular para Dermoestética, Fisioterapia, Dental y más, diseñada para eliminar fricciones y hacer crecer tu negocio.",
-  primaryCta: { label: "Ver Creador de Precios", href: "#pricing" },
-  secondaryCta: { label: "Contactar por WhatsApp", href: "https://wa.me/34684347483?text=Hola,%20quería%20información%20sobre%20BaseClinica" },
+    "Captación online y operativa diaria en un mismo ecosistema. Sin adaptarte a un software genérico.",
+  primaryCta: { label: "Elegir mi camino", href: "#elige" },
+  secondaryCta: {
+    label: "Hablar por WhatsApp",
+    href: "https://wa.me/34684347483?text=Hola,%20quería%20información%20sobre%20BaseClinica",
+  },
 };
 
 const defaultPainPoints: PainPoint[] = [
   {
-    title: "Caos en WhatsApp y agenda manual",
+    title: "No sabes por dónde empezar",
     description:
-      "Citas dispersas, cambios de última hora y pérdida de tiempo en la gestión diaria.",
+      "Web, agenda, facturas, stock… demasiados frentes. BaseClinica te deja elegir: captación, gestión o ambas.",
   },
   {
-    title: "Historiales en papel y procesos lentos",
+    title: "Herramientas desconectadas",
     description:
-      "Dificultad para acceder a información clínica y riesgo de errores administrativos.",
+      "WhatsApp, Excel y un ERP a medias. Pierdes tiempo y datos entre recepción, cabina y administración.",
   },
   {
-    title: "Web anticuada o inexistente",
+    title: "Imagen que no vende tu nivel",
     description:
-      "Menor confianza del paciente y menos conversiones frente a clínicas más modernas.",
+      "Pacientes comparan clínicas online. Si tu web no transmite confianza, pierdes citas antes de la primera visita.",
   },
 ];
 
@@ -38,47 +43,65 @@ const defaultPortfolio: PortfolioCase = {
   name: "C3linic",
   category: "Clínica estética y salud",
   description:
-    "Ejemplo real de diseño web premium orientado a conversión, confianza visual y posicionamiento de marca en el sector salud y estética.",
+    "Diseño web premium orientado a conversión: mensaje claro, tratamientos visibles y reserva de cita sin fricción.",
   liveUrl: "https://www.c3linic.com",
   image: "/images/portfolio-c3linic.png",
-  imagePadColor: "#fbf9f7",
+  imagePadColor: PAD,
 };
 
 const defaultErpScreens = {
   desktop: {
-    src: "/images/erp-desktop.png",
-    padColor: "#f9fbfc",
+    src: "/images/erp-dashboard.png",
+    padColor: PAD,
   },
   mobile: {
     src: "/images/erp-mobile.png",
-    padColor: "#f9fbfc",
+    padColor: PAD,
   },
 } as const;
 
 const defaultErpFeatures: ErpFeature[] = [
   {
-    title: "Control total del flujo de pacientes",
-    description: "Visualiza de un vistazo la salud de tu clínica: ingresos, citas del día, agenda inteligente y recordatorios automáticos sin perder tiempo en recepción.",
+    title: "Inicio operativo",
+    description:
+      "Saludo, clientes activos y accesos rápidos a agenda, pacientes, tratamientos y caja.",
     image: "/images/erp-dashboard.png",
-    imagePadColor: "#fbf9f7"
+    imagePadColor: PAD,
   },
   {
-    title: "100% sin papel y firma digital",
-    description: "Firma digital en tablet vinculada a la ficha al instante. Acceso rápido a historiales clínicos, bonos y consentimientos centralizados.",
+    title: "Ficha de paciente",
+    description:
+      "Datos fiscales, alergias, notas privadas, LOPD y derechos de imagen en una sola vista.",
     image: "/images/erp-clientes.png",
-    imagePadColor: "#fbf9f7"
+    imagePadColor: PAD,
   },
   {
-    title: "Cero mermas en cabina",
-    description: "Control de consumos por tratamiento y alertas de caducidad automáticas para que nunca falte material ni caduque stock valioso.",
+    title: "Inventario y lotes",
+    description:
+      "Stock, caducidades y coste unitario con alertas para evitar mermas en cabina.",
     image: "/images/erp-stock.png",
-    imagePadColor: "#fbf9f7"
+    imagePadColor: PAD,
   },
   {
-    title: "Cierre de caja en 2 minutos",
-    description: "Cierre de caja diario sin descuadres ni sorpresas. Centraliza presupuestos, cobros fraccionados y tickets de forma intuitiva.",
+    title: "Movimientos y caja",
+    description:
+      "Ingresos, gastos y fijos controlados. Cierre claro sin descuadres de última hora.",
     image: "/images/erp-finanzas.png",
-    imagePadColor: "#fbf9f7"
+    imagePadColor: PAD,
+  },
+  {
+    title: "Facturas emitidas",
+    description:
+      "Filtros por cliente o tratamiento, ticket medio y descarga PDF en un clic.",
+    image: "/images/erp-facturas.png",
+    imagePadColor: PAD,
+  },
+  {
+    title: "Fiscalidad AEAT",
+    description:
+      "Resultado operativo, IVA, IRPF y checklist antes de exportar el trimestre.",
+    image: "/images/erp-fiscalidad.png",
+    imagePadColor: PAD,
   },
 ];
 
@@ -89,7 +112,8 @@ const defaultPricingPlans: PricingPlan[] = [
     monthlyPrice: "Desde 890 EUR (pago único)",
     annualPrice: "Desde 890 EUR (pago único)",
     priceCaption: "Opcional: mantenimiento y evolución mensual.",
-    description: "Para clínicas que buscan una presencia digital premium, moderna y enfocada en captar más pacientes.",
+    description:
+      "Para clínicas que buscan una presencia digital premium, moderna y enfocada en captar más pacientes.",
     target: "Ideal si ya tienes un ERP pero tu web está anticuada.",
     features: [
       "Diseño Health-Tech premium",
@@ -98,7 +122,7 @@ const defaultPricingPlans: PricingPlan[] = [
       "Textos legales y RGPD",
       "Formularios de citas directos",
     ],
-    cta: { label: "Configurar Web", href: "#contacto" },
+    cta: { label: "Configurar Web", href: "/contacto" },
   },
   {
     id: "erp",
@@ -106,7 +130,8 @@ const defaultPricingPlans: PricingPlan[] = [
     monthlyPrice: "Desde 49 EUR/mes",
     annualPrice: "Desde 530 EUR/año",
     priceCaption: "10% de descuento con facturación anual",
-    description: "Gestión interna sin fricciones. Agenda, historiales clínicos, facturación y recordatorios en una app rápida.",
+    description:
+      "Gestión interna sin fricciones. Agenda, historiales clínicos, facturación y recordatorios en una app rápida.",
     target: "Ideal si tu web funciona pero gestionas con papel o Excel.",
     features: [
       "Agenda inteligente y recordatorios",
@@ -115,7 +140,7 @@ const defaultPricingPlans: PricingPlan[] = [
       "Múltiples profesionales y roles",
       "Soporte rápido por email/chat",
     ],
-    cta: { label: "Configurar App", href: "#contacto" },
+    cta: { label: "Configurar App", href: "/contacto" },
   },
   {
     id: "integral",
@@ -123,7 +148,8 @@ const defaultPricingPlans: PricingPlan[] = [
     monthlyPrice: "Desde 750 EUR + 49 EUR/mes",
     annualPrice: "Desde 750 EUR + 530 EUR/año",
     priceCaption: "Ahorro directo en la web al contratar ambas.",
-    description: "La solución total. Ahorra costes unificando proveedor y lanza tu web junto a tu software de gestión al mismo tiempo.",
+    description:
+      "La solución total. Unifica proveedor y lanza web + software de gestión al mismo tiempo.",
     target: "Ideal para clínicas de nueva apertura o rediseños completos.",
     features: [
       "Todo lo incluido en Web & Captación",
@@ -132,7 +158,7 @@ const defaultPricingPlans: PricingPlan[] = [
       "Onboarding y soporte unificado",
       "Acompañamiento estratégico",
     ],
-    cta: { label: "Quiero el Pack Integral", href: "#contacto" },
+    cta: { label: "Quiero el Pack Integral", href: "/contacto" },
     highlighted: true,
     badge: "Más Popular",
   },
@@ -149,11 +175,10 @@ const defaultLanding: LandingData = {
 
 const fisioHero: HeroData = {
   eyebrow: "Digitalización para gabinetes de fisioterapia",
-  title:
-    "Ordena camillas, agenda y facturación sin perder el foco en el paciente",
+  title: "Ordena camillas, agenda y facturación sin perder el foco en el paciente",
   subtitle:
-    "App de gestión interna y web corporativa pensadas para fisioterapeutas y clínicas de rehabilitación: menos fricción administrativa y más tiempo en sala.",
-  primaryCta: { label: "Ver el Software", href: "#erp" },
+    "App de gestión y web pensadas para fisioterapia: menos fricción administrativa y más tiempo en sala.",
+  primaryCta: { label: "Ver el Software", href: "#erp-solution" },
   secondaryCta: { label: "Ver Pack Integral", href: "#pricing" },
 };
 
@@ -164,24 +189,23 @@ const fisioPainPoints: PainPoint[] = [
       "Cuellos de botella entre turnos, equipos compartidos y cambios de última hora que rompen el ritmo del día.",
   },
   {
-    title: "Planes y sesiones en post-its o hojas sueltas",
+    title: "Planes y sesiones en post-its",
     description:
-      "Dificultad para ver el historial completo del paciente y seguir el plan de ejercicios con criterio clínico.",
+      "Dificultad para ver el historial completo del paciente y seguir el plan con criterio clínico.",
   },
   {
     title: "Web genérica que no refleja tu especialidad",
     description:
-      "Pocos pacientes nuevos por falta de mensaje claro sobre terapias, lesión deportiva o rehabilitación.",
+      "Pocos pacientes nuevos por falta de mensaje claro sobre terapias o rehabilitación.",
   },
 ];
 
 const dermoHero: HeroData = {
   eyebrow: "Digitalización para clínicas estéticas",
-  title:
-    "Imagen premium y operativa diaria alineadas en tu centro de estética",
+  title: "Imagen premium y operativa diaria alineadas en tu centro",
   subtitle:
-    "Web que transmite confianza y tratamientos de calidad, más app de gestión para citas, cobros e historial sin caos en recepción.",
-  primaryCta: { label: "Ver el Software", href: "#erp" },
+    "Web que transmite confianza y tratamientos de calidad, más app de gestión para citas, cobros e historial.",
+  primaryCta: { label: "Ver el Software", href: "#erp-solution" },
   secondaryCta: { label: "Ver Pack Integral", href: "#pricing" },
 };
 

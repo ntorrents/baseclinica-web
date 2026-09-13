@@ -38,9 +38,9 @@ export function WhatsAppFloat() {
           scale: isHovered ? 1 : 0.9
         }}
         transition={{ duration: 0.2 }}
-        className="pointer-events-none rounded-xl bg-slate-900 border border-slate-700/50 px-4 py-2.5 text-sm font-medium text-slate-200 shadow-xl shadow-black/30 backdrop-blur-md hidden sm:block whitespace-nowrap"
+        className="pointer-events-none hidden whitespace-nowrap rounded-xl border border-[var(--line)] bg-white px-4 py-2.5 text-sm font-medium text-[var(--ink)] shadow-xl sm:block"
       >
-        ¿Dudas sobre tu clínica? <strong className="text-white">Habla con el desarrollador</strong>
+        ¿Dudas sobre tu clínica? <strong className="text-[var(--brand)]">Habla con el desarrollador</strong>
       </motion.div>
     </div>
   );
