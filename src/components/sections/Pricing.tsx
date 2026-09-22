@@ -53,12 +53,10 @@ export function Pricing({ plans, ctaHref = "/contacto" }: PricingProps) {
     <SectionContainer id="pricing">
       <div className="mx-auto mb-10 max-w-3xl text-center">
         <p className="section-eyebrow">Precios</p>
-        <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-[var(--ink)] sm:text-4xl">
-          Elige el alcance, no un paquete opaco
+        <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-[var(--ink)] sm:text-5xl">
+          Claro. Sin letra pequeña.
         </h2>
-        <p className="mt-4 text-[var(--muted)]">
-          Web, ERP o ambas. Precios transparentes y un configurador si quieres módulos a medida.
-        </p>
+        <p className="mt-4 text-[var(--muted)]">Web, ERP o ambas.</p>
 
         <div className="mt-8 flex justify-center">
           <div className="inline-flex rounded-xl border border-[var(--line)] bg-white p-1">
@@ -220,15 +218,15 @@ export function Pricing({ plans, ctaHref = "/contacto" }: PricingProps) {
         ))}
       </div>
 
-      <div className="mx-auto mt-14 max-w-4xl rounded-2xl border border-[var(--line)] bg-white px-8 py-10 text-center">
+          <div className="mx-auto mt-14 max-w-4xl rounded-2xl border border-[var(--line)] bg-[var(--surface)]/80 px-8 py-10 text-center backdrop-blur-sm">
         <h3 className="font-display text-2xl font-bold text-[var(--ink)]">
-          ¿Prefieres un traje a medida?
+          ¿Prefieres módulos sueltos?
         </h3>
         <p className="mx-auto mt-3 max-w-2xl text-[var(--muted)]">
-          Selecciona solo los módulos que necesita tu clínica y calcula el coste en tiempo real.
+          Baja al configurador: eliges base (web, ERP o ambas) y solo los extras que necesitas.
         </p>
         <Link href="/precios#configurador" className="btn-primary mt-6">
-          Configurar mi solución
+          Abrir configurador
         </Link>
       </div>
     </SectionContainer>

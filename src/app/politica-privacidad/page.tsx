@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function PoliticaPrivacidadPage() {
   return (
-    <LegalDocumentShell title="Política de privacidad">
+    <LegalDocumentShell doc="privacy">
       <p>
         El responsable del tratamiento de los datos personales que se traten a través de este sitio
         web es el titular indicado en el apartado de datos identificativos. El tratamiento se ajusta

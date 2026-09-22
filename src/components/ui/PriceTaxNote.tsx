@@ -1,16 +1,19 @@
+"use client";
+
+import { useT } from "@/i18n/LocaleProvider";
+
 type PriceTaxNoteProps = {
   className?: string;
 };
 
-/** Aviso discreto: precios publicados sin IVA. */
 export function PriceTaxNote({ className = "" }: PriceTaxNoteProps) {
+  const t = useT();
   return (
     <p
       className={`text-xs leading-relaxed text-slate-500 ${className}`.trim()}
       role="note"
     >
-      Los importes indicados no incluyen IVA; se aplicará en factura según la
-      normativa vigente.
+      {t.common.taxNote}
     </p>
   );
 }

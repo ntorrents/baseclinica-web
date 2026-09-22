@@ -3,169 +3,227 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { LocaleSwitcher, LocaleSwitcherDark } from "@/components/ui/LocaleSwitcher";
+import { useT } from "@/i18n/LocaleProvider";
 
-const MAIN_LINKS = [
-  { href: "/#elige", label: "Soluciones" },
-  { href: "/#erp-solution", label: "Demo ERP" },
-  { href: "/#portfolio", label: "Caso web" },
-  { href: "/precios", label: "Precios" },
-];
+function BrandMark({ invert = false }: { invert?: boolean }) {
+  return (
+    <span
+      className={`font-display text-[1.05rem] font-bold tracking-tight ${
+        invert ? "text-white" : "text-[var(--ink)]"
+      }`}
+    >
+      base<span className="text-[var(--brand)]">clinica</span>
+    </span>
+  );
+}
+
+function MenuGlyph({ open }: { open?: boolean }) {
+  if (open) {
+    return (
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
+        <path
+          d="M4.5 4.5l9 9M13.5 4.5l-9 9"
+          stroke="currentColor"
+          strokeWidth="1.55"
+          strokeLinecap="round"
+        />
+      </svg>
+    );
+  }
+  return (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden>
+      <circle cx="11" cy="11" r="8.25" stroke="currentColor" strokeWidth="1.6" />
+      <circle cx="11" cy="11" r="2.2" fill="currentColor" />
+    </svg>
+  );
+}
 
 export function Navbar() {
+  const t = useT();
+  const links = t.nav.links;
+  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [hoverIdx, setHoverIdx] = useState(0);
   const pathname = usePathname();
-  const onPrecios = pathname.startsWith("/precios");
+  const panelColor = links[hoverIdx]?.color ?? links[0].color;
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 16);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    document.documentElement.classList.toggle("nav-menu-open", open);
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.classList.remove("nav-menu-open");
+    };
+  }, [open]);
 
   return (
     <>
-      <motion.header
-        initial={{ y: -80 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-          scrolled
-            ? "border-b border-[var(--line)]/80 bg-white/80 py-3 shadow-[0_10px_40px_-24px_rgba(20,24,31,0.25)] backdrop-blur-xl"
-            : "bg-transparent py-5"
-        }`}
-      >
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 sm:px-8">
-          <Link href="/" className="group shrink-0">
-            <span className="font-display text-xl font-extrabold tracking-tight text-[var(--ink)]">
-              <span className="text-[var(--brand)]">Base</span>Clinica
-            </span>
-          </Link>
-
-          <nav className="hidden items-center gap-6 lg:flex">
-            {MAIN_LINKS.map((link) => {
-              const isActive =
-                link.href === "/precios" ? onPrecios : pathname === "/" && false;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`text-sm font-semibold transition-colors ${
-                    isActive
-                      ? "text-[var(--brand)]"
-                      : "text-[var(--muted)] hover:text-[var(--ink)]"
-                  }`}
-                >
-                  {link.label}
+      <header className={`pointer-events-none fixed top-0 w-full ${open ? "z-[60]" : "z-50"}`}>
+        <div
+          className={`mx-auto flex max-w-[76rem] items-center px-6 py-4 sm:px-10 lg:px-14 xl:px-[4.5rem] ${
+            scrolled || open ? "justify-end" : "justify-between"
+          }`}
+        >
+          <AnimatePresence initial={false}>
+            {!scrolled && !open && (
+              <motion.div
+                key="brand"
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25 }}
+                className="pointer-events-auto"
+              >
+                <Link href="/">
+                  <BrandMark />
                 </Link>
-              );
-            })}
-          </nav>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-          <div className="hidden items-center gap-2.5 md:flex">
-            <Link
-              href="/precios#configurador"
-              className={`inline-flex items-center gap-1.5 rounded-xl border px-3.5 py-2 text-sm font-bold transition ${
-                onPrecios
-                  ? "border-[var(--brand)] bg-[var(--brand-soft)] text-[var(--brand-deep)]"
-                  : "border-[var(--line)] bg-white text-[var(--ink)] hover:border-[var(--brand)] hover:bg-[var(--brand-soft)]"
+          <div className="pointer-events-auto flex items-center gap-2 sm:gap-2.5">
+            {!open && <LocaleSwitcher className="pointer-events-auto" />}
+
+            <AnimatePresence initial={false}>
+              {!scrolled && !open && (
+                <motion.div
+                  key="hablar"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                  className="hidden sm:block"
+                >
+                  <Link href="/contacto" className="btn-primary !py-2.5 !px-4 text-sm">
+                    {t.nav.speak}
+                    <span className="btn-arrow">→</span>
+                  </Link>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              className={`flex h-12 w-12 items-center justify-center rounded-full border transition ${
+                open
+                  ? "border-white/80 bg-transparent text-white"
+                  : "border-[var(--ink)]/20 bg-[var(--background)]/90 text-[var(--ink)] backdrop-blur-md"
               }`}
+              aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
+              aria-expanded={open}
             >
-              <svg className="h-4 w-4 text-[var(--brand)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m-6 4h6m-6 4h4M5 5h14a1 1 0 011 1v12a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1z" />
-              </svg>
-              <span className="hidden sm:inline">Configurar precio</span>
-              <span className="sm:hidden">Configurar</span>
-            </Link>
-            <Link href="/contacto" className="btn-primary !px-4 !py-2">
-              Contacto
-            </Link>
+              <MenuGlyph open={open} />
+            </button>
           </div>
-
-          <button
-            onClick={() => setMobileMenuOpen(true)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--ink)] hover:bg-black/5 md:hidden"
-            aria-label="Abrir menú"
-          >
-            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
-          </button>
         </div>
-      </motion.header>
+      </header>
 
       <AnimatePresence>
-        {mobileMenuOpen && (
+        {open && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-[var(--ink)]/40 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 z-[55] flex"
           >
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-              className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col border-l border-[var(--line)] bg-white p-6 shadow-2xl"
-            >
-              <div className="flex items-center justify-between border-b border-[var(--line)] pb-6">
-                <Link
-                  href="/"
-                  className="font-display text-xl font-extrabold text-[var(--ink)]"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <span className="text-[var(--brand)]">Base</span>Clinica
+            <div className="relative flex min-h-full min-h-[100dvh] flex-1 flex-col bg-[#2a2a2a] text-white">
+              <div className="flex items-center justify-between px-5 pb-2 pt-[max(1rem,env(safe-area-inset-top))] sm:px-8">
+                <Link href="/" onClick={() => setOpen(false)} className="py-3">
+                  <BrandMark invert />
                 </Link>
-                <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="rounded-lg p-2 text-[var(--muted)] hover:bg-black/5"
-                  aria-label="Cerrar menú"
-                >
-                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
+                <span className="h-12 w-12" aria-hidden />
               </div>
 
-              <div className="flex flex-1 flex-col gap-5 py-8">
-                {MAIN_LINKS.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="font-display text-2xl font-bold text-[var(--ink)]"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+              <nav className="flex flex-1 flex-col justify-center gap-1 overflow-y-auto overscroll-contain px-5 py-6 sm:px-10 lg:px-16">
+                {links.map((link, i) => {
+                  const active = hoverIdx === i;
+                  return (
+                    <motion.div
+                      key={link.href}
+                      initial={{ opacity: 0, y: 18 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.04 + i * 0.035 }}
+                      onMouseEnter={() => setHoverIdx(i)}
+                      onFocus={() => setHoverIdx(i)}
+                    >
+                      <Link
+                        href={link.href}
+                        onClick={() => setOpen(false)}
+                        className="group flex items-baseline gap-3 py-1 sm:gap-5"
+                      >
+                        <span
+                          className="shrink-0 font-mono text-xs font-semibold tabular-nums sm:text-sm"
+                          style={{ color: link.color }}
+                        >
+                          {link.n}
+                        </span>
+                        <span
+                          className={`font-display text-[clamp(2.2rem,11vw,5.25rem)] font-extrabold leading-[1.02] tracking-[-0.04em] transition-colors ${
+                            active ? "text-white" : "text-white/35"
+                          }`}
+                        >
+                          {link.label}
+                        </span>
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </nav>
 
-                <div className="my-2 border-t border-[var(--line)] pt-5">
-                  <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--muted)]">
-                    Herramienta aparte
-                  </p>
-                  <Link
-                    href="/precios#configurador"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 rounded-xl border border-[var(--brand)] bg-[var(--brand-soft)] px-4 py-3.5 font-display text-lg font-bold text-[var(--brand-deep)]"
+              <div className="grid gap-4 border-t border-white/10 px-5 py-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] text-xs uppercase tracking-[0.14em] text-white/45 sm:grid-cols-[1fr_1fr_auto] sm:items-end sm:px-10">
+                <div>
+                  <p>{t.nav.email}</p>
+                  <a
+                    href="mailto:hola@baseclinica.com"
+                    className="mt-1 block break-all normal-case tracking-normal text-white"
                   >
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m-6 4h6m-6 4h4M5 5h14a1 1 0 011 1v12a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1z" />
-                    </svg>
-                    Configurar precio
+                    hola@baseclinica.com
+                  </a>
+                </div>
+                <div>
+                  <p>{t.nav.whatsapp}</p>
+                  <a
+                    href="https://wa.me/34684347483"
+                    className="mt-1 block normal-case tracking-normal text-white"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    +34 684 347 483
+                  </a>
+                </div>
+                <div className="flex flex-col items-start gap-3 sm:items-end">
+                  <LocaleSwitcherDark />
+                  <Link
+                    href="/contacto"
+                    onClick={() => setOpen(false)}
+                    className="btn-ghost-light !mt-0 !inline-flex !px-4 !py-2 text-xs normal-case tracking-normal"
+                  >
+                    {t.nav.goContact}
                   </Link>
                 </div>
               </div>
+            </div>
 
-              <Link
-                href="/contacto"
-                onClick={() => setMobileMenuOpen(false)}
-                className="btn-primary w-full py-4 text-base"
-              >
-                Contacto
-              </Link>
-            </motion.div>
+            <motion.div
+              aria-hidden
+              className="hidden w-[min(32vw,380px)] shrink-0 lg:block"
+              animate={{ backgroundColor: panelColor }}
+              transition={{ duration: 0.35 }}
+            />
           </motion.div>
         )}
       </AnimatePresence>

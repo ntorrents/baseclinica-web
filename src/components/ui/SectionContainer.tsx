@@ -16,7 +16,7 @@ export function SectionContainer({
       id={id}
       className={`relative z-10 py-20 sm:py-24 ${id ? "scroll-mt-24" : ""} ${className}`}
     >
-      <div className="mx-auto w-full max-w-6xl px-6 lg:px-8">{children}</div>
+      <div className="site-rail">{children}</div>
     </section>
   );
 }

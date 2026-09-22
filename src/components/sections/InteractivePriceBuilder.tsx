@@ -1,303 +1,357 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { SectionContainer } from "@/components/ui/SectionContainer";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Module = {
   id: string;
   label: string;
-  description: string;
+  hint: string;
   monthlyPrice: number;
   setupPrice: number;
+  requires?: string;
 };
 
-const WEB_MODULES: Module[] = [
+type BaseKey = "web" | "erp" | "ambos";
+
+const BASES: {
+  id: BaseKey;
+  title: string;
+  line: string;
+  modules: string[];
+}[] = [
   {
     id: "web",
-    label: "Web Corporativa Base",
-    description: "Diseño Health-Tech premium y SEO técnico inicial.",
-    monthlyPrice: 0,
-    setupPrice: 890,
+    title: "Solo Web",
+    line: "Captar pacientes online",
+    modules: ["web"],
   },
   {
+    id: "erp",
+    title: "Solo ERP",
+    line: "Ordenar la clínica por dentro",
+    modules: ["erp_base"],
+  },
+  {
+    id: "ambos",
+    title: "Web + ERP",
+    line: "Ecosistema completo (−140€ setup)",
+    modules: ["web", "erp_base"],
+  },
+];
+
+const ADDONS: Module[] = [
+  {
     id: "seo",
-    label: "SEO & Copy Avanzado",
-    description: "Estrategia de keywords clínicas y redacción persuasiva.",
+    label: "SEO & copy",
+    hint: "Keywords clínicas + textos persuasivos",
     monthlyPrice: 0,
     setupPrice: 400,
+    requires: "web",
   },
   {
     id: "blog",
-    label: "Módulo Blog Salud",
-    description: "Sistema de noticias y artículos listos para posicionar.",
+    label: "Blog salud",
+    hint: "Artículos listos para posicionar",
     monthlyPrice: 0,
     setupPrice: 250,
+    requires: "web",
   },
   {
     id: "mantenimiento",
-    label: "Mantenimiento Premium",
-    description: "Evolución mensual, cambios ilimitados y métricas.",
+    label: "Mantenimiento web",
+    hint: "Cambios y evolución mensual",
     monthlyPrice: 40,
     setupPrice: 0,
-  },
-];
-
-const ERP_MODULES: Module[] = [
-  {
-    id: "erp_base",
-    label: "Software Gestión Starter",
-    description: "Agenda, facturación y pacientes (1 profesional activo).",
-    monthlyPrice: 49,
-    setupPrice: 0,
+    requires: "web",
   },
   {
     id: "erp_plus",
-    label: "Módulo Multi-profesional",
-    description: "Hasta 5 profesionales, roles, permisos y analítica avanzada.",
+    label: "Multi-profesional",
+    hint: "Hasta 5 roles y permisos",
     monthlyPrice: 40,
     setupPrice: 0,
-  },
-  {
-    id: "multisede",
-    label: "Licencia Multi-sede",
-    description: "Múltiples centros conectados con vistas consolidadas.",
-    monthlyPrice: 160,
-    setupPrice: 0,
+    requires: "erp_base",
   },
   {
     id: "citas_online",
-    label: "Citas Online Automáticas",
-    description: "Sincronizado al 100% con web y app (requiere app).",
+    label: "Citas online",
+    hint: "Reservas sincronizadas con la agenda",
     monthlyPrice: 20,
     setupPrice: 0,
+    requires: "erp_base",
   },
   {
     id: "whatsapp",
-    label: "Integración WhatsApp",
-    description: "Recordatorios automatizados a pacientes.",
+    label: "WhatsApp",
+    hint: "Recordatorios automáticos",
     monthlyPrice: 30,
     setupPrice: 150,
+    requires: "erp_base",
   },
   {
     id: "firma_digital",
-    label: "Firma Digital Biométrica",
-    description: "Consentimientos informados y RGPD sin papel.",
+    label: "Firma digital",
+    hint: "Consentimientos sin papel",
     monthlyPrice: 25,
     setupPrice: 100,
-  },
-  {
-    id: "portal_paciente",
-    label: "Portal del Paciente",
-    description: "Área privada para ver facturas, citas y documentos.",
-    monthlyPrice: 50,
-    setupPrice: 300,
+    requires: "erp_base",
   },
   {
     id: "finanzas",
-    label: "Módulo Finanzas Pro",
-    description: "Ver facturas, contabilidad y control de gastos avanzado.",
+    label: "Finanzas Pro",
+    hint: "Facturas y control avanzado",
     monthlyPrice: 20,
     setupPrice: 0,
+    requires: "erp_base",
   },
   {
     id: "proveedores",
-    label: "Gestión de Proveedores",
-    description: "Control de stock clínico, pedidos y proveedores.",
+    label: "Proveedores & stock",
+    hint: "Pedidos y materiales",
     monthlyPrice: 15,
     setupPrice: 0,
+    requires: "erp_base",
+  },
+  {
+    id: "portal_paciente",
+    label: "Portal del paciente",
+    hint: "Área privada citas y documentos",
+    monthlyPrice: 50,
+    setupPrice: 300,
+    requires: "erp_base",
+  },
+  {
+    id: "multisede",
+    label: "Multi-sede",
+    hint: "Varios centros conectados",
+    monthlyPrice: 160,
+    setupPrice: 0,
+    requires: "erp_base",
   },
 ];
 
+const CATALOG: Record<string, { label: string; monthlyPrice: number; setupPrice: number }> = {
+  web: { label: "Web corporativa base", monthlyPrice: 0, setupPrice: 890 },
+  erp_base: { label: "ERP gestión starter", monthlyPrice: 49, setupPrice: 0 },
+  ...Object.fromEntries(ADDONS.map((a) => [a.id, a])),
+};
+
 export function InteractivePriceBuilder() {
   const router = useRouter();
-  const [selectedModules, setSelectedModules] = useState<string[]>(["web", "erp_base"]);
+  const [base, setBase] = useState<BaseKey>("ambos");
+  const [addons, setAddons] = useState<string[]>([]);
 
-  const toggleModule = (id: string) => {
-    setSelectedModules((prev) => {
-      let next = [...prev];
-      const isCurrentlySelected = prev.includes(id);
+  const selectedModules = useMemo(() => {
+    const baseMods = BASES.find((b) => b.id === base)?.modules ?? [];
+    return [...baseMods, ...addons.filter((id) => {
+      const mod = ADDONS.find((a) => a.id === id);
+      if (!mod?.requires) return true;
+      return baseMods.includes(mod.requires);
+    })];
+  }, [base, addons]);
 
-      if (isCurrentlySelected) {
-        next = next.filter((m) => m !== id);
-        if (id === "erp_base") {
-          const erpModuleIds = ERP_MODULES.map((m) => m.id);
-          next = next.filter((m) => !erpModuleIds.includes(m));
-        }
-      } else {
-        next.push(id);
-        const isErpModule = ERP_MODULES.some((m) => m.id === id);
-        if (isErpModule && id !== "erp_base" && !next.includes("erp_base")) {
-          next.push("erp_base");
-        }
-      }
-      return next;
-    });
-  };
+  const visibleAddons = ADDONS.filter((a) => {
+    if (!a.requires) return true;
+    return selectedModules.includes(a.requires) || (BASES.find((b) => b.id === base)?.modules.includes(a.requires) ?? false);
+  });
 
-  const getAllModules = () => [...WEB_MODULES, ...ERP_MODULES];
-
-  const setupTotal = getAllModules()
-    .filter((m) => selectedModules.includes(m.id))
-    .reduce((acc, curr) => acc + curr.setupPrice, 0);
-  const monthlyTotal = getAllModules()
-    .filter((m) => selectedModules.includes(m.id))
-    .reduce((acc, curr) => acc + curr.monthlyPrice, 0);
-
+  const setupRaw = selectedModules.reduce((acc, id) => acc + (CATALOG[id]?.setupPrice ?? 0), 0);
+  const monthlyTotal = selectedModules.reduce((acc, id) => acc + (CATALOG[id]?.monthlyPrice ?? 0), 0);
   const isIntegral = selectedModules.includes("web") && selectedModules.includes("erp_base");
-  const finalSetup = isIntegral ? setupTotal - 140 : setupTotal;
+  const finalSetup = isIntegral ? setupRaw - 140 : setupRaw;
 
-  const handleContact = () => {
+  function chooseBase(next: BaseKey) {
+    setBase(next);
+    const allowed = new Set(BASES.find((b) => b.id === next)?.modules ?? []);
+    setAddons((prev) =>
+      prev.filter((id) => {
+        const mod = ADDONS.find((a) => a.id === id);
+        return mod?.requires ? allowed.has(mod.requires) : true;
+      }),
+    );
+  }
+
+  function toggleAddon(id: string) {
+    setAddons((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
+  }
+
+  function handleContact() {
     const searchParams = new URLSearchParams();
     searchParams.set("modules", selectedModules.join(","));
     searchParams.set("source", "builder");
-
+    searchParams.set("base", base);
     router.push(`/contacto?${searchParams.toString()}`);
-  };
-
-  const renderModule = (mod: Module) => {
-    const isSelected = selectedModules.includes(mod.id);
-    return (
-      <button
-        key={mod.id}
-        type="button"
-        onClick={() => toggleModule(mod.id)}
-        className={`flex w-full items-start gap-3 rounded-xl border p-4 text-left transition-all ${
-          isSelected
-            ? "border-[var(--brand)] bg-[var(--brand-soft)] shadow-[0_12px_30px_-18px_rgba(143,29,58,0.35)]"
-            : "border-[var(--line)] bg-white hover:border-[color-mix(in_oklab,var(--brand)_30%,var(--line))]"
-        }`}
-      >
-        <div
-          className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border transition-colors ${
-            isSelected
-              ? "border-[var(--brand)] bg-[var(--brand)] text-white"
-              : "border-[var(--line)] bg-[#f7f8fa]"
-          }`}
-        >
-          {isSelected && (
-            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-            </svg>
-          )}
-        </div>
-        <div className="flex-1">
-          <h4 className="font-semibold leading-tight text-[var(--ink)]">{mod.label}</h4>
-          <p className="mt-1.5 text-xs leading-relaxed text-[var(--muted)]">{mod.description}</p>
-          <div className="mt-2 flex gap-3 border-t border-[var(--line)] pt-2 text-xs">
-            {mod.setupPrice > 0 && <span className="text-[var(--muted)]">+{mod.setupPrice}€ setup</span>}
-            {mod.monthlyPrice > 0 && (
-              <span className="font-semibold text-[var(--brand)]">+{mod.monthlyPrice}€/mes</span>
-            )}
-          </div>
-        </div>
-      </button>
-    );
-  };
+  }
 
   return (
-    <SectionContainer id="configurador" className="relative overflow-hidden border-y border-[var(--line)] bg-white/50">
-      <div className="relative z-10 mx-auto max-w-6xl">
-        <div className="mb-12 text-center">
-          <p className="section-eyebrow">Presupuesto a tu medida</p>
-          <h2 className="font-display mt-2 text-3xl font-bold tracking-tight text-[var(--ink)] sm:text-4xl">
-            Escala tu clínica a tu ritmo
+    <section id="configurador" className="relative scroll-mt-24 overflow-hidden py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        <div className="max-w-2xl">
+          <p className="section-eyebrow">Configurador</p>
+          <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-[var(--ink)] sm:text-5xl">
+            Arma tu presupuesto en 2 pasos
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-[var(--muted)]">
-            Selecciona exactamente lo que necesitas hoy y añade módulos cuando crezcas.
+          <p className="mt-4 text-[var(--muted)]">
+            Primero eliges la base. Luego solo ves los extras que encajan. El total se actualiza al momento.
           </p>
         </div>
 
-        <div className="grid items-start gap-8 lg:grid-cols-[1fr_360px]">
-          <div className="flex flex-col gap-10">
-            <div>
-              <div className="mb-4 flex items-center gap-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--brand)]/15 bg-[var(--brand-soft)] text-[var(--brand)]">
-                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                    />
-                  </svg>
-                </div>
-                <h3 className="font-display text-xl font-bold text-[var(--ink)]">Área de captación (Web)</h3>
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2">{WEB_MODULES.map(renderModule)}</div>
-            </div>
+        {/* Pasos */}
+        <ol className="mt-10 flex items-center gap-3 text-sm font-semibold">
+          <li className="flex items-center gap-2 text-[var(--brand)]">
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[var(--brand)] text-xs text-white">
+              1
+            </span>
+            Base
+          </li>
+          <li className="h-px flex-1 max-w-[4rem] bg-[var(--line)]" />
+          <li className="flex items-center gap-2 text-[var(--muted)]">
+            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-[var(--line)] text-xs">
+              2
+            </span>
+            Extras
+          </li>
+        </ol>
 
-            <div>
-              <div className="mb-4 flex items-center gap-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--brand)]/15 bg-[var(--brand-soft)] text-[var(--brand)]">
-                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                    />
-                  </svg>
-                </div>
-                <h3 className="font-display text-xl font-bold text-[var(--ink)]">Área de gestión (App clínica)</h3>
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2">{ERP_MODULES.map(renderModule)}</div>
-            </div>
-          </div>
-
-          <div className="sticky top-28 rounded-2xl border border-[var(--line)] bg-white p-7 shadow-[0_24px_60px_-32px_rgba(20,24,31,0.35)]">
-            <h3 className="mb-5 border-b border-[var(--line)] pb-4 font-display text-lg font-bold text-[var(--ink)]">
-              Resumen de tu selección
-            </h3>
-
-            <div className="mb-3 flex items-center justify-between">
-              <span className="text-sm text-[var(--muted)]">Coste de implantación</span>
-              <span className="font-semibold text-[var(--ink)]">{setupTotal}€</span>
-            </div>
-            {isIntegral && (
-              <div className="-mx-3 mb-3 flex items-center justify-between rounded-lg border border-[var(--brand)]/20 bg-[var(--brand-soft)] px-3 py-1.5 text-sm text-[var(--brand-deep)]">
-                <span className="flex items-center gap-1.5 font-medium">Descuento integral</span>
-                <span className="font-bold">-140€</span>
-              </div>
-            )}
-            <div className="mb-6 flex items-center justify-between border-t border-[var(--line)] pt-4">
-              <span className="font-semibold text-[var(--ink)]">Total setup (único)</span>
-              <span className="font-display text-2xl font-bold tabular-nums text-[var(--ink)]">
-                {finalSetup}€
-              </span>
-            </div>
-
-            <div className="mb-2 flex items-center justify-between">
-              <span className="font-semibold text-[var(--ink)]">Cuota mensual</span>
-              <span className="font-display text-2xl font-bold tabular-nums text-[var(--brand)]">
-                {monthlyTotal}€
-                <span className="text-sm font-normal text-[var(--brand)]/70">/mes</span>
-              </span>
-            </div>
-
-            <p className="mb-6 mt-3 rounded-lg border border-[var(--line)] bg-[#f7f8fa] p-3 text-[11px] leading-relaxed text-[var(--muted)]">
-              * Estimación orientativa sin impuestos. El precio mensual tiene un{" "}
-              <strong className="text-[var(--ink)]">10% de descuento</strong> con facturación anual del
-              software.
-            </p>
-
-            <button
-              type="button"
-              onClick={handleContact}
-              className="btn-primary group flex w-full items-center justify-center gap-2 py-4"
-            >
-              Contactar con esta configuración
-              <svg
-                className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </button>
+        {/* Paso 1 */}
+        <div className="mt-8">
+          <h3 className="font-display text-lg font-bold text-[var(--ink)]">¿Qué necesitas de base?</h3>
+          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            {BASES.map((b) => {
+              const active = base === b.id;
+              return (
+                <button
+                  key={b.id}
+                  type="button"
+                  onClick={() => chooseBase(b.id)}
+                  className={`rounded-2xl border px-5 py-5 text-left transition ${
+                    active
+                      ? "border-[var(--ink)] bg-[var(--ink)] text-white shadow-[0_20px_50px_-28px_rgba(28,21,32,0.55)]"
+                      : "border-[var(--line)] bg-[var(--surface)]/80 text-[var(--ink)] hover:border-[var(--brand)]"
+                  }`}
+                >
+                  <span className="font-display text-xl font-bold">{b.title}</span>
+                  <span className={`mt-2 block text-sm ${active ? "text-white/70" : "text-[var(--muted)]"}`}>
+                    {b.line}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
+
+        <div className="mt-12 grid items-start gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+          {/* Paso 2 */}
+          <div>
+            <h3 className="font-display text-lg font-bold text-[var(--ink)]">Añade solo lo que uses</h3>
+            <p className="mt-1 text-sm text-[var(--muted)]">
+              Opcional. Puedes dejarlo vacío y ampliar más adelante.
+            </p>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={base}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.25 }}
+                className="mt-5 flex flex-col gap-2"
+              >
+                {visibleAddons.length === 0 ? (
+                  <p className="rounded-xl border border-dashed border-[var(--line)] px-4 py-8 text-center text-sm text-[var(--muted)]">
+                    Con esta base no hay extras disponibles.
+                  </p>
+                ) : (
+                  visibleAddons.map((mod) => {
+                    const on = addons.includes(mod.id);
+                    return (
+                      <button
+                        key={mod.id}
+                        type="button"
+                        onClick={() => toggleAddon(mod.id)}
+                        className={`flex items-center gap-4 rounded-xl border px-4 py-3.5 text-left transition ${
+                          on
+                            ? "border-[var(--brand)] bg-[var(--brand-soft)]"
+                            : "border-[var(--line)] bg-[var(--surface)]/70 hover:border-[var(--brand)]/40"
+                        }`}
+                      >
+                        <span
+                          className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-xs font-bold ${
+                            on ? "bg-[var(--brand)] text-white" : "bg-[var(--line)]/60 text-[var(--muted)]"
+                          }`}
+                        >
+                          {on ? "✓" : "+"}
+                        </span>
+                        <span className="min-w-0 flex-1">
+                          <span className="block font-semibold text-[var(--ink)]">{mod.label}</span>
+                          <span className="block text-xs text-[var(--muted)]">{mod.hint}</span>
+                        </span>
+                        <span className="shrink-0 text-right text-xs font-semibold text-[var(--ink)]">
+                          {mod.setupPrice > 0 && <span className="block">+{mod.setupPrice}€</span>}
+                          {mod.monthlyPrice > 0 && (
+                            <span className="block text-[var(--brand)]">+{mod.monthlyPrice}€/mes</span>
+                          )}
+                          {mod.setupPrice === 0 && mod.monthlyPrice === 0 && <span>—</span>}
+                        </span>
+                      </button>
+                    );
+                  })
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Resumen */}
+          <aside className="sticky top-28 rounded-3xl border border-[var(--ink)]/10 bg-[var(--ink)] p-6 text-white shadow-[0_30px_70px_-36px_rgba(28,21,32,0.6)] sm:p-7">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/45">
+              Tu estimación
+            </p>
+
+            <ul className="mt-4 space-y-2 border-b border-white/10 pb-4 text-sm text-white/75">
+              {selectedModules.map((id) => (
+                <li key={id} className="flex justify-between gap-3">
+                  <span>{CATALOG[id]?.label ?? id}</span>
+                  <span className="tabular-nums text-white/50">
+                    {(CATALOG[id]?.setupPrice ?? 0) > 0
+                      ? `${CATALOG[id].setupPrice}€`
+                      : (CATALOG[id]?.monthlyPrice ?? 0) > 0
+                        ? `${CATALOG[id].monthlyPrice}€/m`
+                        : "incluido"}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            {isIntegral && (
+              <p className="mt-3 text-sm font-medium text-[var(--glow)]">Descuento pack integral −140€</p>
+            )}
+
+            <div className="mt-5 space-y-3">
+              <div className="flex items-end justify-between">
+                <span className="text-sm text-white/55">Setup (único)</span>
+                <span className="font-display text-3xl font-bold tabular-nums">{finalSetup}€</span>
+              </div>
+              <div className="flex items-end justify-between">
+                <span className="text-sm text-white/55">Cuota mensual</span>
+                <span className="font-display text-3xl font-bold tabular-nums text-[var(--glow)]">
+                  {monthlyTotal}€
+                  <span className="text-base font-medium text-white/40">/mes</span>
+                </span>
+              </div>
+            </div>
+
+            <p className="mt-4 text-[11px] leading-relaxed text-white/40">
+              Orientativo sin impuestos. 10% dto. si facturas el software anual.
+            </p>
+
+            <button type="button" onClick={handleContact} className="mt-6 w-full rounded-full bg-white py-3.5 text-sm font-bold text-[var(--ink)] transition hover:bg-[var(--brand-soft)]">
+              Enviar esta configuración
+            </button>
+          </aside>
+        </div>
       </div>
-    </SectionContainer>
+    </section>
   );
 }

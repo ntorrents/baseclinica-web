@@ -3,106 +3,76 @@
 import Link from "next/link";
 import { CONTACT_EMAIL } from "@/config/contact";
 import { PriceTaxNote } from "@/components/ui/PriceTaxNote";
+import { useT } from "@/i18n/LocaleProvider";
 
 export function Footer() {
+  const t = useT();
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="border-t border-[var(--line)] bg-white pt-16 pb-8">
-      <div className="mx-auto max-w-6xl px-6 sm:px-8">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+    <footer className="relative z-[20] flex min-h-[100svh] flex-col justify-between bg-[#1c1c1c] pt-16 text-white sm:pt-20">
+      <div className="site-rail flex flex-1 flex-col">
+        <div className="grid gap-10 md:grid-cols-[1.3fr_1fr_1fr] md:gap-12">
           <div>
-            <Link href="/" className="inline-block">
-              <span className="font-display text-xl font-extrabold tracking-tight text-[var(--ink)]">
-                <span className="text-[var(--brand)]">Base</span>Clinica
-              </span>
-            </Link>
-            <p className="mt-4 text-sm leading-relaxed text-[var(--muted)]">
-              Software y web para clínicas que quieren claridad operativa y captación sin fricción.
+            <p className="max-w-sm text-base leading-relaxed text-white/50 sm:text-lg">
+              {t.footer.blurb}
             </p>
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="mt-5 inline-block text-sm font-semibold text-white underline decoration-[var(--brand)] underline-offset-4"
+            >
+              {CONTACT_EMAIL}
+            </a>
           </div>
 
           <div>
-            <h3 className="font-semibold text-[var(--ink)]">Producto</h3>
-            <ul className="mt-4 flex flex-col gap-3 text-sm text-[var(--muted)]">
+            <p className="section-eyebrow !text-white/40">{t.footer.navigate}</p>
+            <ul className="mt-4 flex flex-col gap-3 text-sm text-white/55">
               <li>
-                <Link href="/precios" className="transition-colors hover:text-[var(--brand)]">
-                  Precios
+                <Link href="/#soluciones" className="transition-colors hover:text-white">
+                  {t.footer.solutions}
                 </Link>
               </li>
               <li>
-                <Link href="/#erp-solution" className="transition-colors hover:text-[var(--brand)]">
-                  Software ERP
+                <Link href="/precios" className="transition-colors hover:text-white">
+                  {t.footer.pricing}
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/precios#configurador"
-                  className="transition-colors hover:text-[var(--brand)]"
-                >
-                  Configurador a medida
-                </Link>
-              </li>
-              <li>
-                <Link href="/contacto" className="transition-colors hover:text-[var(--brand)]">
-                  Contacto
+                <Link href="/contacto" className="transition-colors hover:text-white">
+                  {t.footer.contact}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold text-[var(--ink)]">Especialidades</h3>
-            <ul className="mt-4 flex flex-col gap-3 text-sm text-[var(--muted)]">
+            <p className="section-eyebrow !text-white/40">{t.footer.legal}</p>
+            <ul className="mt-4 flex flex-col gap-3 text-sm text-white/55">
               <li>
-                <Link href="/fisio" className="transition-colors hover:text-[var(--brand)]">
-                  Fisioterapia y Rehab
+                <Link href="/aviso-legal" className="transition-colors hover:text-white">
+                  {t.footer.legalNotice}
                 </Link>
               </li>
               <li>
-                <Link href="/dermo" className="transition-colors hover:text-[var(--brand)]">
-                  Dermatología / estética
+                <Link href="/politica-privacidad" className="transition-colors hover:text-white">
+                  {t.footer.privacy}
                 </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-[var(--ink)]">Legal y contacto</h3>
-            <ul className="mt-4 flex flex-col gap-3 text-sm text-[var(--muted)]">
-              <li>
-                <Link href="/aviso-legal" className="transition-colors hover:text-[var(--brand)]">
-                  Aviso legal
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/politica-privacidad"
-                  className="transition-colors hover:text-[var(--brand)]"
-                >
-                  Política de privacidad
-                </Link>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${CONTACT_EMAIL}`}
-                  className="transition-colors hover:text-[var(--brand)]"
-                >
-                  {CONTACT_EMAIL}
-                </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-[var(--line)] pt-8 sm:flex-row">
-          <p className="text-sm text-[var(--muted)]">
-            © {new Date().getFullYear()} BaseClinica. Todos los derechos reservados.
+        <div className="mt-auto flex flex-1 flex-col justify-end pt-16 sm:pt-20">
+          <p className="font-display w-full whitespace-nowrap pb-[0.12em] text-[clamp(2.75rem,min(15vw,calc((100vw-5.5rem)/6.35)),12rem)] font-extrabold leading-[0.9] tracking-[-0.05em] text-white">
+            base<span className="text-[var(--brand)]">clinica</span>
           </p>
-        </div>
-      </div>
-
-      <div className="mt-8 border-t border-[var(--line)] bg-[#f7f8fa]">
-        <div className="mx-auto max-w-6xl px-6 py-3 lg:px-8">
-          <PriceTaxNote className="text-center text-[var(--muted)] lg:text-left" />
+          <div className="mt-8 flex flex-col justify-between gap-3 border-t border-white/10 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-6 sm:flex-row sm:items-center">
+            <p className="text-sm text-white/40">
+              {t.footer.rights.replace("{year}", String(year))}
+            </p>
+            <PriceTaxNote className="!text-white/40" />
+          </div>
         </div>
       </div>
     </footer>

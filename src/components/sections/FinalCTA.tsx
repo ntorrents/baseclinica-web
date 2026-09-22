@@ -1,62 +1,45 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
-import { CONTACT_EMAIL } from "@/config/contact";
+import { useT } from "@/i18n/LocaleProvider";
 
 export function FinalCTA() {
-  const reduceMotion = useReducedMotion();
+  const t = useT();
+  const waHref = `https://wa.me/34684347483?text=${encodeURIComponent(t.cta.waText)}`;
 
   return (
-    <section
-      aria-labelledby="final-cta-title"
-      className="relative z-10 scroll-mt-24 overflow-hidden bg-[var(--brand)] py-24 sm:py-32"
-    >
-      <motion.div
-        aria-hidden
-        animate={reduceMotion ? undefined : { x: ["-5%", "5%", "-5%"] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute -left-1/4 top-0 font-display text-[clamp(6rem,22vw,16rem)] font-extrabold leading-none text-white/[0.06] whitespace-nowrap"
-      >
-        BaseClinica · BaseClinica · BaseClinica
-      </motion.div>
+    <section id="hablar" className="relative scroll-mt-0 min-h-[100svh] overflow-hidden">
+      <div className="absolute inset-0 z-0 bg-[var(--brand)]" aria-hidden />
 
-      <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-3xl"
-        >
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/75">
-            Siguiente paso
-          </p>
-          <h2
-            id="final-cta-title"
-            className="font-display mt-3 text-3xl font-bold tracking-tight text-white sm:text-5xl"
+      <div className="site-rail relative z-[20] flex min-h-[100svh] flex-col justify-center py-20 lg:max-w-[min(76rem,58%)] lg:py-24">
+        <p className="section-eyebrow !text-[#0a0a0a]/6">{t.cta.eyebrow}</p>
+        <h2 className="font-display mt-5 text-[clamp(2.2rem,6.5vw,5.25rem)] font-extrabold leading-[1.02] tracking-[-0.045em] text-[#0a0a0a] sm:mt-6">
+          {t.cta.title}
+        </h2>
+        <p className="mt-5 max-w-lg text-base leading-relaxed text-[#0a0a0a]/70 sm:mt-6 sm:text-xl">
+          {t.cta.lead}
+        </p>
+
+        <div className="mt-10 flex flex-wrap items-center gap-3 sm:mt-12 sm:gap-4">
+          <Link href="/contacto" className="btn-primary !bg-[#0a0a0a] hover:!bg-[#0a0a0a]/85">
+            {t.cta.contact}
+            <span className="btn-arrow">→</span>
+          </Link>
+          <a
+            href={waHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-semibold text-[#0a0a0a] underline decoration-[#0a0a0a]/35 underline-offset-4 sm:text-base"
           >
-            Agenda una reunión de 20 minutos sin compromiso
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-white/90 sm:text-lg">
-            Repasamos tu clínica, te mostramos el software y valoramos si el Pack Integral encaja.
-          </p>
-
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link
-              href="/contacto"
-              className="inline-flex rounded-xl bg-white px-6 py-3.5 text-sm font-bold text-[var(--brand-deep)] transition hover:bg-[var(--brand-soft)]"
-            >
-              Ir a contacto
-            </Link>
-            <a
-              href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Demo BaseClinica")}`}
-              className="inline-flex rounded-xl border border-white/35 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10"
-            >
-              Escribir por correo
-            </a>
-          </div>
-        </motion.div>
+            {t.cta.whatsapp}
+          </a>
+          <a
+            href="mailto:hola@baseclinica.com"
+            className="break-all text-sm font-semibold text-[#0a0a0a] underline decoration-[#0a0a0a]/35 underline-offset-4 sm:text-base"
+          >
+            hola@baseclinica.com
+          </a>
+        </div>
       </div>
     </section>
   );

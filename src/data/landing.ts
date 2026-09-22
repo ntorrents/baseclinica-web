@@ -10,14 +10,14 @@ import {
 const PAD = "#f4f5f7";
 
 const defaultHero: HeroData = {
-  eyebrow: "Software clínico modular",
-  title: "Web y gestión hechas a la medida de tu clínica.",
+  eyebrow: "01 / Hero",
+  title: "La base digital de tu clínica.",
   subtitle:
-    "Captación online y operativa diaria en un mismo ecosistema. Sin adaptarte a un software genérico.",
-  primaryCta: { label: "Elegir mi camino", href: "#elige" },
+    "Web para captar. ERP para operar. Estética, dental, fisio, veterinaria y más — sin plantillas genéricas.",
+  primaryCta: { label: "Ver soluciones", href: "#soluciones" },
   secondaryCta: {
-    label: "Hablar por WhatsApp",
-    href: "https://wa.me/34684347483?text=Hola,%20quería%20información%20sobre%20BaseClinica",
+    label: "Precios",
+    href: "/precios",
   },
 };
 
@@ -40,12 +40,12 @@ const defaultPainPoints: PainPoint[] = [
 ];
 
 const defaultPortfolio: PortfolioCase = {
-  name: "C3linic",
-  category: "Clínica estética y salud",
+  name: "Presencia web",
+  category: "Estructura",
   description:
-    "Diseño web premium orientado a conversión: mensaje claro, tratamientos visibles y reserva de cita sin fricción.",
+    "Mensaje claro, servicios entendibles y contacto sin fricción. La web como puerta de entrada, no como catálogo.",
   liveUrl: "https://www.c3linic.com",
-  image: "/images/portfolio-c3linic.png",
+  image: "/images/portfolio-c3linic-v2.png",
   imagePadColor: PAD,
 };
 
@@ -55,7 +55,7 @@ const defaultErpScreens = {
     padColor: PAD,
   },
   mobile: {
-    src: "/images/erp-mobile.png",
+    src: "/images/erp-mobile-v2.png",
     padColor: PAD,
   },
 } as const;

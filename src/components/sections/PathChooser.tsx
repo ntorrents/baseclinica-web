@@ -1,91 +1,74 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-
-const paths = [
-  {
-    id: "web",
-    href: "#portfolio",
-    title: "Web que capta pacientes",
-    description:
-      "Presencia premium, clara y orientada a citas. Ideal si ya gestionas bien por dentro pero tu web no convierte.",
-    meta: "01 · Captación",
-  },
-  {
-    id: "erp",
-    href: "#erp-solution",
-    title: "ERP que ordena la clínica",
-    description:
-      "Agenda, pacientes, stock, caja, facturas y fiscalidad en un solo sitio. Ideal si tu operación va a Excel o WhatsApp.",
-    meta: "02 · Gestión",
-  },
-  {
-    id: "integral",
-    href: "#pricing",
-    title: "Pack integral",
-    description:
-      "Web + software con el mismo interlocutor. Ideal para aperturas o cuando quieres digitalizarlo todo de una vez.",
-    meta: "03 · Todo junto",
-  },
-] as const;
 
 export function PathChooser() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="elige" className="relative z-10 scroll-mt-24 py-16 sm:py-24">
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <div className="max-w-2xl">
-          <p className="section-eyebrow">Empieza por aquí</p>
-          <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-[var(--ink)] sm:text-5xl">
-            ¿Qué te interesa ahora?
-          </h2>
-        </div>
+    <section id="producto" className="scroll-mt-28 px-6 py-20 sm:px-8 sm:py-28">
+      <div className="mx-auto max-w-6xl">
+        <p className="section-eyebrow">06 / Productos</p>
+        <h2 className="font-display mt-4 max-w-2xl text-[clamp(2rem,4.5vw,3.3rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-[var(--ink)]">
+          Dos productos.{" "}
+          <span className="mark-accent">Claros</span>.
+        </h2>
+        <p className="mt-5 max-w-xl text-lg leading-relaxed text-[var(--muted)]">
+          Web para captar. ERP para operar. No son lo mismo — y se nota en la propuesta.
+        </p>
 
-        <div className="mt-12 divide-y divide-[var(--line)] border-y border-[var(--line)]">
-          {paths.map((path, index) => (
-            <motion.a
-              key={path.id}
-              href={path.href}
-              initial={reduceMotion ? false : { opacity: 0, x: -24 }}
-              whileInView={reduceMotion ? undefined : { opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{
-                duration: 0.45,
-                delay: reduceMotion ? 0 : index * 0.08,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="group relative flex flex-col gap-3 py-8 transition sm:flex-row sm:items-end sm:justify-between sm:gap-10 sm:py-10"
-            >
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-y-0 left-0 w-0 bg-[var(--brand-soft)] transition-all duration-500 group-hover:w-full"
-              />
-              <div className="relative z-10 max-w-2xl">
-                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--brand)]">
-                  {path.meta}
-                </p>
-                <h3 className="font-display mt-2 text-2xl font-bold text-[var(--ink)] transition group-hover:translate-x-1 sm:text-3xl">
-                  {path.title}
-                </h3>
-                <p className="mt-2 max-w-xl text-sm leading-relaxed text-[var(--muted)] sm:text-base">
-                  {path.description}
-                </p>
-              </div>
-              <span className="relative z-10 inline-flex shrink-0 items-center gap-2 text-sm font-bold text-[var(--brand)]">
-                Ir
-                <svg
-                  className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-2"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M13 5l7 7-7 7" />
-                </svg>
-              </span>
-            </motion.a>
-          ))}
+        <div className="relative mt-14 grid gap-6 lg:grid-cols-2">
+          <motion.article
+            initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="box-plain relative z-10 p-8 sm:p-10 lg:translate-y-8"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">Web</p>
+            <h3 className="font-display mt-3 text-3xl font-extrabold tracking-tight text-[var(--ink)]">
+              Presencia que convierte
+            </h3>
+            <p className="mt-4 text-[0.95rem] leading-relaxed text-[var(--muted)]">
+              Diseño responsive, servicios claros, formularios y SEO técnico. Tu clínica se entiende
+              en segundos.
+            </p>
+            <ul className="mt-6 space-y-2 text-sm text-[var(--ink)]">
+              <li>— Secciones clave y móvil impecable</li>
+              <li>— Captación por formulario / WhatsApp</li>
+              <li>— Base legal y cookies listas</li>
+            </ul>
+            <Link href="/precios#web" className="btn-primary mt-8">
+              Ver precio web
+              <span className="btn-arrow">→</span>
+            </Link>
+          </motion.article>
+
+          <motion.article
+            initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.08 }}
+            className="box-panel relative z-20 p-8 sm:p-10 lg:-translate-y-4"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand)]">ERP</p>
+            <h3 className="font-display mt-3 text-3xl font-extrabold tracking-tight">
+              Gestión del día a día
+            </h3>
+            <p className="mt-4 text-[0.95rem] leading-relaxed text-white/60">
+              Agenda, pacientes, stock, facturas y finanzas.{" "}
+              <span className="text-white">Basic 35 €/mes</span> o{" "}
+              <span className="text-white">Premium 49 €/mes</span>.
+            </p>
+            <ul className="mt-6 space-y-2 text-sm text-white/85">
+              <li>— Agenda y fichas clínicas</li>
+              <li>— Caja e informes</li>
+              <li>— Roles y módulos ampliables</li>
+            </ul>
+            <Link href="/precios#erp" className="btn-ghost-light mt-8">
+              Ver planes ERP
+            </Link>
+          </motion.article>
         </div>
       </div>
     </section>

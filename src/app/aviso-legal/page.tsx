@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function AvisoLegalPage() {
   return (
-    <LegalDocumentShell title="Aviso legal">
+    <LegalDocumentShell doc="notice">
       <p>
         En cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la
         Información y de Comercio Electrónico (LSSI-CE), se facilita la siguiente información

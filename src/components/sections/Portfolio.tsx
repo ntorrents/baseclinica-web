@@ -1,15 +1,10 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-} from "framer-motion";
-import { PortfolioCase } from "@/types/landing";
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
+import type { PortfolioCase } from "@/types/landing";
+import { useT } from "@/i18n/LocaleProvider";
 
 type PortfolioProps = {
   data: PortfolioCase;
@@ -17,96 +12,84 @@ type PortfolioProps = {
 
 export function Portfolio({ data }: PortfolioProps) {
   const reduceMotion = useReducedMotion();
-  const ref = useRef<HTMLDivElement>(null);
-  const moveX = useMotionValue(0);
-  const moveY = useMotionValue(0);
-  const rotX = useMotionValue(0);
-  const rotY = useMotionValue(0);
-  const mx = useSpring(moveX, { stiffness: 140, damping: 18 });
-  const my = useSpring(moveY, { stiffness: 140, damping: 18 });
-  const rx = useSpring(rotX, { stiffness: 140, damping: 18 });
-  const ry = useSpring(rotY, { stiffness: 140, damping: 18 });
-
-  function onMove(e: React.MouseEvent<HTMLDivElement>) {
-    if (reduceMotion || !ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width - 0.5;
-    const py = (e.clientY - rect.top) / rect.height - 0.5;
-    moveX.set(px * 18);
-    moveY.set(py * 12);
-    rotY.set(px * 6);
-    rotX.set(-py * 6);
-  }
-
-  function onLeave() {
-    moveX.set(0);
-    moveY.set(0);
-    rotX.set(0);
-    rotY.set(0);
-  }
-
-  const transform = useMotionTemplate`perspective(1200px) rotateX(${rx}deg) rotateY(${ry}deg) translate3d(${mx}px, ${my}px, 0)`;
+  const t = useT();
 
   return (
-    <section id="portfolio" className="relative z-10 scroll-mt-24 overflow-hidden py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-6">
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, x: -20 }}
-            whileInView={reduceMotion ? undefined : { opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="relative z-10 lg:-mr-8"
-          >
-            <p className="section-eyebrow">Solución 1 · Web corporativa</p>
-            <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-[var(--ink)] sm:text-5xl">
-              Una web que deja claro qué vendes y cómo pedir cita
+    <section id="ejemplo" className="py-16 sm:py-24 lg:py-28">
+      <div className="site-rail relative z-10">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-end lg:gap-14">
+          <div>
+            <p className="section-eyebrow">{t.presence.eyebrow}</p>
+            <h2 className="font-display mt-5 text-[clamp(1.85rem,3.8vw,3.2rem)] font-extrabold leading-[1.12] tracking-[-0.04em] text-[var(--ink)]">
+              {t.presence.titleBefore}{" "}
+              <span className="mark-accent">{t.presence.titleMark}</span>
+              {t.presence.titleAfter}
             </h2>
-            <p className="mt-5 text-base leading-relaxed text-[var(--muted)]">{data.description}</p>
-            <div className="mt-8">
-              <p className="text-sm font-semibold text-[var(--ink)]">
-                Caso real: {data.name} — {data.category}
-              </p>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-[var(--muted)] sm:text-lg lg:text-xl">
+              {t.presence.lead}
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
                 href={data.liveUrl}
                 target="_blank"
-                rel="noreferrer"
-                className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-[var(--brand)] underline decoration-2 underline-offset-4"
+                rel="noopener noreferrer"
+                className="btn-secondary inline-flex"
               >
-                Ver en vivo · www.c3linic.com
+                {t.presence.exampleCta}
+                <span className="btn-arrow">→</span>
               </a>
+              <Link
+                href="/precios#web"
+                className="text-sm font-semibold text-[var(--ink)] underline-offset-4 hover:underline"
+              >
+                {t.presence.priceCta}
+              </Link>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            ref={ref}
-            onMouseMove={onMove}
-            onMouseLeave={onLeave}
-            initial={reduceMotion ? false : { opacity: 0, scale: 0.96, rotate: -2 }}
-            whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1, rotate: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-            className="relative"
-          >
-            <div className="absolute -inset-8 -z-10 bg-[radial-gradient(circle_at_40%_30%,rgba(143,29,58,0.18),transparent_65%)] blur-2xl" />
-            <motion.div
-              style={reduceMotion ? undefined : { transform }}
-              className="relative aspect-[1024/605] w-full overflow-hidden rounded-2xl border border-[var(--line)] shadow-[0_40px_90px_-40px_rgba(20,24,31,0.5)] will-change-transform lg:rotate-1"
-            >
-              <div
-                className="absolute inset-0"
-                style={{ backgroundColor: data.imagePadColor ?? "#f4f5f7" }}
-              />
-              <Image
-                src={data.image}
-                alt={`Preview del proyecto ${data.name}`}
-                fill
-                sizes="(max-width: 1024px) 100vw, 55vw"
-                className="object-contain object-center"
-              />
-            </motion.div>
-          </motion.div>
+          <ul className="grid gap-5 sm:gap-6">
+            {t.presence.points.map((p, i) => (
+              <motion.li
+                key={p.n}
+                initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06 }}
+                className="border-t border-[var(--line)] pt-4"
+              >
+                <p className="font-mono text-xs font-semibold tabular-nums text-[var(--brand)]">
+                  {p.n}
+                </p>
+                <h3 className="font-display mt-1.5 text-lg font-bold tracking-tight text-[var(--ink)] sm:text-xl">
+                  {p.title}
+                </h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-[var(--muted)] sm:text-base">
+                  {p.body}
+                </p>
+              </motion.li>
+            ))}
+          </ul>
         </div>
+
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="box-plain relative z-[20] mt-10 overflow-hidden p-2 sm:mt-12 sm:p-3"
+        >
+          <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-[#efece6] sm:aspect-[16/9]">
+            <Image
+              src={data.image}
+              alt={t.presence.altImage}
+              fill
+              className="object-cover object-top"
+              sizes="(max-width:1024px) 100vw, 76rem"
+              quality={100}
+              priority
+              unoptimized
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
   );

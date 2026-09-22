@@ -1,21 +1,28 @@
+"use client";
+
 import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { ScrollToTop } from "@/components/scroll/ScrollToTop";
+import { useT } from "@/i18n/LocaleProvider";
 
 type LegalDocumentShellProps = {
-  title: string;
+  doc: "notice" | "privacy";
   children: React.ReactNode;
 };
 
-export function LegalDocumentShell({ title, children }: LegalDocumentShellProps) {
+export function LegalDocumentShell({ doc, children }: LegalDocumentShellProps) {
+  const t = useT();
+  const title = doc === "notice" ? t.legal.noticeTitle : t.legal.privacyTitle;
+  const home = t.nav.links[0]?.label ?? "Inicio";
+
   return (
-    <div className="page-atmosphere min-h-screen">
+    <div className="page-shell min-h-screen">
       <Navbar />
       <main className="mx-auto max-w-3xl px-6 py-12 pb-20 pt-28 lg:px-8">
         <nav className="mb-8 text-sm text-[var(--muted)]">
           <Link href="/" className="font-medium text-[var(--brand)] hover:text-[var(--brand-deep)]">
-            Inicio
+            {home}
           </Link>
           <span className="mx-2 text-slate-400" aria-hidden>
             /

@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Manrope, Outfit } from "next/font/google";
+import { Bricolage_Grotesque, Geist_Mono, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
-import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
+import { CustomCursor } from "@/components/ui/CustomCursor";
+import { LocaleProvider } from "@/i18n/LocaleProvider";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const sourceSans = Source_Sans_3({
+  variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
 });
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
 });
@@ -53,11 +54,13 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${manrope.variable} ${outfit.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${sourceSans.variable} ${bricolage.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">
-        {children}
-        <WhatsAppFloat />
+      <body className="flex min-h-full flex-col font-sans">
+        <LocaleProvider>
+          <CustomCursor />
+          {children}
+        </LocaleProvider>
       </body>
     </html>
   );
