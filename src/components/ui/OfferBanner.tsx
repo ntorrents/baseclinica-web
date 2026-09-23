@@ -16,20 +16,23 @@ export function OfferBanner() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleClose = () => {
+    setIsVisible(false);
+  };
+
   if (!isVisible) return null;
 
   return (
     <AnimatePresence>
       {!hasScrolled && (
         <motion.div
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -100, opacity: 0 }}
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed top-0 left-0 right-0 z-[70] bg-gradient-to-r from-[#f07a3a] via-[#ff8c4a] to-[#f07a3a] text-white shadow-lg"
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: "auto", opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="relative z-40 overflow-hidden bg-gradient-to-r from-[#f07a3a] via-[#ff8c4a] to-[#f07a3a] text-white shadow-md"
         >
-          <div className="relative overflow-hidden">
-            <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 mix-blend-overlay" />
+          <div className="relative">
             <div className="site-rail flex items-center justify-between gap-4 py-2.5 text-sm sm:text-base">
               <div className="flex flex-1 items-center justify-center gap-2 font-semibold">
                 <span className="hidden sm:inline">🎉</span>
@@ -49,8 +52,8 @@ export function OfferBanner() {
               </Link>
               <button
                 type="button"
-                onClick={() => setIsVisible(false)}
-                className="shrink-0 ml-2 flex h-6 w-6 items-center justify-center rounded-full bg-white/20 text-white transition-all hover:bg-white/30"
+                onClick={handleClose}
+                className="shrink-0 ml-2 flex h-7 w-7 items-center justify-center rounded-full bg-white/20 text-white text-xl leading-none transition-all hover:bg-white/30 hover:scale-110"
                 aria-label="Cerrar oferta"
               >
                 ×

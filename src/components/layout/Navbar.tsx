@@ -152,7 +152,7 @@ export function Navbar() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[55] flex"
           >
-            <div className="relative flex min-h-full min-h-[100dvh] flex-1 flex-col bg-[#2a2a2a] text-white">
+            <div className="relative flex min-h-full min-h-[100dvh] flex-1 flex-col overflow-hidden bg-[#2a2a2a] text-white">
               <div className="flex items-center justify-between px-5 pb-2 pt-[max(1rem,env(safe-area-inset-top))] sm:px-8">
                 <Link href="/" onClick={() => setOpen(false)} className="py-3">
                   <BrandMark invert />
@@ -160,7 +160,7 @@ export function Navbar() {
                 <span className="h-12 w-12" aria-hidden />
               </div>
 
-              <nav className="flex flex-1 flex-col justify-center gap-1 overflow-y-auto overscroll-contain px-5 py-6 sm:px-10 lg:px-16">
+              <nav className="flex flex-1 flex-col justify-center gap-1 px-5 py-6 sm:px-10 lg:px-16">
                 {links.map((link, i) => {
                   const active = hoverIdx === i;
                   return (
@@ -184,7 +184,7 @@ export function Navbar() {
                           {link.n}
                         </span>
                         <span
-                          className={`font-display text-[clamp(2.2rem,11vw,5.25rem)] font-extrabold leading-[1.02] tracking-[-0.04em] transition-colors ${
+                          className={`font-display text-[clamp(2.2rem,10vw,4.5rem)] font-extrabold leading-[1.02] tracking-[-0.04em] transition-colors ${
                             active ? "text-white" : "text-white/35"
                           }`}
                         >

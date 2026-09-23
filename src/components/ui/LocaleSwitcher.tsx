@@ -6,7 +6,7 @@ import type { Locale } from "@/i18n/config";
 export function LocaleSwitcher({ className = "" }: { className?: string }) {
   const { locale, setLocale, t } = useLocale();
 
-  const btn = (code: Locale, icon: string) => (
+  const btn = (code: Locale) => (
     <button
       type="button"
       onClick={() => setLocale(code)}
@@ -18,8 +18,7 @@ export function LocaleSwitcher({ className = "" }: { className?: string }) {
       aria-pressed={locale === code}
       aria-label={`${t.locale.label}: ${code === "es" ? t.locale.es : t.locale.ca}`}
     >
-      <span className="relative z-10 flex items-center gap-1.5">
-        <span className="text-sm">{icon}</span>
+      <span className="relative z-10">
         {code === "es" ? t.locale.es : t.locale.ca}
       </span>
       {locale === code && (
@@ -34,8 +33,8 @@ export function LocaleSwitcher({ className = "" }: { className?: string }) {
       role="group"
       aria-label={t.locale.label}
     >
-      {btn("es", "🇪🇸")}
-      {btn("ca", "🇨🇦")}
+      {btn("es")}
+      {btn("ca")}
     </div>
   );
 }
@@ -44,7 +43,7 @@ export function LocaleSwitcher({ className = "" }: { className?: string }) {
 export function LocaleSwitcherDark({ className = "" }: { className?: string }) {
   const { locale, setLocale, t } = useLocale();
 
-  const btn = (code: Locale, icon: string) => (
+  const btn = (code: Locale) => (
     <button
       type="button"
       onClick={() => setLocale(code)}
@@ -56,8 +55,7 @@ export function LocaleSwitcherDark({ className = "" }: { className?: string }) {
       aria-pressed={locale === code}
       aria-label={`${t.locale.label}: ${code === "es" ? t.locale.es : t.locale.ca}`}
     >
-      <span className="relative z-10 flex items-center gap-1.5">
-        <span className="text-sm">{icon}</span>
+      <span className="relative z-10">
         {code === "es" ? t.locale.es : t.locale.ca}
       </span>
       {locale === code && (
@@ -72,8 +70,8 @@ export function LocaleSwitcherDark({ className = "" }: { className?: string }) {
       role="group"
       aria-label={t.locale.label}
     >
-      {btn("es", "🇪🇸")}
-      {btn("ca", "🇨🇦")}
+      {btn("es")}
+      {btn("ca")}
     </div>
   );
 }
