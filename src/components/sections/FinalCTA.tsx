@@ -12,11 +12,11 @@ export function FinalCTA() {
       <div className="absolute inset-0 z-0 bg-[var(--brand)]" aria-hidden />
 
       <div className="site-rail relative z-[20] flex min-h-[100svh] flex-col justify-center py-20 lg:max-w-[min(76rem,58%)] lg:py-24">
-        <p className="section-eyebrow !text-[#0a0a0a]/6">{t.cta.eyebrow}</p>
+        <p className="section-eyebrow !text-[#0a0a0a]/40 !font-bold">{t.cta.eyebrow}</p>
         <h2 className="font-display mt-5 text-[clamp(2.2rem,6.5vw,5.25rem)] font-extrabold leading-[1.02] tracking-[-0.045em] text-[#0a0a0a] sm:mt-6">
           {t.cta.title}
         </h2>
-        <p className="mt-5 max-w-lg text-base leading-relaxed text-[#0a0a0a]/70 sm:mt-6 sm:text-xl">
+        <p className="mt-5 max-w-lg text-base leading-relaxed text-[#0a0a0a]/80 sm:mt-6 sm:text-xl">
           {t.cta.lead}
         </p>
 

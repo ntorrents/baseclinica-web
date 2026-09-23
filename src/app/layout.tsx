@@ -3,6 +3,7 @@ import { Bricolage_Grotesque, Geist_Mono, Source_Sans_3 } from "next/font/google
 import "./globals.css";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { LocaleProvider } from "@/i18n/LocaleProvider";
+import { OfferBanner } from "@/components/ui/OfferBanner";
 
 const sourceSans = Source_Sans_3({
   variable: "--font-body",
@@ -59,6 +60,7 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col font-sans">
         <LocaleProvider>
           <CustomCursor />
+          <OfferBanner />
           {children}
         </LocaleProvider>
       </body>

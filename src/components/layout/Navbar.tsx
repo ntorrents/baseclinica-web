@@ -73,18 +73,18 @@ export function Navbar() {
     <>
       <header className={`pointer-events-none fixed top-0 w-full ${open ? "z-[60]" : "z-50"}`}>
         <div
-          className={`mx-auto flex max-w-[76rem] items-center px-6 py-4 sm:px-10 lg:px-14 xl:px-[4.5rem] ${
+          className={`mx-auto flex max-w-[76rem] items-center px-6 py-4 sm:px-10 lg:px-14 xl:px-[4.5rem] transition-all duration-300 ${
             scrolled || open ? "justify-end" : "justify-between"
           }`}
         >
-          <AnimatePresence initial={false}>
+          <AnimatePresence mode="wait" initial={false}>
             {!scrolled && !open && (
               <motion.div
                 key="brand"
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.25 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 className="pointer-events-auto"
               >
                 <Link href="/">
@@ -95,16 +95,28 @@ export function Navbar() {
           </AnimatePresence>
 
           <div className="pointer-events-auto flex items-center gap-2 sm:gap-2.5">
-            {!open && <LocaleSwitcher className="pointer-events-auto" />}
+            <AnimatePresence mode="wait" initial={false}>
+              {!scrolled && !open ? (
+                <motion.div
+                  key="locale-normal"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <LocaleSwitcher className="pointer-events-auto" />
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
 
-            <AnimatePresence initial={false}>
+            <AnimatePresence mode="wait" initial={false}>
               {!scrolled && !open && (
                 <motion.div
                   key="hablar"
-                  initial={{ opacity: 0, scale: 0.95 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                   className="hidden sm:block"
                 >
                   <Link href="/contacto" className="btn-primary !py-2.5 !px-4 text-sm">
