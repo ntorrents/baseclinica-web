@@ -112,6 +112,7 @@ export const erpCompareRows: ErpCompareRow[] = [
     premium: "✅",
   },
   { feature: "Gestión de Bonos", basic: "✅", premium: "✅" },
+  { feature: "Stock y tratamientos", basic: "Esencial", premium: "Ampliado" },
   { feature: "Cierre de Caja Diario y Control de Gastos", basic: "❌", premium: "✅" },
   {
     sectionTitle: "3. Seguridad Legal y Médica",
@@ -119,15 +120,15 @@ export const erpCompareRows: ErpCompareRow[] = [
     basic: "Plantillas",
     premium: "✅ Ilimitados",
   },
-  { feature: "Firma Digital Biométrica Integrada", basic: "❌", premium: "✅" },
-  { feature: "Bóveda de Fotos (Evolución)", basic: "❌", premium: "✅" },
+  { feature: "Consentimientos con firma biométrica", basic: "❌", premium: "✅" },
+  { feature: "Bóveda fotográfica clínica (Antes/Después)", basic: "❌", premium: "✅" },
   {
     sectionTitle: "4. Inventario y Fiscalidad Avanzada (Exclusivo 360)",
     feature: "Control de Stock y Trazabilidad de Lotes",
     basic: "❌",
     premium: "✅",
   },
-  { feature: "Módulo Fiscal AEAT en tiempo real (Mod. 130, 303, 115)", basic: "❌", premium: "✅" },
+  { feature: "Autopiloto Fiscal AEAT (Modelos 130, 303, 115)", basic: "❌", premium: "✅" },
   { feature: "Amortización de Inversiones", basic: "❌", premium: "✅" },
 ];
 
@@ -150,14 +151,14 @@ export const extraModules: ExtraModule[] = [
     id: "ecommerce",
     kind: "web",
     name: "E-commerce integrado",
-    description: "Tienda online integrada con el ERP para inventario de productos. Setup inicial + mensualidad.",
+    description: "Tienda online integrada con el software para control de inventario. Setup inicial + mensualidad.",
     price: "30 €/mes + 200 € setup",
   },
   {
     id: "citas-online",
     kind: "erp",
     name: "Citas online",
-    description: "Reserva automática desde la web hacia la agenda del ERP.",
+    description: "Reserva automática desde la web hacia la agenda del software.",
     price: "10 €/mes",
   },
   {
@@ -177,16 +178,16 @@ export const extraModules: ExtraModule[] = [
   {
     id: "firma",
     kind: "erp",
-    name: "Firma digital",
-    description: "Consentimientos y presupuestos firmados sin papel.",
-    price: "10 €/mes",
+    name: "Consentimientos con Firma Biométrica",
+    description: "Firma digital integrada para consentimientos informados. Protección legal máxima.",
+    price: "Incluido en Plan Clínica 360",
   },
   {
     id: "historia-fotografica",
     kind: "erp",
-    name: "Historia clínica fotográfica",
-    description: "Fotos de antes y después con gestión integrada en la ficha del paciente.",
-    price: "10 €/mes",
+    name: "Bóveda Fotográfica Clínica",
+    description: "Fotos Antes/Después seguras y organizadas. Seguimiento visual de cada tratamiento.",
+    price: "Incluido en Plan Clínica 360",
   },
   {
     id: "marketing",
