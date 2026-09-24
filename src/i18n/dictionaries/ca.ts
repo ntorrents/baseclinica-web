@@ -29,25 +29,26 @@ export const ca = {
       "Els imports indicats no inclouen IVA; s’aplicarà a la factura segons la normativa vigent.",
   },
   hero: {
-    eyebrow: "01 / Hero",
-    titleBefore: "Construïm, allotgem i",
-    titleMark: "mantenim",
-    titleAfter: "la base digital de la teva clínica",
+    eyebrow: "01 / DermoManager",
+    titleBefore: "El",
+    titleMark: "sistema operatiu complet",
+    titleAfter: "per a la teva clínica mèdico-estètica",
     subtitle:
-      "Web per captar. ERP per operar. Estètica, dental, fisio, veterinària i més — sense plantilles genèriques.",
-    primaryCta: "Veure solucions",
-    secondaryCta: "Preus",
+      "Tot en un: des que el pacient reserva la seva cita fins que presentes el trimestre a Hisenda. Dissenyat específicament per a microclíniques que busquen pau mental, control total i seguretat legal sense dependre de múltiples eines.",
+    primaryCta: "Sol·licitar Demo",
+    secondaryCta: "Veure Plans",
   },
   about: {
-    eyebrow: "02 / Sobre nosaltres",
+    eyebrow: "02 / La Nostra Història",
+    title: "Creat des de la trinxera clínica",
     bodyBefore: "Som l’equip darrere de BaseClinica: producte i disseny per a",
     mark1: "clíniques reals",
     bodyMid:
-      ". Hem llançat webs i sistemes de gestió en estètica, salut i benestar. Treballem com a",
-    mark2: "partner",
-    bodyAfter: ", no com un proveïdor més que desapareix després del go-live.",
+      ", vaig buscar una eina per gestionar la clínica dermoestètica de la meva dona. En no trobar res que cobrís la part clínica, legal i fiscal a un preu just per a una microclínica, vaig decidir programar-lo.",
+    mark2: "Coneixem els teus dolors diaris",
+    bodyAfter: " perquè també són els nostres.",
     support:
-      "Un sol interlocutor per a captació (web) i operativa (ERP). Menys eines soltes, més claredat dia a dia.",
+      "DermoManager no és un software més. És la resposta a anys de frustració amb eines que t'obliguen a usar Excel paral·lel per a la teva gestoria, que no tenen signatura digital integrada, o que et cobren per cada mòdul bàsic que necessites per operar amb seguretat legal.",
   },
   kpi: {
     eyebrow: "03 / En xifres",
