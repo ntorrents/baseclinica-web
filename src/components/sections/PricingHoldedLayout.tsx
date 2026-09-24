@@ -7,7 +7,7 @@ import { useT } from "@/i18n/LocaleProvider";
 
 type PlanView = {
   id: string;
-  kind: "web" | "erp";
+  kind: "web" | "software";
   name: string;
   tagline: string;
   price: string;
@@ -28,7 +28,7 @@ function PlanCard({
   billing?: "monthly" | "annual";
   labels: { recommended: string; annualBilling: string; orAnnual: string };
 }) {
-  const showAnnual = plan.kind === "erp" && billing === "annual" && plan.priceAnnual;
+  const showAnnual = plan.kind === "software" && billing === "annual" && plan.priceAnnual;
 
   return (
     <article
@@ -52,7 +52,7 @@ function PlanCard({
               : "text-[var(--brand)]"
         }`}
       >
-        {plan.kind === "web" ? "Web" : "ERP"}
+        {plan.kind === "web" ? "Web" : "Software"}
       </p>
       <h3 className="font-display mt-3 text-3xl font-extrabold tracking-tight">{plan.name}</h3>
       <p className={`mt-2 text-sm leading-relaxed ${plan.recommended ? "text-white/60" : "text-[var(--muted)]"}`}>
@@ -130,7 +130,7 @@ export function PricingHoldedLayout() {
         const base = erpPlanPrices[i];
         return {
           id: plan.id,
-          kind: "erp" as const,
+          kind: "software" as const,
           name: plan.name,
           tagline: plan.tagline,
           price: base.price,
@@ -183,7 +183,7 @@ export function PricingHoldedLayout() {
         </div>
       </section>
 
-      <section id="erp" className="scroll-mt-28 pt-20 sm:pt-28">
+      <section id="software" className="scroll-mt-28 pt-20 sm:pt-28">
         <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand)]">
@@ -294,7 +294,7 @@ export function PricingHoldedLayout() {
 
         <div className="mb-4 flex gap-3 text-xs font-semibold uppercase tracking-[0.14em]">
           <span className="rounded-full bg-[var(--accent-soft)] px-3 py-1 text-[var(--accent)]">Web</span>
-          <span className="rounded-full bg-[var(--brand-soft)] px-3 py-1 text-[var(--brand-deep)]">ERP</span>
+          <span className="rounded-full bg-[var(--brand-soft)] px-3 py-1 text-[var(--brand-deep)]">Software</span>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -305,7 +305,7 @@ export function PricingHoldedLayout() {
                   mod.kind === "web" ? "text-[var(--accent)]" : "text-[var(--brand)]"
                 }`}
               >
-                {mod.kind === "web" ? "Web" : "ERP"}
+                {mod.kind === "web" ? "Web" : "Software"}
               </p>
               <h3 className="font-display mt-2 text-xl font-bold tracking-tight text-[var(--ink)]">
                 {mod.name}
@@ -337,8 +337,8 @@ export function PricingHoldedLayout() {
               <p className="font-display text-4xl font-extrabold">750 €</p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-wider text-white/45">ERP Basic</p>
-              <p className="font-display text-4xl font-extrabold">35 €/mes</p>
+              <p className="text-xs uppercase tracking-wider text-white/45">Plan Gestión</p>
+              <p className="font-display text-4xl font-extrabold">49 €/mes</p>
             </div>
           </div>
           <p className="mt-4 text-sm font-medium text-[var(--brand)]">{t.pricing.combo.savingsNote}</p>

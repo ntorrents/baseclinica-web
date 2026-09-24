@@ -343,32 +343,32 @@ export const faqItems: FaqItem[] = [
   {
     question: "¿Puedo contratar solo la web y añadir la app después?",
     answer:
-      "Sí, nuestra propuesta es 100% modular. Puedes empezar por la web o por el ERP de gestión, y añadir el resto de componentes cuando tu clínica lo requiera.",
+      "Sí, nuestra propuesta es 100% modular. Puedes empezar por la web o por el software de gestión, y añadir el resto de componentes cuando tu clínica lo requiera.",
   },
   {
     question: "¿Qué pasa con los datos de salud y el RGPD?",
     answer:
-      "Priorizamos buenas prácticas de seguridad y confidencialidad en el ERP. Toda la arquitectura está diseñada para proteger la información médica y cumplir con la normativa vigente.",
+      "Priorizamos buenas prácticas de seguridad y confidencialidad en el software. Toda la arquitectura está diseñada para proteger la información médica y cumplir con la normativa vigente.",
   },
   {
     question: "¿Cuánto tarda un lanzamiento típico?",
     answer:
-      "Una web puede estar lista en pocas semanas si disponemos de todos los contenidos. El software ERP se implanta de manera ágil, dependiendo principalmente del volumen de datos a cargar y de la formación inicial del equipo.",
+      "Una web puede estar lista en pocas semanas si disponemos de todos los contenidos. El software de gestión se implanta de manera ágil, dependiendo principalmente del volumen de datos a cargar y de la formación inicial del equipo.",
   },
   {
-    question: "¿Hay permanencia en la app de gestión (ERP)?",
+    question: "¿Hay permanencia en la app de gestión?",
     answer:
       "Ofrecemos condiciones transparentes desde el primer día. Las condiciones de contratación (que incluyen periodos de prueba y plazos) se detallan por escrito antes de comenzar, sin cláusulas ocultas abusivas.",
   },
   {
-    question: "¿Qué incluye el Software de Gestión (ERP) exactamente?",
+    question: "¿Qué incluye el Software de Gestión exactamente?",
     answer:
-      "El ERP se adapta a ti mediante módulos. Como base incluye: Dashboard, Gestión completa de Pacientes, Historias Clínicas, Stock, Agenda, Finanzas y Roles de acceso. Además, puedes sumarle Citas Online Automáticas, Integración con WhatsApp, Firma Biométrica, Portal del Paciente, Gestión de Proveedores y Finanzas Pro.",
+      "El software se adapta a ti mediante módulos. Como base incluye: Dashboard, Gestión completa de Pacientes, Historias Clínicas, Stock, Agenda, Finanzas y Roles de acceso. Además, puedes sumarle Citas Online Automáticas, Integración con WhatsApp, Firma Biométrica, Portal del Paciente, Gestión de Proveedores y Finanzas Pro.",
   },
   {
     question: "¿La web corporativa y la app de gestión son el mismo producto?",
     answer:
-      "No. La web es tu carta de presentación (captación, confianza, SEO). El ERP es para la operativa diaria interna de tu clínica. Puedes contratar ambos simultáneamente para ahorrar integraciones, o uno por separado.",
+      "No. La web es tu carta de presentación (captación, confianza, SEO). El software de gestión es para la operativa diaria interna de tu clínica. Puedes contratar ambos simultáneamente para ahorrar integraciones, o uno por separado.",
   },
   {
     question: "¿Podéis migrar datos desde mi agenda actual, Excel u otro programa?",

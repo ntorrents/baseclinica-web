@@ -1,6 +1,6 @@
 export type PricingPlanCard = {
   id: string;
-  kind: "web" | "erp";
+  kind: "web" | "software";
   name: string;
   tagline: string;
   price: string;
@@ -21,7 +21,7 @@ export type ErpCompareRow = {
 
 export type ExtraModule = {
   id: string;
-  kind: "web" | "erp";
+  kind: "web" | "software";
   name: string;
   description: string;
   price: string;
@@ -60,7 +60,7 @@ export const webPlan: PricingPlanCard = {
 export const erpPlans: PricingPlanCard[] = [
   {
     id: "plan-gestion",
-    kind: "erp",
+    kind: "software",
     name: "Plan Gestión",
     tagline: "Ideal para arrancar con las bases operativas.",
     price: "49 €",
@@ -79,7 +79,7 @@ export const erpPlans: PricingPlanCard[] = [
   },
   {
     id: "plan-clinica-360",
-    kind: "erp",
+    kind: "software",
     name: "Plan Clínica 360",
     tagline: "Paz mental absoluta: seguridad legal + autopiloto fiscal.",
     price: "89 €",
@@ -156,56 +156,56 @@ export const extraModules: ExtraModule[] = [
   },
   {
     id: "citas-online",
-    kind: "erp",
+    kind: "software",
     name: "Citas online",
     description: "Reserva automática desde la web hacia la agenda del software.",
     price: "10 €/mes",
   },
   {
     id: "whatsapp",
-    kind: "erp",
+    kind: "software",
     name: "WhatsApp Business",
     description: "Plantillas y recordatorios conectados a la ficha del paciente.",
     price: "20 €/mes",
   },
   {
     id: "portal",
-    kind: "erp",
+    kind: "software",
     name: "Portal del paciente",
     description: "Acceso del paciente a documentos, citas y comunicaciones.",
     price: "desde 20 €/mes",
   },
   {
     id: "firma",
-    kind: "erp",
+    kind: "software",
     name: "Consentimientos con Firma Biométrica",
     description: "Firma digital integrada para consentimientos informados. Protección legal máxima.",
     price: "Incluido en Plan Clínica 360",
   },
   {
     id: "historia-fotografica",
-    kind: "erp",
+    kind: "software",
     name: "Bóveda Fotográfica Clínica",
     description: "Fotos Antes/Después seguras y organizadas. Seguimiento visual de cada tratamiento.",
     price: "Incluido en Plan Clínica 360",
   },
   {
     id: "marketing",
-    kind: "erp",
+    kind: "software",
     name: "Pack Marketing",
-    description: "Sistema de fidelización (puntos y monedero virtual), tarjetas regalo gestionadas desde ERP y captación de reseñas automatizada por email.",
+    description: "Sistema de fidelización (puntos y monedero virtual), tarjetas regalo gestionadas desde el software y captación de reseñas automatizada por email.",
     price: "15 €/mes",
   },
   {
     id: "ventas-retencion",
-    kind: "erp",
+    kind: "software",
     name: "Ventas y retención",
     description: "Módulos avanzados de ventas y gestión de retención de pacientes.",
     price: "10 €/mes",
   },
   {
     id: "multi-sede",
-    kind: "erp",
+    kind: "software",
     name: "Multi-sede",
     description: "Varias clínicas bajo la misma cuenta con métricas consolidadas.",
     price: "a medida",
@@ -213,18 +213,18 @@ export const extraModules: ExtraModule[] = [
 ];
 
 export const comboOffer: ComboOffer = {
-  title: "Combo Web + ERP",
+  title: "Pack Ecosistema Total",
   subtitle:
     "Un solo proveedor, implantación conjunta y descuento en el setup de la web.",
   setupPrice: "750 €",
-  monthlyPrice: "35 €/mes",
+  monthlyPrice: "49 €/mes",
   savingsNote: "Ahorras 140 € en el setup web frente a contratar por separado (890 €).",
   benefits: [
-    "Web corporativa + ERP Basic listos a la vez",
+    "Web corporativa + Plan Gestión listos a la vez",
     "Onboarding único: menos fricción para tu equipo",
     "Misma estética y datos alineados web ↔ gestión",
     "Soporte unificado (un interlocutor)",
-    "Puedes subir a Premium cuando lo necesites",
+    "Puedes subir a Plan Clínica 360 cuando lo necesites",
   ],
   ctaLabel: "Quiero el combo",
   ctaHref: "/contacto?interes=combo",

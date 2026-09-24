@@ -13,7 +13,7 @@ type Module = {
   requires?: string;
 };
 
-type BaseKey = "web" | "erp" | "ambos";
+type BaseKey = "web" | "software" | "ambos";
 
 const BASES: {
   id: BaseKey;
@@ -28,16 +28,16 @@ const BASES: {
     modules: ["web"],
   },
   {
-    id: "erp",
-    title: "Solo ERP",
+    id: "software",
+    title: "Solo Software",
     line: "Ordenar la clínica por dentro",
-    modules: ["erp_base"],
+    modules: ["software_base"],
   },
   {
     id: "ambos",
-    title: "Web + ERP",
+    title: "Web + Software",
     line: "Ecosistema completo (−140€ setup)",
-    modules: ["web", "erp_base"],
+    modules: ["web", "software_base"],
   },
 ];
 
@@ -134,7 +134,7 @@ const ADDONS: Module[] = [
 
 const CATALOG: Record<string, { label: string; monthlyPrice: number; setupPrice: number }> = {
   web: { label: "Web corporativa base", monthlyPrice: 0, setupPrice: 890 },
-  erp_base: { label: "ERP gestión starter", monthlyPrice: 49, setupPrice: 0 },
+  software_base: { label: "Software gestión starter", monthlyPrice: 49, setupPrice: 0 },
   ...Object.fromEntries(ADDONS.map((a) => [a.id, a])),
 };
 

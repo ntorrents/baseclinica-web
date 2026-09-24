@@ -56,7 +56,7 @@ export function Pricing({ plans, ctaHref = "/contacto" }: PricingProps) {
         <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-[var(--ink)] sm:text-5xl">
           Claro. Sin letra pequeña.
         </h2>
-        <p className="mt-4 text-[var(--muted)]">Web, ERP o ambas.</p>
+        <p className="mt-4 text-[var(--muted)]">Web, Software o ambos.</p>
 
         <div className="mt-8 flex justify-center">
           <div className="inline-flex rounded-xl border border-[var(--line)] bg-white p-1">
@@ -190,7 +190,7 @@ export function Pricing({ plans, ctaHref = "/contacto" }: PricingProps) {
                       )}
                       {plan.id === "integral" && (
                         <ul className="list-disc space-y-1.5 pl-4 marker:text-[var(--brand)]">
-                          <li>Todo Web + todo ERP</li>
+                          <li>Todo Web + todo Software</li>
                           <li>Citas web conectadas a la agenda</li>
                           <li>Onboarding premium</li>
                           <li>Soporte prioritario</li>
@@ -223,7 +223,7 @@ export function Pricing({ plans, ctaHref = "/contacto" }: PricingProps) {
           ¿Prefieres módulos sueltos?
         </h3>
         <p className="mx-auto mt-3 max-w-2xl text-[var(--muted)]">
-          Baja al configurador: eliges base (web, ERP o ambas) y solo los extras que necesitas.
+          Baja al configurador: eliges base (web, Software o ambos) y solo los extras que necesitas.
         </p>
         <Link href="/precios#configurador" className="btn-primary mt-6">
           Abrir configurador
