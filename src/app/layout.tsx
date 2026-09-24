@@ -27,11 +27,11 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "BaseClinica | App de gestión y web corporativa para clínicas",
-    template: "%s | BaseClinica",
+    default: "Base Clínica | Sistema Operativo Completo para Clínicas Médico-Estéticas",
+    template: "%s | Base Clínica",
   },
   description:
-    "Software de gestión interna y diseño web para microclínicas: agenda, pacientes, facturación y presencia online. Pack integral con un solo proveedor.",
+    "El sistema operativo completo para tu clínica: desde la captación de pacientes hasta la presentación de impuestos en Hacienda. Software de gestión clínica con firma digital, trazabilidad y autopiloto fiscal AEAT.",
   icons: {
     icon: "/bc-icon.svg",
     shortcut: "/bc-icon.svg",
@@ -39,10 +39,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_ES",
-    siteName: "BaseClinica",
-    title: "BaseClinica | App de gestión y web corporativa para clínicas",
+    siteName: "Base Clínica",
+    title: "Base Clínica | Sistema Operativo Completo para Clínicas Médico-Estéticas",
     description:
-      "Software de gestión interna y diseño web para microclínicas. Pack integral opcional.",
+      "Software de gestión clínica integral: historiales, firma digital, inventario con trazabilidad y autopiloto fiscal AEAT. Web profesional + Software coordinado.",
   },
 };
 

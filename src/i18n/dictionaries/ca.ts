@@ -29,7 +29,7 @@ export const ca = {
       "Els imports indicats no inclouen IVA; s’aplicarà a la factura segons la normativa vigent.",
   },
   hero: {
-    eyebrow: "01 / DermoManager",
+    eyebrow: "01 / Base Clínica",
     titleBefore: "El",
     titleMark: "sistema operatiu complet",
     titleAfter: "per a la teva clínica mèdico-estètica",
@@ -48,7 +48,7 @@ export const ca = {
     mark2: "Coneixem els teus dolors diaris",
     bodyAfter: " perquè també són els nostres.",
     support:
-      "DermoManager no és un software més. És la resposta a anys de frustració amb eines que t'obliguen a usar Excel paral·lel per a la teva gestoria, que no tenen signatura digital integrada, o que et cobren per cada mòdul bàsic que necessites per operar amb seguretat legal.",
+      "Base Clínica no és un software més. És la resposta a anys de frustració amb eines que t'obliguen a usar Excel paral·lel per a la teva gestoria, que no tenen signatura digital integrada, o que et cobren per cada mòdul bàsic que necessites per operar amb seguretat legal.",
   },
   kpi: {
     eyebrow: "03 / En xifres",

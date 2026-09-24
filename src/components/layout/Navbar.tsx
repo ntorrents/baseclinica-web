@@ -10,7 +10,7 @@ import { useT } from "@/i18n/LocaleProvider";
 function BrandMark({ invert = false }: { invert?: boolean }) {
   return (
     <span
-      className={`font-display text-[1.05rem] font-bold tracking-tight ${
+      className={`font-display text-[1.35rem] font-bold tracking-tight sm:text-[1.45rem] ${
         invert ? "text-white" : "text-[var(--ink)]"
       }`}
     >

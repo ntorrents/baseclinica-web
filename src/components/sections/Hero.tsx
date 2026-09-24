@@ -15,7 +15,7 @@ export function Hero({ data }: HeroProps) {
   return (
     <section id="inicio" className="relative isolate overflow-hidden pb-16 pt-28 sm:pb-24 sm:pt-36 lg:pb-28 lg:pt-40">
       <div className="site-rail relative z-10 grid lg:grid-cols-[minmax(0,1fr)_minmax(140px,240px)] lg:gap-12 xl:grid-cols-[minmax(0,1fr)_minmax(160px,280px)]">
-        <div className="max-w-[42rem] xl:max-w-[48rem]">
+        <div className="max-w-[56rem] xl:max-w-[64rem]">
           <motion.p
             initial={reduceMotion ? false : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
