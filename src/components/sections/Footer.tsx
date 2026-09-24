@@ -10,8 +10,8 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative z-[20] flex min-h-[100svh] flex-col justify-between bg-[#1c1c1c] pt-16 text-white sm:pt-20">
-      <div className="site-rail flex flex-1 flex-col">
+    <footer className="relative z-[20] bg-[#1c1c1c] pt-16 text-white sm:pt-20">
+      <div className="site-rail flex flex-col">
         <div className="grid gap-10 md:grid-cols-[1.3fr_1fr_1fr] md:gap-12">
           <div>
             <p className="max-w-sm text-base leading-relaxed text-white/50 sm:text-lg">
@@ -63,7 +63,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-auto flex flex-1 flex-col justify-end pt-16 sm:pt-20">
+        <div className="mt-16 flex flex-col sm:mt-20">
           <p className="font-display w-full whitespace-nowrap pb-[0.12em] text-[clamp(2.75rem,min(15vw,calc((100vw-5.5rem)/6.35)),12rem)] font-extrabold leading-[0.9] tracking-[-0.05em] text-white">
             base<span className="text-[var(--brand)]">clinica</span>
           </p>
