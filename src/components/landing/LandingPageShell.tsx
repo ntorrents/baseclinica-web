@@ -10,6 +10,7 @@ import { Portfolio } from "@/components/sections/Portfolio";
 import { SolutionSection } from "@/components/sections/SolutionSection";
 import { ScrollToTop } from "@/components/scroll/ScrollToTop";
 import { PageLoader } from "@/components/ui/PageLoader";
+import { CalculatorProvider } from "@/contexts/CalculatorContext";
 import type { LandingData } from "@/types/landing";
 
 type LandingPageShellProps = {
@@ -18,29 +19,31 @@ type LandingPageShellProps = {
 
 export function LandingPageShell({ data }: LandingPageShellProps) {
   return (
-    <div className="page-shell relative min-h-screen text-[var(--ink)] selection:bg-[var(--brand-soft)] selection:text-[var(--brand-deep)]">
-      <PageLoader />
-      <Navbar />
+    <CalculatorProvider>
+      <div className="page-shell relative min-h-screen text-[var(--ink)] selection:bg-[var(--brand-soft)] selection:text-[var(--brand-deep)]">
+        <PageLoader />
+        <Navbar />
 
-      <main className="relative">
+        <main className="relative">
 
-        <Hero data={data.hero} />
-        <AboutSection />
-        <KpiSection />
-        <LossAversionSection />
-        <SolutionSection />
-        <ErpSolution
-          features={data.erpFeatures}
-          desktopShot={data.erpScreens.desktop.src}
-          mobileShot={data.erpScreens.mobile.src}
-        />
+          <Hero data={data.hero} />
+          <AboutSection />
+          <KpiSection />
+          <LossAversionSection />
+          <SolutionSection />
+          <ErpSolution
+            features={data.erpFeatures}
+            desktopShot={data.erpScreens.desktop.src}
+            mobileShot={data.erpScreens.mobile.src}
+          />
 
-        <Portfolio data={data.portfolio} />
-        <FinalCTA />
-      </main>
+          <Portfolio data={data.portfolio} />
+          <FinalCTA />
+        </main>
 
-      <Footer />
-      <ScrollToTop />
-    </div>
+        <Footer />
+        <ScrollToTop />
+      </div>
+    </CalculatorProvider>
   );
 }

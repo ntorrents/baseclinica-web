@@ -3,52 +3,56 @@
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { useT } from "@/i18n/LocaleProvider";
-
-const losses = [
-  {
-    icon: "⏰",
-    color: "red",
-    gradient: "from-red-500 to-orange-500",
-    bgSoft: "bg-red-50",
-    textColor: "text-red-600",
-    title: "Tiempo",
-    bigNumber: "13.5h",
-    subtitle: "perdidas cada semana",
-    description: "en buscar expedientes, hacer facturas y cuadrar números en Excel",
-    detail: "= 650 horas al año = 27 días completos de tu vida",
-    cta: "Recupera tu tiempo",
-  },
-  {
-    icon: "💸",
-    color: "orange",
-    gradient: "from-orange-500 to-amber-500",
-    bgSoft: "bg-orange-50",
-    textColor: "text-orange-600",
-    title: "Dinero",
-    bigNumber: "29.250€",
-    subtitle: "al año en productividad",
-    description: "por el coste de oportunidad de tareas que deberían ser automáticas",
-    detail: "~2.430€ cada mes que podrían ir a reinversión o salario",
-    cta: "Recupera tu dinero",
-  },
-  {
-    icon: "📉",
-    color: "amber",
-    gradient: "from-amber-500 to-yellow-500",
-    bgSoft: "bg-amber-50",
-    textColor: "text-amber-600",
-    title: "Pacientes",
-    bigNumber: "1 de 4",
-    subtitle: "no vuelve por fricción",
-    description: "mala experiencia administrativa: retrasos, confirmaciones tardías, documentos perdidos",
-    detail: "Podrías atender 9+ pacientes más por semana con el tiempo recuperado",
-    cta: "Recupera tus pacientes",
-  },
-];
+import { useCalculator } from "@/contexts/CalculatorContext";
 
 export function LossAversionSection() {
   const reduceMotion = useReducedMotion();
   const t = useT();
+  const { hoursPerWeek, hoursPerYear, moneyPerYear, moneyPerMonth, missedPatients } = useCalculator();
+
+  const daysPerYear = Math.round(hoursPerYear / 8);
+
+  const losses = [
+    {
+      icon: "⏰",
+      color: "red",
+      gradient: "from-red-500 to-orange-500",
+      bgSoft: "bg-red-50",
+      textColor: "text-red-600",
+      title: "Tiempo",
+      bigNumber: `${hoursPerWeek}h`,
+      subtitle: "perdidas cada semana",
+      description: "en buscar expedientes, hacer facturas y cuadrar números en Excel",
+      detail: `= ${hoursPerYear} horas al año = ${daysPerYear} días completos de tu vida`,
+      cta: "Recupera tu tiempo",
+    },
+    {
+      icon: "💸",
+      color: "orange",
+      gradient: "from-orange-500 to-amber-500",
+      bgSoft: "bg-orange-50",
+      textColor: "text-orange-600",
+      title: "Dinero",
+      bigNumber: `${moneyPerYear.toLocaleString()}€`,
+      subtitle: "al año en productividad",
+      description: "por el coste de oportunidad de tareas que deberían ser automáticas",
+      detail: `~${moneyPerMonth.toLocaleString()}€ cada mes que podrían ir a reinversión o salario`,
+      cta: "Recupera tu dinero",
+    },
+    {
+      icon: "📉",
+      color: "amber",
+      gradient: "from-amber-500 to-yellow-500",
+      bgSoft: "bg-amber-50",
+      textColor: "text-amber-600",
+      title: "Pacientes",
+      bigNumber: `+${missedPatients}`,
+      subtitle: "que podrías atender",
+      description: "pacientes adicionales por semana con el tiempo que recuperarías automatizando tareas",
+      detail: `Con mejor experiencia administrativa: confirmaciones automáticas, sin retrasos ni documentos perdidos`,
+      cta: "Recupera tus pacientes",
+    },
+  ];
 
   return (
     <section id="perdidas" className="scroll-mt-28 py-16 sm:py-24 lg:py-32">

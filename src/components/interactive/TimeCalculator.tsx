@@ -2,22 +2,24 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useCalculator } from "@/contexts/CalculatorContext";
 
 export function TimeCalculator() {
-  const [patients, setPatients] = useState(35);
+  const { 
+    patients, 
+    setPatients, 
+    hoursPerWeek, 
+    hoursPerMonth, 
+    hoursPerYear,
+    moneyPerMonth,
+    moneyPerYear,
+    missedPatients
+  } = useCalculator();
+  
   const [showEmailCapture, setShowEmailCapture] = useState(false);
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
-
-  // Cálculo basado en pacientes semanales
-  const hoursPerDay = Math.round((patients / 25) * 2.67 * 10) / 10; // ~2.67h base para 25 pacientes
-  const hoursPerWeek = Math.round(hoursPerDay * 5 * 10) / 10;
-  const hoursPerMonth = Math.round(hoursPerWeek * 4.33 * 10) / 10;
-  const hoursPerYear = Math.round(hoursPerMonth * 12);
-  
-  const moneyPerMonth = Math.round(hoursPerMonth * 45); // 45€/hora coste oportunidad
-  const moneyPerYear = Math.round(hoursPerYear * 45);
-  const missedPatients = Math.round((hoursPerWeek / 1.5) * 10) / 10; // ~1.5h por paciente
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleEmailCapture = () => {
     setShowEmailCapture(true);
@@ -25,8 +27,117 @@ export function TimeCalculator() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Aquí iría la integración con tu sistema de email
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
+          subject: `📊 Informe ROI personalizado - ${email}`,
+          from_name: "Base Clínica - Calculadora ROI",
+          email: email,
+          message: `
+INFORME ROI PERSONALIZADO - BASE CLÍNICA
+========================================
+
+DATOS DE TU CLÍNICA:
+- Pacientes atendidos por semana: ${patients}
+
+TIEMPO QUE ESTÁS PERDIENDO:
+- Por semana: ${hoursPerWeek} horas
+- Por mes: ${hoursPerMonth} horas  
+- Por año: ${hoursPerYear} horas (${Math.round(hoursPerYear / 8)} días laborables completos)
+
+COSTE DE OPORTUNIDAD:
+- Por mes: ${moneyPerMonth.toLocaleString()}€
+- Por año: ${moneyPerYear.toLocaleString()}€
+
+PACIENTES QUE PODRÍAS ATENDER:
+- ${missedPatients} pacientes adicionales por semana
+- ${Math.round(missedPatients * 4.33)} pacientes adicionales por mes
+- ${Math.round(missedPatients * 52)} pacientes adicionales por año
+
+========================================
+
+CÓMO BASE CLÍNICA RECUPERA ESTE TIEMPO:
+
+✅ AUTOMATIZACIÓN DE CITAS
+- Confirmaciones automáticas por SMS/WhatsApp
+- Recordatorios 24h antes sin intervención manual
+- Reprogramación online por el propio paciente
+- AHORRO: ~4h/semana
+
+✅ GESTIÓN DOCUMENTAL INTELIGENTE
+- Expedientes digitales centralizados
+- Búsqueda instantánea (vs. buscar carpetas físicas o carpetas en Windows)
+- Historial completo en 1 clic
+- AHORRO: ~3h/semana
+
+✅ FACTURACIÓN AUTOMÁTICA
+- Facturas generadas automáticamente tras cada cita
+- Integración contable directa
+- Control de impagos automatizado
+- AHORRO: ~2.5h/semana
+
+✅ FIRMA DIGITAL DE CONSENTIMIENTOS
+- Consentimientos firmados desde tablet en consulta
+- Almacenamiento legal automático
+- Sin papeles, sin escáneres
+- AHORRO: ~1.5h/semana
+
+✅ GESTIÓN DE STOCK Y PEDIDOS
+- Alertas automáticas de stock bajo
+- Trazabilidad de lotes y caducidades
+- Control de consumos por tratamiento
+- AHORRO: ~1h/semana
+
+✅ REPORTING AUTOMÁTICO
+- Dashboard con KPIs actualizados en tiempo real
+- Informes de facturación mensuales automáticos
+- Análisis de rentabilidad por servicio
+- AHORRO: ~1.5h/semana
+
+========================================
+
+PRÓXIMOS PASOS:
+
+1️⃣ DEMO PERSONALIZADA (30 min)
+   Ver en directo cómo funciona con datos reales de tu clínica
+
+2️⃣ PRUEBA GRATIS 14 DÍAS
+   Sin compromiso, sin tarjeta, con soporte incluido
+
+3️⃣ IMPLEMENTACIÓN EXPRESS (< 1 semana)
+   Migración de datos + formación + configuración personalizada
+
+📞 Reserva tu demo: https://baseclinica.com/contacto
+💰 Ver planes: https://baseclinica.com/precios
+
+========================================
+
+¿Preguntas? Responde a este email o llámanos.
+
+Base Clínica - Gestión inteligente para clínicas del siglo XXI
+          `.trim(),
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        alert("Error al enviar el informe. Por favor, inténtalo de nuevo.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error al enviar el informe. Por favor, inténtalo de nuevo.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -150,9 +261,10 @@ export function TimeCalculator() {
             </div>
             <button
               type="submit"
-              className="btn-primary w-full justify-center"
+              disabled={isSubmitting}
+              className="btn-primary w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Enviar informe personalizado
+              {isSubmitting ? "Enviando..." : "Enviar informe personalizado"}
               <span className="btn-arrow">→</span>
             </button>
             <p className="text-xs text-muted">
