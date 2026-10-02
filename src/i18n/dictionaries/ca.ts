@@ -322,32 +322,7 @@ export const ca = {
         ctaLabel: "Contactar per Elite",
       },
     ],
-    compareRows: [
-      { sectionTitle: "Nucli operatiu", feature: "Dashboard", basic: "✓", premium: "✓" },
-      { feature: "Agenda", basic: "✓", premium: "✓" },
-      { feature: "Pacients / fitxes", basic: "Essencial", premium: "Ampliat" },
-      { feature: "Estoc i tractaments", basic: "✓", premium: "✓" },
-      { feature: "Finances del dia a dia", basic: "✓", premium: "✓" },
-      { feature: "Facturació", basic: "Essencial", premium: "Avançada" },
-      {
-        sectionTitle: "Equip i abast",
-        feature: "Professionals actius",
-        basic: "1",
-        premium: "Fins a 5",
-      },
-      { feature: "Rols i permisos", basic: "—", premium: "✓" },
-      { feature: "Informes d’ocupació", basic: "—", premium: "✓" },
-      { sectionTitle: "Mòduls Premium", feature: "Bonus", basic: "—", premium: "✓" },
-      {
-        feature: "Documentació (consentiments, pressupostos)",
-        basic: "—",
-        premium: "✓",
-      },
-      { feature: "Fiscalitat (resum trimestral)", basic: "—", premium: "✓" },
-      { feature: "Recordatoris ampliats", basic: "Bàsics", premium: "Plantilles i regles" },
-      { feature: "Exportar despeses (Excel / CSV)", basic: "—", premium: "✓" },
-      { feature: "Afegir mòduls extra", basic: "Sota petició", premium: "Inclòs al roadmap" },
-    ],
+    compareRows: [],
     modules: [
       {
         id: "citas-online",
