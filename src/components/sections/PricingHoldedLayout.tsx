@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Fragment, useMemo, useState } from "react";
-import { erpPlans as erpPlanPrices, webPlan as webPlanPrice } from "@/data/pricing-page";
+import { erpPlans as erpPlanPrices, webPlan as webPlanPrice, erpCompareRows } from "@/data/pricing-page";
 import { useT } from "@/i18n/LocaleProvider";
 
 type PlanView = {
@@ -285,7 +285,7 @@ export function PricingHoldedLayout() {
               </tr>
             </thead>
             <tbody>
-              {t.pricing.compareRows.map((row) => {
+              {erpCompareRows.map((row) => {
                 const sectionTitle = "sectionTitle" in row ? row.sectionTitle : undefined;
                 return (
                 <Fragment key={`${sectionTitle ?? ""}-${row.feature}`}>
