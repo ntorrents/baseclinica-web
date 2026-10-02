@@ -263,9 +263,9 @@ export function PlanBuilder() {
               (selectedPlan === "elite" && module.includedInElite);
             const isSelected = selectedModules.includes(module.id);
             
-            // Deshabilitar módulos premium en plan básico
-            const isPremiumModule = module.includedIn360 || module.includedInElite;
-            const isDisabledInBasic = selectedPlan === "gestion" && isPremiumModule;
+            // Solo deshabilitar Firma Digital y Bóveda Fotográfica en plan básico
+            const isOnlyPlan360OrElite = module.id === "firma" || module.id === "historia-fotografica";
+            const isDisabledInBasic = selectedPlan === "gestion" && isOnlyPlan360OrElite;
 
             return (
               <button

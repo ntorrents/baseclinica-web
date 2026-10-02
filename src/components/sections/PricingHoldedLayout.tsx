@@ -181,6 +181,29 @@ export function PricingHoldedLayout() {
             }}
           />
         </div>
+
+        {/* Módulos Web */}
+        <div className="mt-8">
+          <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+            Módulos Web Extra (Opcionales)
+          </h3>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {t.pricing.modules
+              .filter((mod: any) => mod.kind === "web")
+              .map((mod: any) => (
+                <article key={mod.id} className="box-plain p-5">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--accent)]">
+                    Web
+                  </p>
+                  <h4 className="font-display mt-2 text-lg font-bold tracking-tight text-[var(--ink)]">
+                    {mod.name}
+                  </h4>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">{mod.description}</p>
+                  <p className="mt-4 text-sm font-semibold text-[var(--ink)]">{mod.price}</p>
+                </article>
+              ))}
+          </div>
+        </div>
       </section>
 
       <section id="software" className="scroll-mt-28 pt-20 sm:pt-28">
