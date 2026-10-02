@@ -179,10 +179,6 @@ export function TimeCalculator() {
           * Cálculo basado en el tiempo promedio que dedican clínicas similares a tareas administrativas manuales
         </p>
       </div>
-
-      {/* Decorative background */}
-      <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brand/5 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-accent/5 blur-3xl" />
     </motion.div>
   );
 }

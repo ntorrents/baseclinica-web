@@ -9,7 +9,6 @@ import { LossAversionSection } from "@/components/sections/LossAversionSection";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { SolutionSection } from "@/components/sections/SolutionSection";
 import { PlanBuilder } from "@/components/interactive/PlanBuilder";
-import { BluePath } from "@/components/scroll/BluePath";
 import { ScrollToTop } from "@/components/scroll/ScrollToTop";
 import { PageLoader } from "@/components/ui/PageLoader";
 import type { LandingData } from "@/types/landing";
@@ -25,8 +24,6 @@ export function LandingPageShell({ data }: LandingPageShellProps) {
       <Navbar />
 
       <main className="relative">
-        {/* Línea: por encima de fondos claros/azul contacto; la tapa KPI/solución/imágenes (z-20) */}
-        <BluePath />
 
         <Hero data={data.hero} />
         <AboutSection />

@@ -10,6 +10,12 @@ export function FinalCTA() {
   return (
     <section id="hablar" className="relative scroll-mt-0 min-h-[100svh] overflow-hidden">
       <div className="absolute inset-0 z-0 bg-[var(--brand)]" aria-hidden />
+      
+      {/* Decorative line and circle - white, fixed */}
+      <div className="absolute right-[clamp(0.75rem,3vw,2rem)] top-0 z-10 hidden h-full w-[3px] lg:block" aria-hidden>
+        <div className="absolute left-1/2 top-[20vh] h-[60vh] w-full -translate-x-1/2 bg-white/20" />
+        <div className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/40" />
+      </div>
 
       <div className="site-rail relative z-[20] flex min-h-[100svh] flex-col justify-center py-20 lg:max-w-[min(76rem,58%)] lg:py-24">
         <p className="section-eyebrow !text-[#0a0a0a]/40 !font-bold">{t.cta.eyebrow}</p>
