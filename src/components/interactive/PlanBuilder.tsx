@@ -348,7 +348,7 @@ export function PlanBuilder() {
               💾 Solicitar este plan
             </button>
             <Link
-              href="/precios"
+              href="/precios#comparativa"
               className="flex-1 rounded-xl border-2 border-white/30 px-6 py-3 text-center font-semibold text-white transition hover:bg-white/10 sm:flex-none"
             >
               Ver comparativa completa

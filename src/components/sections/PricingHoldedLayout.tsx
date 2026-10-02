@@ -324,7 +324,9 @@ export function PricingHoldedLayout() {
 
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {t.pricing.modules.map((mod) => (
+          {t.pricing.modules
+            .filter((mod: any) => mod.kind === "software")
+            .map((mod: any) => (
             <article key={mod.id} className="box-plain p-6">
               <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--brand)]">
                 Software
