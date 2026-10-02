@@ -8,7 +8,6 @@ import { KpiSection } from "@/components/sections/KpiSection";
 import { LossAversionSection } from "@/components/sections/LossAversionSection";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { SolutionSection } from "@/components/sections/SolutionSection";
-import { PlanBuilder } from "@/components/interactive/PlanBuilder";
 import { ScrollToTop } from "@/components/scroll/ScrollToTop";
 import { PageLoader } from "@/components/ui/PageLoader";
 import type { LandingData } from "@/types/landing";
@@ -35,13 +34,6 @@ export function LandingPageShell({ data }: LandingPageShellProps) {
           desktopShot={data.erpScreens.desktop.src}
           mobileShot={data.erpScreens.mobile.src}
         />
-        
-        {/* Interactive Plan Builder */}
-        <section className="scroll-mt-28 py-16 sm:py-24">
-          <div className="site-rail">
-            <PlanBuilder />
-          </div>
-        </section>
 
         <Portfolio data={data.portfolio} />
         <FinalCTA />
