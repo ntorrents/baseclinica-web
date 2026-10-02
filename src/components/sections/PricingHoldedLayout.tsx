@@ -292,20 +292,12 @@ export function PricingHoldedLayout() {
           <p className="mt-3 text-[var(--muted)]">{t.pricing.modulesLead}</p>
         </div>
 
-        <div className="mb-4 flex gap-3 text-xs font-semibold uppercase tracking-[0.14em]">
-          <span className="rounded-full bg-[var(--accent-soft)] px-3 py-1 text-[var(--accent)]">Web</span>
-          <span className="rounded-full bg-[var(--brand-soft)] px-3 py-1 text-[var(--brand-deep)]">Software</span>
-        </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {t.pricing.modules.map((mod) => (
             <article key={mod.id} className="box-plain p-6">
-              <p
-                className={`text-[11px] font-bold uppercase tracking-[0.16em] ${
-                  mod.kind === "web" ? "text-[var(--accent)]" : "text-[var(--brand)]"
-                }`}
-              >
-                {mod.kind === "web" ? "Web" : "Software"}
+              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--brand)]">
+                Software
               </p>
               <h3 className="font-display mt-2 text-xl font-bold tracking-tight text-[var(--ink)]">
                 {mod.name}
