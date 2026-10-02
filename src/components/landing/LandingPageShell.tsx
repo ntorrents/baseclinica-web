@@ -5,12 +5,12 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Footer } from "@/components/sections/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { KpiSection } from "@/components/sections/KpiSection";
-import { PainPoints } from "@/components/sections/PainPoints";
+import { LossAversionSection } from "@/components/sections/LossAversionSection";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { SolutionSection } from "@/components/sections/SolutionSection";
-import { BluePath } from "@/components/scroll/BluePath";
 import { ScrollToTop } from "@/components/scroll/ScrollToTop";
 import { PageLoader } from "@/components/ui/PageLoader";
+import { CalculatorProvider } from "@/contexts/CalculatorContext";
 import type { LandingData } from "@/types/landing";
 
 type LandingPageShellProps = {
@@ -19,30 +19,31 @@ type LandingPageShellProps = {
 
 export function LandingPageShell({ data }: LandingPageShellProps) {
   return (
-    <div className="page-shell relative min-h-screen text-[var(--ink)] selection:bg-[var(--brand-soft)] selection:text-[var(--brand-deep)]">
-      <PageLoader />
-      <Navbar />
+    <CalculatorProvider>
+      <div className="page-shell relative min-h-screen text-[var(--ink)] selection:bg-[var(--brand-soft)] selection:text-[var(--brand-deep)]">
+        <PageLoader />
+        <Navbar />
 
-      <main className="relative">
-        {/* Línea: por encima de fondos claros/azul contacto; la tapa KPI/solución/imágenes (z-20) */}
-        <BluePath />
+        <main className="relative">
 
-        <Hero data={data.hero} />
-        <AboutSection />
-        <KpiSection />
-        <PainPoints />
-        <SolutionSection />
-        <ErpSolution
-          features={data.erpFeatures}
-          desktopShot={data.erpScreens.desktop.src}
-          mobileShot={data.erpScreens.mobile.src}
-        />
-        <Portfolio data={data.portfolio} />
-        <FinalCTA />
-      </main>
+          <Hero data={data.hero} />
+          <AboutSection />
+          <KpiSection />
+          <LossAversionSection />
+          <SolutionSection />
+          <ErpSolution
+            features={data.erpFeatures}
+            desktopShot={data.erpScreens.desktop.src}
+            mobileShot={data.erpScreens.mobile.src}
+          />
 
-      <Footer />
-      <ScrollToTop />
-    </div>
+          <Portfolio data={data.portfolio} />
+          <FinalCTA />
+        </main>
+
+        <Footer />
+        <ScrollToTop />
+      </div>
+    </CalculatorProvider>
   );
 }
