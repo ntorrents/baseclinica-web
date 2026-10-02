@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/sections/Footer";
-import { ContactForm } from "@/components/forms/ContactForm";
+import { SmartContactForm } from "@/components/forms/SmartContactForm";
 import { ScrollToTop } from "@/components/scroll/ScrollToTop";
 import { CONTACT_EMAIL } from "@/config/contact";
 import { useT } from "@/i18n/LocaleProvider";
@@ -65,7 +65,7 @@ export function ContactoPageContent() {
           </div>
 
           <div className="rounded-3xl border border-[var(--line)] bg-white p-6 shadow-[0_28px_70px_-36px_rgba(20,24,31,0.35)] sm:p-8 lg:p-10">
-            <ContactForm />
+            <SmartContactForm />
           </div>
         </section>
       </main>

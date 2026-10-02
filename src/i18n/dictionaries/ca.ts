@@ -275,8 +275,8 @@ export const ca = {
     },
     erpPlans: [
       {
-        id: "erp-basic",
-        name: "Basic",
+        id: "plan-gestion",
+        name: "Pla Gestió",
         tagline: "Per engegar la gestió diària amb ordre.",
         priceNote: "/ mes",
         features: [
@@ -290,7 +290,7 @@ export const ca = {
         ctaLabel: "Començar Basic",
       },
       {
-        id: "erp-premium",
+        id: "plan-clinica-360",
         name: "Premium",
         tagline: "Per a equips que necessiten més control i mòduls.",
         priceNote: "/ mes",
@@ -304,6 +304,22 @@ export const ca = {
           "Suport prioritari",
         ],
         ctaLabel: "Començar Premium",
+      },
+      {
+        id: "plan-elite",
+        name: "Pla Elite",
+        tagline: "Tot inclòs + consultoria estratègica i multi-seu.",
+        priceNote: "/ mes",
+        features: [
+          "TOT el del Pla Clínica 360",
+          "Multi-seu amb mètriques consolidades",
+          "Tots els mòduls inclosos",
+          "Consultoria mensual estratègica",
+          "Implementació prioritària dedicada",
+          "Suport 24/7 amb resposta < 2h",
+          "Roadmap personalitzat",
+        ],
+        ctaLabel: "Contactar per Elite",
       },
     ],
     compareRows: [

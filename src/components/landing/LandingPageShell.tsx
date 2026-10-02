@@ -5,9 +5,10 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Footer } from "@/components/sections/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { KpiSection } from "@/components/sections/KpiSection";
-import { PainPoints } from "@/components/sections/PainPoints";
+import { LossAversionSection } from "@/components/sections/LossAversionSection";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { SolutionSection } from "@/components/sections/SolutionSection";
+import { PlanBuilder } from "@/components/interactive/PlanBuilder";
 import { BluePath } from "@/components/scroll/BluePath";
 import { ScrollToTop } from "@/components/scroll/ScrollToTop";
 import { PageLoader } from "@/components/ui/PageLoader";
@@ -30,13 +31,21 @@ export function LandingPageShell({ data }: LandingPageShellProps) {
         <Hero data={data.hero} />
         <AboutSection />
         <KpiSection />
-        <PainPoints />
+        <LossAversionSection />
         <SolutionSection />
         <ErpSolution
           features={data.erpFeatures}
           desktopShot={data.erpScreens.desktop.src}
           mobileShot={data.erpScreens.mobile.src}
         />
+        
+        {/* Interactive Plan Builder */}
+        <section className="scroll-mt-28 py-16 sm:py-24">
+          <div className="site-rail">
+            <PlanBuilder />
+          </div>
+        </section>
+
         <Portfolio data={data.portfolio} />
         <FinalCTA />
       </main>

@@ -98,6 +98,26 @@ export const erpPlans: PricingPlanCard[] = [
     ctaLabel: "Paz Mental Ahora",
     ctaHref: "/contacto?interes=plan-clinica-360",
   },
+  {
+    id: "plan-elite",
+    kind: "software",
+    name: "Plan Elite",
+    tagline: "Todo incluido + consultoría estratégica y multi-sede.",
+    price: "179 €",
+    priceNote: "/ mes",
+    priceAnnual: "1.933 € / año",
+    features: [
+      "TODO lo del Plan Clínica 360",
+      "Multi-sede con métricas consolidadas",
+      "Todos los módulos incluidos (WhatsApp, Portal, Marketing)",
+      "Consultoría mensual estratégica",
+      "Implementación prioritaria dedicada",
+      "Soporte 24/7 con respuesta < 2h",
+      "Roadmap personalizado",
+    ],
+    ctaLabel: "Contactar para Elite",
+    ctaHref: "/contacto?interes=plan-elite",
+  },
 ];
 
 export const erpCompareRows: ErpCompareRow[] = [

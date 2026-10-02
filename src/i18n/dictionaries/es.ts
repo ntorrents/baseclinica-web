@@ -302,6 +302,22 @@ export const es = {
         ],
         ctaLabel: "Paz Mental Ahora",
       },
+      {
+        id: "plan-elite",
+        name: "Plan Elite",
+        tagline: "Todo incluido + consultoría estratégica y multi-sede.",
+        priceNote: "/ mes",
+        features: [
+          "TODO lo del Plan Clínica 360",
+          "Multi-sede con métricas consolidadas",
+          "Todos los módulos incluidos",
+          "Consultoría mensual estratégica",
+          "Implementación prioritaria dedicada",
+          "Soporte 24/7 con respuesta < 2h",
+          "Roadmap personalizado",
+        ],
+        ctaLabel: "Contactar para Elite",
+      },
     ],
     compareRows: [
       { sectionTitle: "Núcleo operativo", feature: "Dashboard", basic: "✓", premium: "✓" },
