@@ -40,21 +40,12 @@ const modules: Module[] = [
     includedInElite: true,
   },
   {
-    id: "firma",
-    name: "Firma Digital Biométrica",
-    price: 0,
-    icon: "✍️",
-    description: "Incluido en Clínica 360 y Elite",
-    includedIn360: true,
-    includedInElite: true,
-  },
-  {
-    id: "historia-fotografica",
-    name: "Bóveda Fotográfica Clínica",
-    price: 0,
-    icon: "📸",
-    description: "Incluido en Clínica 360 y Elite",
-    includedIn360: true,
+    id: "venta-productos",
+    name: "Venta de Productos",
+    price: 5,
+    icon: "🛍️",
+    description: "Venta de productos físicos, no solo servicios",
+    includedIn360: false,
     includedInElite: true,
   },
   {
@@ -263,8 +254,8 @@ export function PlanBuilder() {
               (selectedPlan === "elite" && module.includedInElite);
             const isSelected = selectedModules.includes(module.id);
             
-            // Solo deshabilitar Firma Digital y Bóveda Fotográfica en plan básico
-            const isOnlyPlan360OrElite = module.id === "firma" || module.id === "historia-fotografica";
+            // Deshabilitar "Venta de Productos" en plan básico (solo disponible en 360 como extra o Elite incluido)
+            const isOnlyPlan360OrElite = module.id === "venta-productos";
             const isDisabledInBasic = selectedPlan === "gestion" && isOnlyPlan360OrElite;
 
             return (

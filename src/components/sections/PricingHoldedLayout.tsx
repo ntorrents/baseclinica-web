@@ -269,11 +269,17 @@ export function PricingHoldedLayout() {
             <thead>
               <tr className="border-b border-[var(--line)] bg-[#faf9f6]">
                 <th className="px-5 py-4 font-semibold text-[var(--ink)]">{t.pricing.featureCol}</th>
-                <th className="px-5 py-4 font-semibold text-[var(--ink)]">Basic</th>
+                <th className="px-5 py-4 font-semibold text-[var(--ink)]">Gestión</th>
                 <th className="px-5 py-4 font-semibold text-[var(--ink)]">
-                  Premium
+                  Clínica 360
                   <span className="ml-2 rounded-full bg-[var(--brand-soft)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[var(--brand-deep)]">
-                    Top
+                    Popular
+                  </span>
+                </th>
+                <th className="px-5 py-4 font-semibold text-[var(--ink)]">
+                  Elite
+                  <span className="ml-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+                    Premium
                   </span>
                 </th>
               </tr>
@@ -286,7 +292,7 @@ export function PricingHoldedLayout() {
                   {sectionTitle ? (
                     <tr className="bg-[#f7f5f0]">
                       <td
-                        colSpan={3}
+                        colSpan={4}
                         className="px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-[var(--muted)]"
                       >
                         {sectionTitle}
@@ -297,6 +303,7 @@ export function PricingHoldedLayout() {
                     <td className="px-5 py-3.5 font-medium text-[var(--ink)]">{row.feature}</td>
                     <td className="px-5 py-3.5 text-[var(--muted)]">{row.basic}</td>
                     <td className="px-5 py-3.5 font-medium text-[var(--ink)]">{row.premium}</td>
+                    <td className="px-5 py-3.5 font-semibold text-[var(--brand)]">{row.elite}</td>
                   </tr>
                 </Fragment>
               );

@@ -17,6 +17,7 @@ export type ErpCompareRow = {
   feature: string;
   basic: string;
   premium: string;
+  elite: string;
 };
 
 export type ExtraModule = {
@@ -121,58 +122,86 @@ export const erpPlans: PricingPlanCard[] = [
 ];
 
 export const erpCompareRows: ErpCompareRow[] = [
-  { sectionTitle: "1. Gestión de Pacientes y Agenda", feature: "Agenda Inteligente y Fichas de Pacientes", basic: "✅", premium: "✅" },
-  { feature: "Historial Clínico Evolutivo", basic: "✅", premium: "✅" },
-  { feature: "Recordatorios automáticos WhatsApp/Email", basic: "❌", premium: "✅" },
-  { feature: "Sincronización Google Calendar", basic: "❌", premium: "✅" },
+  { sectionTitle: "1. Gestión de Pacientes y Agenda", feature: "Agenda Inteligente y Fichas de Pacientes", basic: "✅", premium: "✅", elite: "✅" },
+  { feature: "Historial Clínico Evolutivo", basic: "✅", premium: "✅", elite: "✅" },
+  { feature: "Recordatorios automáticos WhatsApp/Email", basic: "❌", premium: "❌", elite: "✅" },
+  { feature: "Sincronización Google Calendar", basic: "❌", premium: "❌", elite: "✅" },
   {
     sectionTitle: "2. Facturación y Caja",
     feature: "Facturas y Presupuestos",
     basic: "✅",
     premium: "✅",
+    elite: "✅",
   },
-  { feature: "Gestión de Bonos", basic: "✅", premium: "✅" },
-  { feature: "Stock y tratamientos", basic: "Esencial", premium: "Ampliado" },
-  { feature: "Cierre de Caja Diario y Control de Gastos", basic: "❌", premium: "✅" },
+  { feature: "Gestión de Bonos", basic: "✅", premium: "✅", elite: "✅" },
+  { feature: "Stock y tratamientos", basic: "Esencial", premium: "Ampliado", elite: "Completo" },
+  { feature: "Venta de Productos (no solo servicios)", basic: "❌", premium: "5€/mes extra", elite: "✅ Incluido" },
+  { feature: "Cierre de Caja Diario y Control de Gastos", basic: "❌", premium: "✅", elite: "✅" },
   {
     sectionTitle: "3. Seguridad Legal y Médica",
     feature: "Consentimientos Informados",
     basic: "Plantillas",
     premium: "✅ Ilimitados",
+    elite: "✅ Ilimitados",
   },
-  { feature: "Consentimientos con firma biométrica", basic: "❌", premium: "✅" },
-  { feature: "Bóveda fotográfica clínica (Antes/Después)", basic: "❌", premium: "✅" },
+  { feature: "Consentimientos con firma biométrica", basic: "❌", premium: "✅", elite: "✅" },
+  { feature: "Bóveda fotográfica clínica (Antes/Después)", basic: "❌", premium: "✅", elite: "✅" },
   {
-    sectionTitle: "4. Inventario y Fiscalidad Avanzada (Exclusivo 360)",
+    sectionTitle: "4. Inventario y Fiscalidad Avanzada",
     feature: "Control de Stock y Trazabilidad de Lotes",
     basic: "❌",
     premium: "✅",
+    elite: "✅",
   },
-  { feature: "Autopiloto Fiscal AEAT (Modelos 130, 303, 115)", basic: "❌", premium: "✅" },
-  { feature: "Amortización de Inversiones", basic: "❌", premium: "✅" },
+  { feature: "Autopiloto Fiscal AEAT (Modelos 130, 303, 115)", basic: "❌", premium: "✅", elite: "✅" },
+  { feature: "Amortización de Inversiones", basic: "❌", premium: "✅", elite: "✅" },
+  {
+    sectionTitle: "5. Avanzado (Exclusivo Elite)",
+    feature: "Multi-sede con métricas consolidadas",
+    basic: "❌",
+    premium: "❌",
+    elite: "✅",
+  },
+  { feature: "Todos los módulos incluidos", basic: "❌", premium: "❌", elite: "✅" },
+  { feature: "Consultoría mensual estratégica", basic: "❌", premium: "❌", elite: "✅" },
+  { feature: "Soporte 24/7 con respuesta < 2h", basic: "❌", premium: "❌", elite: "✅" },
 ];
 
 export const extraModules: ExtraModule[] = [
   {
     id: "seo-avance",
     kind: "web",
-    name: "SEO + blog",
-    description: "Optimización on-page ampliada y blog preparado para posicionar tratamientos.",
-    price: "250 €",
+    name: "SEO Avanzado + Blog",
+    description: "Optimización on-page ampliada, estrategia de contenidos y blog preparado para posicionar tratamientos en Google.",
+    price: "250 € setup",
   },
   {
     id: "mant-web",
     kind: "web",
-    name: "Mantenimiento web",
-    description: "Cambios de contenido, seguridad y evolución mensual de la web.",
+    name: "Mantenimiento Web",
+    description: "Actualizaciones de contenido, seguridad, copias de respaldo y evolución mensual de la web.",
     price: "20 €/mes",
+  },
+  {
+    id: "marketplace",
+    kind: "web",
+    name: "Marketplace / Catálogo",
+    description: "Catálogo de servicios y productos con fichas detalladas, ideal para mostrar tu oferta completa.",
+    price: "150 € setup",
   },
   {
     id: "ecommerce",
     kind: "web",
-    name: "E-commerce integrado",
-    description: "Tienda online integrada con el software para control de inventario. Setup inicial + mensualidad.",
+    name: "E-commerce Completo",
+    description: "Tienda online integrada con el software para venta y control de inventario en tiempo real.",
     price: "30 €/mes + 200 € setup",
+  },
+  {
+    id: "blog-seo",
+    kind: "web",
+    name: "Gestor de Contenidos",
+    description: "Sistema de blog optimizado para SEO con editor visual para publicar artículos sin programar.",
+    price: "100 € setup",
   },
   {
     id: "citas-online",
@@ -196,18 +225,11 @@ export const extraModules: ExtraModule[] = [
     price: "desde 20 €/mes",
   },
   {
-    id: "firma",
+    id: "venta-productos",
     kind: "software",
-    name: "Consentimientos con Firma Biométrica",
-    description: "Firma digital integrada para consentimientos informados. Protección legal máxima.",
-    price: "Incluido en Plan Clínica 360",
-  },
-  {
-    id: "historia-fotografica",
-    kind: "software",
-    name: "Bóveda Fotográfica Clínica",
-    description: "Fotos Antes/Después seguras y organizadas. Seguimiento visual de cada tratamiento.",
-    price: "Incluido en Plan Clínica 360",
+    name: "Venta de Productos",
+    description: "Venta de productos físicos (cosméticos, suplementos, etc.), no solo servicios. Control de stock y facturación integrada.",
+    price: "5 €/mes (Incluido en Plan Elite)",
   },
   {
     id: "marketing",
