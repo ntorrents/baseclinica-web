@@ -262,28 +262,38 @@ export function PlanBuilder() {
               (selectedPlan === "360" && module.includedIn360) ||
               (selectedPlan === "elite" && module.includedInElite);
             const isSelected = selectedModules.includes(module.id);
+            
+            // Deshabilitar módulos premium en plan básico
+            const isPremiumModule = module.includedIn360 || module.includedInElite;
+            const isDisabledInBasic = selectedPlan === "gestion" && isPremiumModule;
 
             return (
               <button
                 key={module.id}
-                onClick={() => !isIncluded && toggleModule(module.id)}
-                disabled={isIncluded}
+                onClick={() => !isIncluded && !isDisabledInBasic && toggleModule(module.id)}
+                disabled={isIncluded || isDisabledInBasic}
                 className={`relative rounded-xl border-2 p-4 text-left transition ${
                   isIncluded
                     ? "border-green-200 bg-green-50 opacity-75"
-                    : isSelected
-                      ? "border-brand bg-brand-soft/20 ring-1 ring-brand/30"
-                      : "border-gray-200 bg-white hover:border-brand/40"
-                } ${isIncluded ? "cursor-not-allowed" : "cursor-pointer"}`}
+                    : isDisabledInBasic
+                      ? "border-gray-200 bg-gray-50 opacity-60 cursor-not-allowed"
+                      : isSelected
+                        ? "border-brand bg-brand-soft/20 ring-1 ring-brand/30"
+                        : "border-gray-200 bg-white hover:border-brand/40"
+                } ${(isIncluded || isDisabledInBasic) ? "cursor-not-allowed" : "cursor-pointer"}`}
               >
                 <div className="flex items-start gap-3">
-                  <span className="text-3xl">{module.icon}</span>
+                  <span className="text-3xl opacity-${isDisabledInBasic ? '40' : '100'}">{module.icon}</span>
                   <div className="flex-1">
                     <div className="flex items-start justify-between gap-2">
-                      <p className="text-sm font-bold text-ink">{module.name}</p>
+                      <p className={`text-sm font-bold ${isDisabledInBasic ? 'text-muted' : 'text-ink'}`}>{module.name}</p>
                       {isIncluded ? (
                         <span className="rounded-full bg-green-600 px-2 py-0.5 text-[10px] font-bold text-white">
                           ✓ Incluido
+                        </span>
+                      ) : isDisabledInBasic ? (
+                        <span className="rounded-full bg-amber-500 px-2 py-0.5 text-[9px] font-bold text-white whitespace-nowrap">
+                          Plan 360/Elite
                         </span>
                       ) : isSelected ? (
                         <div className="flex h-5 w-5 items-center justify-center rounded bg-brand text-xs text-white">
@@ -291,8 +301,10 @@ export function PlanBuilder() {
                         </div>
                       ) : null}
                     </div>
-                    <p className="mt-1 text-xs text-muted">{module.description}</p>
-                    {!isIncluded && (
+                    <p className={`mt-1 text-xs ${isDisabledInBasic ? 'text-muted/70' : 'text-muted'}`}>
+                      {isDisabledInBasic ? "Disponible en Plan Clínica 360 o Elite" : module.description}
+                    </p>
+                    {!isIncluded && !isDisabledInBasic && (
                       <p className="mt-2 text-sm font-bold text-brand">+{module.price}€/mes</p>
                     )}
                   </div>

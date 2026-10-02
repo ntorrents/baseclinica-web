@@ -210,10 +210,10 @@ Base Clínica - Gestión inteligente para clínicas del siglo XXI
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium text-orange-900/70">Productividad perdida</p>
-                  <p className="font-display mt-1 text-4xl font-black text-orange-600">
+                  <p className="font-display mt-1 text-4xl font-black text-orange-600" suppressHydrationWarning>
                     {moneyPerMonth.toLocaleString()}€/mes
                   </p>
-                  <p className="mt-1 text-sm text-orange-900/60">
+                  <p className="mt-1 text-sm text-orange-900/60" suppressHydrationWarning>
                     ~{moneyPerYear.toLocaleString()}€ al año en coste de oportunidad
                   </p>
                 </div>

@@ -133,7 +133,7 @@ export function LossAversionSection() {
                   transition={{ delay: i * 0.15 + 0.3, type: "spring" }}
                   className="mt-3"
                 >
-                  <p className={`font-display text-5xl font-black ${loss.textColor} lg:text-6xl`}>
+                  <p className={`font-display text-5xl font-black ${loss.textColor} lg:text-6xl`} suppressHydrationWarning>
                     {loss.bigNumber}
                   </p>
                   <p className={`mt-1 text-lg font-semibold ${loss.textColor}/80`}>
@@ -146,7 +146,7 @@ export function LossAversionSection() {
                 </p>
 
                 <div className={`mt-5 rounded-xl ${loss.bgSoft} p-4`}>
-                  <p className="text-sm font-medium text-ink/70">
+                  <p className="text-sm font-medium text-ink/70" suppressHydrationWarning>
                     {loss.detail}
                   </p>
                 </div>
