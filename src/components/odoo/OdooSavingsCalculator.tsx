@@ -104,7 +104,7 @@ export function OdooSavingsCalculator() {
             <p className="text-sm font-semibold uppercase tracking-wide text-[var(--muted)]">
               Aplicaciones a sustituir
             </p>
-            <ul className="mt-3 max-h-40 space-y-1.5 overflow-y-auto text-sm text-[var(--ink)]">
+            <ul className="mt-3 max-h-32 space-y-1.5 overflow-y-auto text-sm text-[var(--ink)]">
               {selectable
                 .filter((m) => selected.includes(m.id))
                 .map((m) => (
@@ -114,32 +114,42 @@ export function OdooSavingsCalculator() {
                   </li>
                 ))}
             </ul>
-            <p className="mt-4 border-t border-[var(--line)] pt-3 font-display text-xl font-bold">
-              TOTAL{" "}
-              <span className="text-[var(--ink)]">{replaceYear.toLocaleString("es-ES")} € al año</span>
+            <p className="mt-4 border-t border-[var(--line)] pt-3 text-sm text-[var(--muted)]">
+              TOTAL suelto{" "}
+              <span className="font-semibold text-[var(--ink)]">
+                {replaceYear.toLocaleString("es-ES")} € al año
+              </span>
             </p>
 
-            <p className="mt-6 text-sm font-semibold uppercase tracking-wide text-[var(--muted)]">
-              Base Clínica (ref. Clínica 360 + extras)
-            </p>
-            <p className="mt-2 font-display text-xl font-bold">
-              {baseYear.toLocaleString("es-ES")} € al año
-            </p>
+            {/* Precio Base Clínica — protagonista */}
+            <div className="mt-6 rounded-xl border-2 border-[var(--brand)] bg-[var(--brand-soft)]/50 p-5">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--brand-deep)]">
+                Con Base Clínica
+              </p>
+              <p className="mt-1 text-sm text-[var(--muted)]">Plan Clínica 360 + extras seleccionados</p>
+              <p className="mt-3 font-display text-4xl font-extrabold tracking-tight text-[var(--ink)] sm:text-5xl">
+                {baseYear.toLocaleString("es-ES")} €
+                <span className="ml-1 text-base font-semibold text-[var(--muted)]">al año</span>
+              </p>
+              <p className="mt-1 text-sm font-medium text-[var(--brand-deep)]">
+                ≈ {Math.round(baseYear / 12).toLocaleString("es-ES")} €/mes · todo integrado
+              </p>
+            </div>
 
-            <div className="mt-8 rounded-xl bg-[#fff8e8] p-5">
-              <p className="font-script text-2xl text-[var(--ink)]">Te ahorras</p>
-              <p className="relative mt-1 inline-block font-display text-3xl font-extrabold text-[var(--ink)] sm:text-4xl">
+            <div className="mt-4 rounded-xl bg-[#fff8e8] px-5 py-4">
+              <p className="font-script text-xl text-[var(--ink)]">Te ahorras</p>
+              <p className="relative mt-0.5 inline-block font-display text-2xl font-extrabold text-[var(--ink)] sm:text-3xl">
                 <span className="relative z-10">{savings.toLocaleString("es-ES")} € al año</span>
                 <span
                   aria-hidden
-                  className="absolute inset-x-0 bottom-1 z-0 h-3 rounded bg-[#F59E0B]/45"
+                  className="absolute inset-x-0 bottom-0.5 z-0 h-2.5 rounded bg-[#F59E0B]/45"
                 />
               </p>
-              <p className="mt-2 text-sm text-[var(--muted)]">gracias a un software totalmente integrado</p>
+              <p className="mt-1 text-xs text-[var(--muted)]">frente a herramientas sueltas</p>
             </div>
 
             <Link href="/contacto" className="odoo-btn-primary mt-6 w-full text-center">
-              Quiero este ahorro
+              Quiero este plan
             </Link>
           </div>
         </div>
