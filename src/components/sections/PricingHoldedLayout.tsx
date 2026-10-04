@@ -157,39 +157,7 @@ export function PricingHoldedLayout() {
         </p>
       </header>
 
-      <section id="web" className="scroll-mt-28 pt-16 sm:pt-20">
-        <div className="mb-6 flex items-end justify-between gap-4">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
-              {t.pricing.product1}
-            </p>
-            <h2 className="font-display mt-2 text-3xl font-extrabold tracking-tight text-[var(--ink)]">
-              {t.pricing.webTitle}
-            </h2>
-          </div>
-          <p className="hidden max-w-xs text-right text-sm text-[var(--muted)] sm:block">
-            {t.pricing.webSide}
-          </p>
-        </div>
-        <div className="max-w-md">
-          <PlanCard
-            plan={webPlan}
-            labels={{
-              recommended: t.pricing.recommended,
-              annualBilling: t.pricing.annualBilling,
-              orAnnual: t.pricing.orAnnual,
-            }}
-          />
-        </div>
-        <p className="mt-4 max-w-md text-sm text-[var(--muted)]">
-          Extras web (SEO, mantenimiento, e-commerce…) se detallan en el configurador y en la demo.
-          <Link href="/#modulos" className="ml-1 font-semibold text-[var(--brand-deep)] hover:underline">
-            Ver módulos →
-          </Link>
-        </p>
-      </section>
-
-      <section id="software" className="scroll-mt-28 pt-20 sm:pt-28">
+      <section id="software" className="scroll-mt-28 pt-16 sm:pt-20">
         <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand)]">
@@ -294,6 +262,38 @@ export function PricingHoldedLayout() {
             </tbody>
           </table>
         </div>
+      </section>
+
+      <section id="web" className="scroll-mt-28 pt-20 sm:pt-28">
+        <div className="mb-6 flex items-end justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
+              {t.pricing.product1}
+            </p>
+            <h2 className="font-display mt-2 text-3xl font-extrabold tracking-tight text-[var(--ink)]">
+              {t.pricing.webTitle}
+            </h2>
+          </div>
+          <p className="hidden max-w-xs text-right text-sm text-[var(--muted)] sm:block">
+            {t.pricing.webSide}
+          </p>
+        </div>
+        <div className="max-w-md">
+          <PlanCard
+            plan={webPlan}
+            labels={{
+              recommended: t.pricing.recommended,
+              annualBilling: t.pricing.annualBilling,
+              orAnnual: t.pricing.orAnnual,
+            }}
+          />
+        </div>
+        <p className="mt-4 max-w-md text-sm text-[var(--muted)]">
+          Extras web (SEO, mantenimiento, e-commerce…) se detallan en el configurador y en la demo.
+          <Link href="/#modulos" className="ml-1 font-semibold text-[var(--brand-deep)] hover:underline">
+            Ver módulos →
+          </Link>
+        </p>
       </section>
 
       <section id="combo" className="scroll-mt-28 pt-20 sm:pt-28">
