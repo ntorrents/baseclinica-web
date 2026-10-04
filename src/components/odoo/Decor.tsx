@@ -1,21 +1,36 @@
 export function ScrollArrow({ className = "" }: { className?: string }) {
   return (
     <svg
-      className={`pointer-events-none text-[var(--muted)] opacity-50 ${className}`}
-      width="48"
-      height="64"
-      viewBox="0 0 48 64"
+      className={`pointer-events-none text-[var(--muted)]/55 ${className}`}
+      width="56"
+      height="72"
+      viewBox="0 0 56 72"
       fill="none"
       aria-hidden
     >
+      {/* Curva tipo doodle Odoo: entra, hace un lazo y baja */}
       <path
-        d="M24 4c0 20-14 28-14 40 0 8 6 14 14 14s12-5 12-12c0-10-8-14-12-22"
+        d="M28 6
+           C28 18 28 26 22 34
+           C14 44 8 48 12 56
+           C16 64 28 62 34 54
+           C38 48 36 42 28 44
+           C22 46 24 54 28 60"
         stroke="currentColor"
-        strokeWidth="1.5"
+        strokeWidth="1.6"
         strokeLinecap="round"
+        strokeLinejoin="round"
         fill="none"
       />
-      <path d="M30 50l8 2-4 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Punta de flecha clara hacia abajo */}
+      <path
+        d="M22 56 L28 66 L34 56"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
     </svg>
   );
 }
