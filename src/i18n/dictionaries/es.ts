@@ -32,9 +32,9 @@ export const es = {
     eyebrow: "01 / Base Clínica",
     titleBefore: "El",
     titleMark: "sistema operativo completo",
-    titleAfter: "para tu clínica médico-estética",
+    titleAfter: "para tu clínica",
     subtitle:
-      "Todo en uno: desde que el paciente reserva su cita hasta que presentas el trimestre en Hacienda. Diseñado específicamente para microclínicas que buscan paz mental, control total y seguridad legal sin depender de múltiples herramientas.",
+      "Todo en uno: desde que el paciente reserva su cita hasta que presentas el trimestre en Hacienda. Pensado para centros de salud y bienestar — fisio, dental, enfermería, estética, veterinaria y más — que buscan paz mental y control sin depender de múltiples herramientas.",
     primaryCta: "Solicitar Demo",
     secondaryCta: "Ver Planes",
   },
@@ -238,7 +238,7 @@ export const es = {
   pricing: {
     eyebrow: "Planes y Precios",
     title: "Modularidad inteligente para tu clínica.",
-    lead: "Dos planes pensados para microclínicas médico-estéticas. Empieza con lo esencial o elige la paz mental absoluta desde el día uno.",
+    lead: "Planes pensados para clínicas de todo tipo: fisio, dental, enfermería, estética, veterinaria y más. Empieza con lo esencial o elige la paz mental absoluta desde el día uno.",
     product1: "Plan Gestión",
     product2: "Plan Clínica 360",
     webTitle: "Diseño Web Profesional",

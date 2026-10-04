@@ -34,9 +34,9 @@ export const ca = {
     eyebrow: "01 / Base Clínica",
     titleBefore: "El",
     titleMark: "sistema operatiu complet",
-    titleAfter: "per a la teva clínica mèdico-estètica",
+    titleAfter: "per a la teva clínica",
     subtitle:
-      "Tot en un: des que el pacient reserva la seva cita fins que presentes el trimestre a Hisenda. Dissenyat específicament per a microclíniques que busquen pau mental, control total i seguretat legal sense dependre de múltiples eines.",
+      "Tot en un: des que el pacient reserva la seva cita fins que presentes el trimestre a Hisenda. Pensat per a centres de salut i benestar — fisio, dental, infermeria, estètica, veterinària i més — que busquen pau mental i control sense dependre de múltiples eines.",
     primaryCta: "Sol·licitar Demo",
     secondaryCta: "Veure Plans",
   },
@@ -241,7 +241,7 @@ export const ca = {
   pricing: {
     eyebrow: "Preus",
     title: "Tria el que necessites.",
-    lead: "Una web. Dos plans d’ERP. I un combo si vols les dues coses amb avantatge.",
+    lead: "Plans pensats per a clíniques de tot tipus: fisio, dental, infermeria, estètica, veterinària i més. Comença amb l’essencial o tria la pau mental absoluta des del primer dia.",
     product1: "Producte 1",
     product2: "Producte 2",
     webTitle: "Web",

@@ -17,7 +17,7 @@ export function OdooHero() {
           animate={{ opacity: 1, y: 0 }}
           className="font-script text-xl text-[var(--brand-deep)] sm:text-2xl"
         >
-          Pensado solo para clínicas
+          Pensado para clínicas
         </motion.p>
 
         <motion.h1
@@ -40,8 +40,8 @@ export function OdooHero() {
           transition={{ delay: 0.1, duration: 0.4 }}
           className="mx-auto mt-6 max-w-2xl text-lg text-[var(--muted)] sm:text-xl"
         >
-          No es un software genérico que “sirve para todo”. Base Clínica está diseñado para
-          el flujo real de una clínica médico-estética — y se adapta a cómo trabajas tú,
+          No es un software genérico. Base Clínica está pensado para centros de salud y bienestar —
+          fisio, dental, enfermería, estética, veterinaria y más — y se adapta a cómo trabajas tú,
           no al revés.
         </motion.p>
 

@@ -259,9 +259,9 @@ export const odooPlans = [
   {
     id: "elite",
     name: "Elite",
-    price: "179",
+    price: "199",
     period: "€/mes",
-    annual: "1.933 €/año",
+    annual: "2.149 €/año",
     tagline: "Todos los módulos + multi-sede + consultoría.",
     features: [
       "Todo lo de Clínica 360",

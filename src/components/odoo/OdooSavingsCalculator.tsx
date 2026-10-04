@@ -121,31 +121,35 @@ export function OdooSavingsCalculator() {
               </span>
             </p>
 
-            {/* Precio Base Clínica — protagonista */}
+            {/* Precio Base Clínica — mensual grande, anual pequeño */}
             <div className="mt-6 rounded-xl border-2 border-[var(--brand)] bg-[var(--brand-soft)]/50 p-5">
               <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--brand-deep)]">
                 Con Base Clínica
               </p>
               <p className="mt-1 text-sm text-[var(--muted)]">Plan Clínica 360 + extras seleccionados</p>
               <p className="mt-3 font-display text-4xl font-extrabold tracking-tight text-[var(--ink)] sm:text-5xl">
-                {baseYear.toLocaleString("es-ES")} €
-                <span className="ml-1 text-base font-semibold text-[var(--muted)]">al año</span>
+                {Math.round(baseYear / 12).toLocaleString("es-ES")} €
+                <span className="ml-1 text-base font-semibold text-[var(--muted)]">/ mes</span>
               </p>
-              <p className="mt-1 text-sm font-medium text-[var(--brand-deep)]">
-                ≈ {Math.round(baseYear / 12).toLocaleString("es-ES")} €/mes · todo integrado
+              <p className="mt-1 text-sm text-[var(--muted)]">
+                {baseYear.toLocaleString("es-ES")} € al año · todo integrado
               </p>
             </div>
 
             <div className="mt-4 rounded-xl bg-[#fff8e8] px-5 py-4">
-              <p className="font-script text-xl text-[var(--ink)]">Te ahorras</p>
-              <p className="relative mt-0.5 inline-block font-display text-2xl font-extrabold text-[var(--ink)] sm:text-3xl">
+              <p className="font-script text-3xl font-semibold text-[var(--ink)] sm:text-4xl">
+                Te ahorras
+              </p>
+              <p className="relative mt-1 inline-block font-display text-3xl font-extrabold text-[var(--ink)] sm:text-4xl">
                 <span className="relative z-10">{savings.toLocaleString("es-ES")} € al año</span>
                 <span
                   aria-hidden
                   className="absolute inset-x-0 bottom-0.5 z-0 h-2.5 rounded bg-[#F59E0B]/45"
                 />
               </p>
-              <p className="mt-1 text-xs text-[var(--muted)]">frente a herramientas sueltas</p>
+              <p className="mt-1 text-sm text-[var(--muted)]">
+                ≈ {Math.round(savings / 12).toLocaleString("es-ES")} €/mes frente a herramientas sueltas
+              </p>
             </div>
 
             <Link href="/contacto" className="odoo-btn-primary mt-6 w-full text-center">

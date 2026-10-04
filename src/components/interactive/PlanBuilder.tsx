@@ -73,7 +73,7 @@ export function PlanBuilder() {
   const basePrices = {
     gestion: 49,
     360: 89,
-    elite: 179,
+    elite: 199,
   };
 
   const { totalPrice, savings, modulesAdded } = useMemo(() => {
@@ -222,7 +222,7 @@ export function PlanBuilder() {
                   Premium
                 </span>
                 <p className="font-display mt-2 text-xl font-bold text-ink">Plan Elite</p>
-                <p className="font-display mt-1 text-3xl font-black text-brand">179€</p>
+                <p className="font-display mt-1 text-3xl font-black text-brand">199€</p>
                 <p className="text-sm text-muted">/ mes</p>
               </div>
               {selectedPlan === "elite" && (

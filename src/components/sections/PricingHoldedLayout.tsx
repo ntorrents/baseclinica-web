@@ -296,31 +296,46 @@ export function PricingHoldedLayout() {
         </p>
       </section>
 
-      <section id="combo" className="scroll-mt-28 pt-20 sm:pt-28">
-        <div className="box-panel relative overflow-hidden px-8 py-12 sm:px-12 sm:py-16">
+      <section id="combo" className="scroll-mt-28 pb-16 pt-20 sm:pb-24 sm:pt-28">
+        <div className="relative overflow-hidden rounded-[1.35rem] border-2 border-[var(--brand)] bg-[var(--panel)] px-8 py-12 sm:px-12 sm:py-16">
           <div
             aria-hidden
             className="pointer-events-none absolute -right-8 top-10 h-36 w-36 rounded-full border-[3px] border-[var(--brand)]"
           />
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/45">
-            {t.pricing.jointOffer}
-          </p>
-          <h2 className="font-display mt-4 max-w-xl text-[clamp(1.9rem,4vw,3rem)] font-extrabold leading-[1.05] tracking-[-0.04em]">
+          <span className="inline-flex rounded-full bg-[var(--brand)] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-white">
+            Oferta conjunta · Ahorras 140 €
+          </span>
+          <h2 className="font-display mt-5 max-w-xl text-[clamp(1.9rem,4vw,3rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-white">
             {t.pricing.combo.title}
           </h2>
-          <p className="mt-4 max-w-xl text-white/60">{t.pricing.combo.subtitle}</p>
+          <p className="mt-4 max-w-xl text-white/65">{t.pricing.combo.subtitle}</p>
 
-          <div className="mt-8 flex flex-wrap items-end gap-8">
-            <div>
-              <p className="text-xs uppercase tracking-wider text-white/45">{t.pricing.setupWeb}</p>
-              <p className="font-display text-4xl font-extrabold">750 €</p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            <div className="rounded-xl bg-white/5 p-4">
+              <p className="text-xs uppercase tracking-wider text-white/45">Web por separado</p>
+              <p className="font-display text-2xl font-bold text-white/50 line-through">890 €</p>
             </div>
-            <div>
-              <p className="text-xs uppercase tracking-wider text-white/45">Plan Gestión</p>
-              <p className="font-display text-4xl font-extrabold">49 €/mes</p>
+            <div className="rounded-xl bg-white/5 p-4">
+              <p className="text-xs uppercase tracking-wider text-white/45">{t.pricing.setupWeb} en combo</p>
+              <p className="font-display text-3xl font-extrabold text-white">750 €</p>
+            </div>
+            <div className="rounded-xl border border-[var(--brand)]/50 bg-[var(--brand)]/15 p-4">
+              <p className="text-xs uppercase tracking-wider text-[var(--brand)]">Te ahorras</p>
+              <p className="font-display text-3xl font-extrabold text-[var(--brand)]">140 €</p>
+              <p className="mt-1 text-xs text-white/55">en el setup de la web</p>
             </div>
           </div>
-          <p className="mt-4 text-sm font-medium text-[var(--brand)]">{t.pricing.combo.savingsNote}</p>
+
+          <div className="mt-6 flex flex-wrap items-end gap-8">
+            <div>
+              <p className="text-xs uppercase tracking-wider text-white/45">+ Plan Gestión</p>
+              <p className="font-display text-3xl font-extrabold text-white">49 €/mes</p>
+            </div>
+          </div>
+          <p className="mt-4 max-w-xl text-sm font-medium text-white/75">
+            Un solo proveedor, misma estética web ↔ software y onboarding único. Empiezas
+            operativo antes y sin pelearte con dos partners distintos.
+          </p>
 
           <ul className="mt-8 grid gap-2 sm:grid-cols-2">
             {t.pricing.combo.benefits.map((b) => (

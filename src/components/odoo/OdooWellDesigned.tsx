@@ -4,7 +4,7 @@ import { ScribbleUnderline } from "@/components/odoo/Decor";
 const cards = [
   {
     title: "Hecho para clínicas, no genérico",
-    body: "Historias clínicas, firma biométrica, bóveda fotográfica, lotes y AEAT no son “plugins” improvisados: forman parte del diseño. Otros sistemas intentan servir a cualquier sector; nosotros solo a clínicas.",
+    body: "Historias clínicas, firma biométrica, bóveda fotográfica, lotes y AEAT no son “plugins” improvisados: forman parte del diseño. Otros sistemas intentan servir a cualquier sector; nosotros partimos del día a día de una clínica.",
     cta: { label: "Ver módulos", href: "/#modulos" },
   },
   {
@@ -38,7 +38,7 @@ export function OdooWellDesigned() {
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-center text-[var(--muted)]">
           No vendemos cientos de apps genéricas. Vendemos el sistema operativo de tu clínica —
-          con la profundidad que exige el sector sanitario-estético.
+          con la profundidad que exige un centro sanitario o de bienestar.
         </p>
 
         <div className="mt-12 grid gap-5 md:grid-cols-2">

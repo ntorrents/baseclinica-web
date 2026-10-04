@@ -201,7 +201,7 @@ const fisioPainPoints: PainPoint[] = [
 ];
 
 const dermoHero: HeroData = {
-  eyebrow: "Digitalización para clínicas estéticas",
+  eyebrow: "Digitalización para clínicas",
   title: "Imagen premium y operativa diaria alineadas en tu centro",
   subtitle:
     "Web que transmite confianza y tratamientos de calidad, más app de gestión para citas, cobros e historial.",

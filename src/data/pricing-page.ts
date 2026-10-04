@@ -104,9 +104,9 @@ export const erpPlans: PricingPlanCard[] = [
     kind: "software",
     name: "Plan Elite",
     tagline: "Todo incluido + consultoría estratégica y multi-sede.",
-    price: "179 €",
+    price: "199 €",
     priceNote: "/ mes",
-    priceAnnual: "1.933 € / año",
+    priceAnnual: "2.149 € / año",
     features: [
       "TODO lo del Plan Clínica 360",
       "Multi-sede con métricas consolidadas",
