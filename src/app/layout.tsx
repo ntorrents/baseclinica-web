@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Geist_Mono, Source_Sans_3 } from "next/font/google";
+import { Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { LocaleProvider } from "@/i18n/LocaleProvider";
 
-const sourceSans = Source_Sans_3({
+/** Tipografía estilo SaaS limpia (referencia Odoo), no Inter/Roboto */
+const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
 });
 
-const bricolage = Bricolage_Grotesque({
+const plusJakartaDisplay = Plus_Jakarta_Sans({
   variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
+  weight: ["600", "700", "800"],
 });
 
 const geistMono = Geist_Mono({
@@ -54,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${sourceSans.variable} ${bricolage.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${plusJakarta.variable} ${plusJakartaDisplay.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">
         <LocaleProvider>
