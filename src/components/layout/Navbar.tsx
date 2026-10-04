@@ -22,20 +22,22 @@ function BrandMark({ invert = false }: { invert?: boolean }) {
 function MenuGlyph({ open }: { open?: boolean }) {
   if (open) {
     return (
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
         <path
-          d="M4.5 4.5l9 9M13.5 4.5l-9 9"
+          d="M4 4l12 12M16 4L4 16"
           stroke="currentColor"
-          strokeWidth="1.55"
+          strokeWidth="1.8"
           strokeLinecap="round"
         />
       </svg>
     );
   }
+  // Hamburguesa clásica: se entiende como menú
   return (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden>
-      <circle cx="11" cy="11" r="8.25" stroke="currentColor" strokeWidth="1.6" />
-      <circle cx="11" cy="11" r="2.2" fill="currentColor" />
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
+      <path d="M3 5h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M3 10h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M3 15h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
     </svg>
   );
 }
@@ -112,14 +114,22 @@ export function Navbar() {
             <AnimatePresence mode="wait" initial={false}>
               {!scrolled && !open && (
                 <motion.div
-                  key="hablar"
+                  key="auth-actions"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                  className="hidden sm:block"
+                  className="hidden items-center gap-2 sm:flex"
                 >
-                  <Link href="/contacto" className="btn-primary !py-2.5 !px-4 text-sm">
+                  <a
+                    href={t.nav.loginHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full border border-[var(--ink)]/15 px-4 py-2.5 text-sm font-semibold text-[var(--ink)] transition hover:border-[var(--brand)] hover:text-[var(--brand-deep)]"
+                  >
+                    {t.nav.login}
+                  </a>
+                  <Link href="/contacto" className="btn-primary !px-4 !py-2.5 text-sm">
                     {t.nav.speak}
                     <span className="btn-arrow">→</span>
                   </Link>
@@ -219,12 +229,21 @@ export function Navbar() {
                 </div>
                 <div className="flex flex-col items-start gap-3 sm:items-end">
                   <LocaleSwitcherDark />
+                  <a
+                    href={t.nav.loginHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setOpen(false)}
+                    className="text-xs font-semibold uppercase tracking-[0.14em] text-white/70 transition hover:text-white"
+                  >
+                    {t.nav.login} →
+                  </a>
                   <Link
                     href="/contacto"
                     onClick={() => setOpen(false)}
                     className="btn-ghost-light !mt-0 !inline-flex !px-4 !py-2 text-xs normal-case tracking-normal"
                   >
-                    {t.nav.goContact}
+                    {t.nav.speak}
                   </Link>
                 </div>
               </div>

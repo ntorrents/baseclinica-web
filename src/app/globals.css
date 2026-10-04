@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  /* Estética tipo Indisea: crema, tinta, azul vivo, acento cálido */
-  --background: #f2f0ea;
-  --foreground: #111111;
+  /* Base Clínica × lenguaje visual Odoo: blanco, aire, tipografía limpia */
+  --background: #ffffff;
+  --foreground: #212529;
   --surface: #ffffff;
-  --muted: #6b6b6b;
-  --line: #e4e0d8;
-  --ink: #111111;
+  --muted: #6c757d;
+  --line: #dee2e6;
+  --ink: #212529;
   --brand: #3bbff7;
   --brand-deep: #1a9fd4;
-  --brand-soft: #dff6fd;
+  --brand-soft: #e8f7fd;
   --accent: #f07a3a;
   --accent-soft: #ffe8dc;
-  --panel: #0f1420;
-  --panel-soft: #1a2233;
+  --panel: #1a1d21;
+  --panel-soft: #2c3035;
   --success: #1f7a4d;
 }
 
@@ -39,6 +39,7 @@
   --font-sans: var(--font-body);
   --font-display: var(--font-display);
   --font-mono: var(--font-geist-mono);
+  --font-script: var(--font-script);
 }
 
 body {
@@ -288,4 +289,70 @@ html.has-custom-cursor * {
 
 .animate-shimmer {
   animation: shimmer 2s infinite;
+}
+
+/* ——— Estilo Odoo (landing de validación) ——— */
+.odoo-rail {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .odoo-rail {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .odoo-rail {
+    padding-inline: 2.5rem;
+  }
+}
+
+.odoo-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 0.375rem;
+  background: var(--brand);
+  padding: 0.7rem 1.35rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #fff;
+  transition: background 0.2s ease;
+}
+
+.odoo-btn-primary:hover {
+  background: var(--brand-deep);
+}
+
+.odoo-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 0.7rem 1.35rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.odoo-btn-secondary:hover {
+  border-color: var(--brand);
+  background: var(--brand-soft);
+}
+
+.odoo-theme .font-display {
+  letter-spacing: -0.025em;
+}
+
+.font-script {
+  font-family: var(--font-script), cursive;
+  letter-spacing: -0.01em;
 }

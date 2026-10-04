@@ -12,12 +12,19 @@ type PlanView = {
   tagline: string;
   price: string;
   priceNote: string;
+  priceMonthly?: number;
+  priceAnnualFull?: number;
+  priceAnnualAmount?: number;
   priceAnnual?: string;
   features: readonly string[];
   recommended?: boolean;
   ctaLabel: string;
   ctaHref: string;
 };
+
+function formatEuro(n: number) {
+  return `${n.toLocaleString("es-ES")} €`;
+}
 
 function PlanCard({
   plan,
@@ -28,7 +35,7 @@ function PlanCard({
   billing?: "monthly" | "annual";
   labels: { recommended: string; annualBilling: string; orAnnual: string };
 }) {
-  const showAnnual = plan.kind === "software" && billing === "annual" && plan.priceAnnual;
+  const showAnnual = plan.kind === "software" && billing === "annual" && plan.priceAnnualAmount;
 
   return (
     <article
@@ -39,7 +46,7 @@ function PlanCard({
       }`}
     >
       {plan.recommended && (
-        <span className="absolute -top-3 left-7 rounded-full bg-[var(--brand)] px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white">
+        <span className="absolute -top-3 left-7 z-10 rounded-full bg-[var(--brand)] px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white shadow-sm">
           {labels.recommended}
         </span>
       )}
@@ -60,25 +67,66 @@ function PlanCard({
       </p>
 
       <div className="mt-7">
-        <p className="font-display text-4xl font-extrabold tracking-tight">
-          {showAnnual ? plan.priceAnnual : plan.price}
-          {!showAnnual && (
-            <span
-              className={`ml-1 text-base font-semibold ${plan.recommended ? "text-white/55" : "text-[var(--muted)]"}`}
-            >
-              {plan.priceNote}
-            </span>
-          )}
-        </p>
-        {showAnnual && (
-          <p className={`mt-1 text-sm ${plan.recommended ? "text-white/55" : "text-[var(--muted)]"}`}>
-            {labels.annualBilling}
-          </p>
-        )}
-        {!showAnnual && plan.priceAnnual && billing === "monthly" && (
-          <p className={`mt-1 text-sm ${plan.recommended ? "text-white/55" : "text-[var(--muted)]"}`}>
-            {labels.orAnnual.replace("{price}", plan.priceAnnual)}
-          </p>
+        {showAnnual && plan.priceAnnualFull && plan.priceAnnualAmount ? (
+          <div className="space-y-1.5">
+            <div className="flex flex-wrap items-center gap-2">
+              <span
+                className={`text-lg font-semibold line-through decoration-[1.5px] ${
+                  plan.recommended ? "text-white/35" : "text-[var(--muted)]/70"
+                }`}
+              >
+                {formatEuro(plan.priceAnnualFull)}
+              </span>
+              <span
+                className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${
+                  plan.recommended
+                    ? "bg-emerald-400/20 text-emerald-300"
+                    : "bg-emerald-50 text-emerald-700"
+                }`}
+              >
+                −5%
+              </span>
+            </div>
+            <p className="font-display text-4xl font-extrabold tracking-tight">
+              {formatEuro(plan.priceAnnualAmount)}
+              <span
+                className={`ml-1.5 text-base font-semibold ${plan.recommended ? "text-white/55" : "text-[var(--muted)]"}`}
+              >
+                / año
+              </span>
+            </p>
+            <p className={`text-sm ${plan.recommended ? "text-white/55" : "text-[var(--muted)]"}`}>
+              Facturación anual · ahorras{" "}
+              <span className={`font-semibold ${plan.recommended ? "text-emerald-300" : "text-emerald-600"}`}>
+                {formatEuro(plan.priceAnnualFull - plan.priceAnnualAmount)}
+              </span>
+            </p>
+          </div>
+        ) : (
+          <>
+            <p className="font-display text-4xl font-extrabold tracking-tight">
+              {plan.price}
+              <span
+                className={`ml-1 text-base font-semibold ${plan.recommended ? "text-white/55" : "text-[var(--muted)]"}`}
+              >
+                {plan.priceNote}
+              </span>
+            </p>
+            {plan.priceAnnual && billing === "monthly" && (
+              <p className={`mt-1.5 text-sm ${plan.recommended ? "text-white/55" : "text-[var(--muted)]"}`}>
+                {labels.orAnnual.replace("{price}", plan.priceAnnual)}{" "}
+                <span
+                  className={`ml-1 inline-flex items-center rounded-full px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide ${
+                    plan.recommended
+                      ? "bg-emerald-400/20 text-emerald-300"
+                      : "bg-emerald-50 text-emerald-700"
+                  }`}
+                >
+                  −5%
+                </span>
+              </p>
+            )}
+          </>
         )}
       </div>
 
@@ -135,6 +183,9 @@ export function PricingHoldedLayout() {
           tagline: plan.tagline,
           price: base.price,
           priceNote: plan.priceNote,
+          priceMonthly: base.priceMonthly,
+          priceAnnualFull: base.priceAnnualFull,
+          priceAnnualAmount: base.priceAnnualAmount,
           priceAnnual: base.priceAnnual,
           features: plan.features,
           recommended: base.recommended,
@@ -157,56 +208,7 @@ export function PricingHoldedLayout() {
         </p>
       </header>
 
-      <section id="web" className="scroll-mt-28 pt-16 sm:pt-20">
-        <div className="mb-6 flex items-end justify-between gap-4">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
-              {t.pricing.product1}
-            </p>
-            <h2 className="font-display mt-2 text-3xl font-extrabold tracking-tight text-[var(--ink)]">
-              {t.pricing.webTitle}
-            </h2>
-          </div>
-          <p className="hidden max-w-xs text-right text-sm text-[var(--muted)] sm:block">
-            {t.pricing.webSide}
-          </p>
-        </div>
-        <div className="max-w-md">
-          <PlanCard
-            plan={webPlan}
-            labels={{
-              recommended: t.pricing.recommended,
-              annualBilling: t.pricing.annualBilling,
-              orAnnual: t.pricing.orAnnual,
-            }}
-          />
-        </div>
-
-        {/* Módulos Web */}
-        <div className="mt-8">
-          <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-            Módulos Web Extra (Opcionales)
-          </h3>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {t.pricing.modules
-              .filter((mod: any) => mod.kind === "web")
-              .map((mod: any) => (
-                <article key={mod.id} className="box-plain p-5">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--accent)]">
-                    Web
-                  </p>
-                  <h4 className="font-display mt-2 text-lg font-bold tracking-tight text-[var(--ink)]">
-                    {mod.name}
-                  </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">{mod.description}</p>
-                  <p className="mt-4 text-sm font-semibold text-[var(--ink)]">{mod.price}</p>
-                </article>
-              ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="software" className="scroll-mt-28 pt-20 sm:pt-28">
+      <section id="software" className="scroll-mt-28 pt-16 sm:pt-20">
         <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand)]">
@@ -217,25 +219,39 @@ export function PricingHoldedLayout() {
             </h2>
             <p className="mt-2 max-w-lg text-sm text-[var(--muted)]">{t.pricing.erpLead}</p>
           </div>
-          <div className="inline-flex rounded-full border border-[var(--line)] bg-white p-1">
-            <button
-              type="button"
-              onClick={() => setBilling("monthly")}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                billing === "monthly" ? "bg-[var(--panel)] text-white" : "text-[var(--muted)]"
+          <div className="flex flex-wrap items-center gap-2.5">
+            <div className="inline-flex rounded-full border border-[var(--line)] bg-white p-1 shadow-sm">
+              <button
+                type="button"
+                onClick={() => setBilling("monthly")}
+                className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                  billing === "monthly" ? "bg-[var(--panel)] text-white" : "text-[var(--muted)] hover:text-[var(--ink)]"
+                }`}
+              >
+                {t.pricing.monthly}
+              </button>
+              <button
+                type="button"
+                onClick={() => setBilling("annual")}
+                className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                  billing === "annual" ? "bg-[var(--panel)] text-white" : "text-[var(--muted)] hover:text-[var(--ink)]"
+                }`}
+              >
+                {t.pricing.annual}
+              </button>
+            </div>
+            <span
+              className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-bold tracking-wide transition ${
+                billing === "annual"
+                  ? "bg-emerald-500 text-white shadow-sm shadow-emerald-500/25"
+                  : "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200/80"
               }`}
             >
-              {t.pricing.monthly}
-            </button>
-            <button
-              type="button"
-              onClick={() => setBilling("annual")}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                billing === "annual" ? "bg-[var(--panel)] text-white" : "text-[var(--muted)]"
-              }`}
-            >
-              {t.pricing.annual}
-            </button>
+              <span aria-hidden className="text-[10px] leading-none">
+                −
+              </span>
+              5% dto. anual
+            </span>
           </div>
         </div>
 
@@ -313,59 +329,78 @@ export function PricingHoldedLayout() {
         </div>
       </section>
 
-      <section id="modulos" className="scroll-mt-28 pt-20 sm:pt-28">
-        <div className="mb-8 max-w-2xl">
-          <p className="section-eyebrow">{t.pricing.modulesEyebrow}</p>
-          <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight text-[var(--ink)] sm:text-4xl">
-            {t.pricing.modulesTitle}
-          </h2>
-          <p className="mt-3 text-[var(--muted)]">{t.pricing.modulesLead}</p>
+      <section id="web" className="scroll-mt-28 pt-20 sm:pt-28">
+        <div className="mb-6 flex items-end justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
+              {t.pricing.product1}
+            </p>
+            <h2 className="font-display mt-2 text-3xl font-extrabold tracking-tight text-[var(--ink)]">
+              {t.pricing.webTitle}
+            </h2>
+          </div>
+          <p className="hidden max-w-xs text-right text-sm text-[var(--muted)] sm:block">
+            {t.pricing.webSide}
+          </p>
         </div>
-
-
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {t.pricing.modules
-            .filter((mod: any) => mod.kind === "software")
-            .map((mod: any) => (
-            <article key={mod.id} className="box-plain p-6">
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--brand)]">
-                Software
-              </p>
-              <h3 className="font-display mt-2 text-xl font-bold tracking-tight text-[var(--ink)]">
-                {mod.name}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">{mod.description}</p>
-              <p className="mt-5 text-sm font-semibold text-[var(--ink)]">{mod.price}</p>
-            </article>
-          ))}
+        <div className="max-w-md">
+          <PlanCard
+            plan={webPlan}
+            labels={{
+              recommended: t.pricing.recommended,
+              annualBilling: t.pricing.annualBilling,
+              orAnnual: t.pricing.orAnnual,
+            }}
+          />
         </div>
+        <p className="mt-4 max-w-md text-sm text-[var(--muted)]">
+          Extras web (SEO, mantenimiento, e-commerce…) se detallan en el configurador y en la demo.
+          <Link href="/#modulos" className="ml-1 font-semibold text-[var(--brand-deep)] hover:underline">
+            Ver módulos →
+          </Link>
+        </p>
       </section>
 
-      <section id="combo" className="scroll-mt-28 pt-20 sm:pt-28">
-        <div className="box-panel relative overflow-hidden px-8 py-12 sm:px-12 sm:py-16">
+      <section id="combo" className="scroll-mt-28 pb-16 pt-20 sm:pb-24 sm:pt-28">
+        <div className="relative overflow-hidden rounded-[1.35rem] border-2 border-[var(--brand)] bg-[var(--panel)] px-8 py-12 sm:px-12 sm:py-16">
           <div
             aria-hidden
             className="pointer-events-none absolute -right-8 top-10 h-36 w-36 rounded-full border-[3px] border-[var(--brand)]"
           />
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/45">
-            {t.pricing.jointOffer}
-          </p>
-          <h2 className="font-display mt-4 max-w-xl text-[clamp(1.9rem,4vw,3rem)] font-extrabold leading-[1.05] tracking-[-0.04em]">
+          <span className="inline-flex rounded-full bg-[var(--brand)] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-white">
+            Oferta conjunta · Ahorras 140 €
+          </span>
+          <h2 className="font-display mt-5 max-w-xl text-[clamp(1.9rem,4vw,3rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-white">
             {t.pricing.combo.title}
           </h2>
-          <p className="mt-4 max-w-xl text-white/60">{t.pricing.combo.subtitle}</p>
+          <p className="mt-4 max-w-xl text-white/65">{t.pricing.combo.subtitle}</p>
 
-          <div className="mt-8 flex flex-wrap items-end gap-8">
-            <div>
-              <p className="text-xs uppercase tracking-wider text-white/45">{t.pricing.setupWeb}</p>
-              <p className="font-display text-4xl font-extrabold">750 €</p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            <div className="rounded-xl bg-white/5 p-4">
+              <p className="text-xs uppercase tracking-wider text-white/45">Web por separado</p>
+              <p className="font-display text-2xl font-bold text-white/50 line-through">890 €</p>
             </div>
-            <div>
-              <p className="text-xs uppercase tracking-wider text-white/45">Plan Gestión</p>
-              <p className="font-display text-4xl font-extrabold">49 €/mes</p>
+            <div className="rounded-xl bg-white/5 p-4">
+              <p className="text-xs uppercase tracking-wider text-white/45">{t.pricing.setupWeb} en combo</p>
+              <p className="font-display text-3xl font-extrabold text-white">750 €</p>
+            </div>
+            <div className="rounded-xl border border-[var(--brand)]/50 bg-[var(--brand)]/15 p-4">
+              <p className="text-xs uppercase tracking-wider text-[var(--brand)]">Te ahorras</p>
+              <p className="font-display text-3xl font-extrabold text-[var(--brand)]">140 €</p>
+              <p className="mt-1 text-xs text-white/55">en el setup de la web</p>
             </div>
           </div>
-          <p className="mt-4 text-sm font-medium text-[var(--brand)]">{t.pricing.combo.savingsNote}</p>
+
+          <div className="mt-6 flex flex-wrap items-end gap-8">
+            <div>
+              <p className="text-xs uppercase tracking-wider text-white/45">+ Plan Gestión</p>
+              <p className="font-display text-3xl font-extrabold text-white">49 €/mes</p>
+            </div>
+          </div>
+          <p className="mt-4 max-w-xl text-sm font-medium text-white/75">
+            Un solo proveedor, misma estética web ↔ software y onboarding único. Empiezas
+            operativo antes y sin pelearte con dos partners distintos.
+          </p>
 
           <ul className="mt-8 grid gap-2 sm:grid-cols-2">
             {t.pricing.combo.benefits.map((b) => (

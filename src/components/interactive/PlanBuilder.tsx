@@ -73,7 +73,7 @@ export function PlanBuilder() {
   const basePrices = {
     gestion: 49,
     360: 89,
-    elite: 179,
+    elite: 199,
   };
 
   const { totalPrice, savings, modulesAdded } = useMemo(() => {
@@ -185,12 +185,12 @@ export function PlanBuilder() {
                 : "border-gray-200 bg-white hover:border-brand/40"
             }`}
           >
+            <span className="absolute -top-2.5 left-5 z-10 rounded-full bg-brand px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white shadow-sm">
+              Recomendado
+            </span>
             <div className="flex items-start justify-between">
               <div>
-                <span className="inline-block rounded-full bg-brand px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
-                  Recomendado
-                </span>
-                <p className="font-display mt-2 text-xl font-bold text-ink">Plan Clínica 360</p>
+                <p className="font-display text-xl font-bold text-ink">Plan Clínica 360</p>
                 <p className="font-display mt-1 text-3xl font-black text-brand">89€</p>
                 <p className="text-sm text-muted">/ mes</p>
               </div>
@@ -222,7 +222,7 @@ export function PlanBuilder() {
                   Premium
                 </span>
                 <p className="font-display mt-2 text-xl font-bold text-ink">Plan Elite</p>
-                <p className="font-display mt-1 text-3xl font-black text-brand">179€</p>
+                <p className="font-display mt-1 text-3xl font-black text-brand">199€</p>
                 <p className="text-sm text-muted">/ mes</p>
               </div>
               {selectedPlan === "elite" && (
