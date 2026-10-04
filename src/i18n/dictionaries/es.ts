@@ -1,12 +1,14 @@
 export const es = {
   nav: {
-    speak: "Hablar",
+    speak: "Pruébalo gratis",
+    login: "Iniciar sesión",
+    loginHref: "https://app.baseclinica.com",
     openMenu: "Abrir menú",
     closeMenu: "Cerrar menú",
     links: [
       { href: "/", label: "Inicio", n: "01", color: "#3bbff7" },
-      { href: "/#nosotros", label: "Nosotros", n: "02", color: "#f07a3a" },
-      { href: "/#soluciones", label: "Soluciones", n: "03", color: "#22c55e" },
+      { href: "/#modulos", label: "Módulos", n: "02", color: "#f07a3a" },
+      { href: "/#configurador", label: "Ahorro", n: "03", color: "#22c55e" },
       { href: "/precios", label: "Precios", n: "04", color: "#ef4444" },
       { href: "/contacto", label: "Contacto", n: "05", color: "#a855f7" },
     ],

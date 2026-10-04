@@ -112,14 +112,22 @@ export function Navbar() {
             <AnimatePresence mode="wait" initial={false}>
               {!scrolled && !open && (
                 <motion.div
-                  key="hablar"
+                  key="auth-actions"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                  className="hidden sm:block"
+                  className="hidden items-center gap-2 sm:flex"
                 >
-                  <Link href="/contacto" className="btn-primary !py-2.5 !px-4 text-sm">
+                  <a
+                    href={t.nav.loginHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full border border-[var(--ink)]/15 px-4 py-2.5 text-sm font-semibold text-[var(--ink)] transition hover:border-[var(--brand)] hover:text-[var(--brand-deep)]"
+                  >
+                    {t.nav.login}
+                  </a>
+                  <Link href="/contacto" className="btn-primary !px-4 !py-2.5 text-sm">
                     {t.nav.speak}
                     <span className="btn-arrow">→</span>
                   </Link>
@@ -219,12 +227,21 @@ export function Navbar() {
                 </div>
                 <div className="flex flex-col items-start gap-3 sm:items-end">
                   <LocaleSwitcherDark />
+                  <a
+                    href={t.nav.loginHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setOpen(false)}
+                    className="text-xs font-semibold uppercase tracking-[0.14em] text-white/70 transition hover:text-white"
+                  >
+                    {t.nav.login} →
+                  </a>
                   <Link
                     href="/contacto"
                     onClick={() => setOpen(false)}
                     className="btn-ghost-light !mt-0 !inline-flex !px-4 !py-2 text-xs normal-case tracking-normal"
                   >
-                    {t.nav.goContact}
+                    {t.nav.speak}
                   </Link>
                 </div>
               </div>

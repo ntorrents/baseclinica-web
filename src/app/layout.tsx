@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import { Caveat, Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { LocaleProvider } from "@/i18n/LocaleProvider";
@@ -16,6 +16,14 @@ const plusJakartaDisplay = Plus_Jakarta_Sans({
   subsets: ["latin"],
   display: "swap",
   weight: ["600", "700", "800"],
+});
+
+/** Títulos “a mano” estilo Odoo */
+const caveat = Caveat({
+  variable: "--font-script",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -56,7 +64,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${plusJakarta.variable} ${plusJakartaDisplay.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${plusJakarta.variable} ${plusJakartaDisplay.variable} ${caveat.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">
         <LocaleProvider>

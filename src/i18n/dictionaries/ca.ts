@@ -2,13 +2,15 @@ import type { Dictionary } from "./es";
 
 export const ca = {
   nav: {
-    speak: "Parlar",
+    speak: "Prova-ho gratis",
+    login: "Iniciar sessió",
+    loginHref: "https://app.baseclinica.com",
     openMenu: "Obrir menú",
     closeMenu: "Tancar menú",
     links: [
       { href: "/", label: "Inici", n: "01", color: "#3bbff7" },
-      { href: "/#nosotros", label: "Nosaltres", n: "02", color: "#f07a3a" },
-      { href: "/#soluciones", label: "Solucions", n: "03", color: "#22c55e" },
+      { href: "/#modulos", label: "Mòduls", n: "02", color: "#f07a3a" },
+      { href: "/#configurador", label: "Estalvi", n: "03", color: "#22c55e" },
       { href: "/precios", label: "Preus", n: "04", color: "#ef4444" },
       { href: "/contacto", label: "Contacte", n: "05", color: "#a855f7" },
     ],

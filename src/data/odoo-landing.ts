@@ -1,30 +1,222 @@
-export type OdooApp = {
+import type { ModuleIconId } from "@/components/odoo/ModuleIcons";
+
+export type ClinicModule = {
   id: string;
   name: string;
-  icon: string;
-  color: string;
-  href?: string;
+  description: string;
+  icon: ModuleIconId;
+  /** Coste típico mensual de herramienta suelta (para calculadora) */
+  replaceCost: number;
+  /** Precio add-on en Base Clínica (€/mes). 0 = incluido en planes base */
+  addonPrice: number;
+  includedIn: ("gestion" | "360" | "elite")[];
 };
 
-/** Grid de apps estilo Odoo — módulos Base Clínica */
-export const odooApps: OdooApp[] = [
-  { id: "agenda", name: "Agenda", icon: "📅", color: "#714B67" },
-  { id: "pacientes", name: "Pacientes", icon: "👤", color: "#017E84" },
-  { id: "historia", name: "Historia clínica", icon: "📋", color: "#5D8DA8" },
-  { id: "facturacion", name: "Facturación", icon: "💶", color: "#3B82F6" },
-  { id: "caja", name: "Caja", icon: "🧾", color: "#875A7B" },
-  { id: "stock", name: "Stock", icon: "📦", color: "#F59E0B" },
-  { id: "firma", name: "Firma digital", icon: "✍️", color: "#10B981" },
-  { id: "fotos", name: "Bóveda fotos", icon: "📸", color: "#EC4899" },
-  { id: "aeat", name: "Fiscal AEAT", icon: "🏛️", color: "#6366F1" },
-  { id: "informes", name: "Informes", icon: "📊", color: "#0EA5E9" },
-  { id: "citas", name: "Citas online", icon: "🌐", color: "#14B8A6" },
-  { id: "whatsapp", name: "WhatsApp", icon: "💬", color: "#22C55E" },
-  { id: "portal", name: "Portal paciente", icon: "🔐", color: "#8B5CF6" },
-  { id: "productos", name: "Venta productos", icon: "🛍️", color: "#F97316" },
-  { id: "marketing", name: "Marketing", icon: "🎯", color: "#EF4444" },
-  { id: "multisede", name: "Multi-sede", icon: "🏥", color: "#64748B" },
+export type ModuleGroup = {
+  id: string;
+  title: string;
+  modules: ClinicModule[];
+};
+
+export const moduleGroups: ModuleGroup[] = [
+  {
+    id: "nucleo",
+    title: "Núcleo clínico",
+    modules: [
+      {
+        id: "agenda",
+        name: "Agenda",
+        description: "Citas, salas y profesionales sin solapes",
+        icon: "agenda",
+        replaceCost: 29,
+        addonPrice: 0,
+        includedIn: ["gestion", "360", "elite"],
+      },
+      {
+        id: "pacientes",
+        name: "Pacientes",
+        description: "Ficha única con todo el historial",
+        icon: "pacientes",
+        replaceCost: 25,
+        addonPrice: 0,
+        includedIn: ["gestion", "360", "elite"],
+      },
+      {
+        id: "historia",
+        name: "Historia clínica",
+        description: "Evolutivo, tratamientos y notas",
+        icon: "historia",
+        replaceCost: 35,
+        addonPrice: 0,
+        includedIn: ["gestion", "360", "elite"],
+      },
+      {
+        id: "firma",
+        name: "Firma digital",
+        description: "Consentimientos biométricos en consulta",
+        icon: "firma",
+        replaceCost: 40,
+        addonPrice: 0,
+        includedIn: ["360", "elite"],
+      },
+      {
+        id: "fotos",
+        name: "Bóveda fotográfica",
+        description: "Antes/después seguro y organizado",
+        icon: "fotos",
+        replaceCost: 30,
+        addonPrice: 0,
+        includedIn: ["360", "elite"],
+      },
+    ],
+  },
+  {
+    id: "admin",
+    title: "Administración",
+    modules: [
+      {
+        id: "facturacion",
+        name: "Facturación",
+        description: "Facturas, presupuestos y bonos",
+        icon: "facturacion",
+        replaceCost: 35,
+        addonPrice: 0,
+        includedIn: ["gestion", "360", "elite"],
+      },
+      {
+        id: "caja",
+        name: "Caja",
+        description: "Cierres diarios y control de gastos",
+        icon: "caja",
+        replaceCost: 20,
+        addonPrice: 0,
+        includedIn: ["gestion", "360", "elite"],
+      },
+      {
+        id: "stock",
+        name: "Stock y lotes",
+        description: "Inventario con trazabilidad",
+        icon: "stock",
+        replaceCost: 40,
+        addonPrice: 0,
+        includedIn: ["360", "elite"],
+      },
+      {
+        id: "aeat",
+        name: "Fiscal AEAT",
+        description: "Modelos 130, 303, 115 listos",
+        icon: "aeat",
+        replaceCost: 50,
+        addonPrice: 0,
+        includedIn: ["360", "elite"],
+      },
+      {
+        id: "informes",
+        name: "Informes",
+        description: "KPIs de ocupación y rentabilidad",
+        icon: "informes",
+        replaceCost: 25,
+        addonPrice: 0,
+        includedIn: ["360", "elite"],
+      },
+      {
+        id: "productos",
+        name: "Venta de productos",
+        description: "Cosméticos y retail, no solo servicios",
+        icon: "productos",
+        replaceCost: 25,
+        addonPrice: 5,
+        includedIn: ["elite"],
+      },
+    ],
+  },
+  {
+    id: "captacion",
+    title: "Captación y paciente",
+    modules: [
+      {
+        id: "citas",
+        name: "Citas online",
+        description: "Reserva 24/7 desde tu web",
+        icon: "citas",
+        replaceCost: 39,
+        addonPrice: 10,
+        includedIn: ["elite"],
+      },
+      {
+        id: "whatsapp",
+        name: "WhatsApp",
+        description: "Recordatorios y plantillas conectadas",
+        icon: "whatsapp",
+        replaceCost: 45,
+        addonPrice: 20,
+        includedIn: ["elite"],
+      },
+      {
+        id: "portal",
+        name: "Portal del paciente",
+        description: "Documentos y citas en autoservicio",
+        icon: "portal",
+        replaceCost: 35,
+        addonPrice: 20,
+        includedIn: ["elite"],
+      },
+      {
+        id: "marketing",
+        name: "Marketing",
+        description: "Fidelización, reseñas y tarjetas regalo",
+        icon: "marketing",
+        replaceCost: 49,
+        addonPrice: 15,
+        includedIn: ["elite"],
+      },
+      {
+        id: "multisede",
+        name: "Multi-sede",
+        description: "Varias clínicas, métricas unificadas",
+        icon: "multisede",
+        replaceCost: 80,
+        addonPrice: 0,
+        includedIn: ["elite"],
+      },
+    ],
+  },
+  {
+    id: "web",
+    title: "Sitio web",
+    modules: [
+      {
+        id: "web",
+        name: "Web clínica",
+        description: "Diseño profesional orientado a captar pacientes",
+        icon: "web",
+        replaceCost: 40,
+        addonPrice: 0,
+        includedIn: [],
+      },
+      {
+        id: "seo",
+        name: "SEO + blog",
+        description: "Posiciona tratamientos y contenidos",
+        icon: "seo",
+        replaceCost: 30,
+        addonPrice: 0,
+        includedIn: [],
+      },
+      {
+        id: "ecommerce",
+        name: "E-commerce",
+        description: "Tienda online ligada al stock",
+        icon: "ecommerce",
+        replaceCost: 55,
+        addonPrice: 30,
+        includedIn: [],
+      },
+    ],
+  },
 ];
+
+export const allClinicModules = moduleGroups.flatMap((g) => g.modules);
 
 export const odooPlans = [
   {
@@ -83,3 +275,10 @@ export const odooPlans = [
     highlighted: false,
   },
 ] as const;
+
+/** Apps del hero (subset visual) */
+export const heroApps = allClinicModules.filter((m) =>
+  ["agenda", "pacientes", "historia", "facturacion", "firma", "fotos", "stock", "aeat", "citas", "whatsapp", "portal", "marketing"].includes(
+    m.id,
+  ),
+);

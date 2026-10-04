@@ -181,29 +181,12 @@ export function PricingHoldedLayout() {
             }}
           />
         </div>
-
-        {/* Módulos Web */}
-        <div className="mt-8">
-          <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-            Módulos Web Extra (Opcionales)
-          </h3>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {t.pricing.modules
-              .filter((mod: any) => mod.kind === "web")
-              .map((mod: any) => (
-                <article key={mod.id} className="box-plain p-5">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--accent)]">
-                    Web
-                  </p>
-                  <h4 className="font-display mt-2 text-lg font-bold tracking-tight text-[var(--ink)]">
-                    {mod.name}
-                  </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">{mod.description}</p>
-                  <p className="mt-4 text-sm font-semibold text-[var(--ink)]">{mod.price}</p>
-                </article>
-              ))}
-          </div>
-        </div>
+        <p className="mt-4 max-w-md text-sm text-[var(--muted)]">
+          Extras web (SEO, mantenimiento, e-commerce…) se detallan en el configurador y en la demo.
+          <Link href="/#modulos" className="ml-1 font-semibold text-[var(--brand-deep)] hover:underline">
+            Ver módulos →
+          </Link>
+        </p>
       </section>
 
       <section id="software" className="scroll-mt-28 pt-20 sm:pt-28">
@@ -310,34 +293,6 @@ export function PricingHoldedLayout() {
               })}
             </tbody>
           </table>
-        </div>
-      </section>
-
-      <section id="modulos" className="scroll-mt-28 pt-20 sm:pt-28">
-        <div className="mb-8 max-w-2xl">
-          <p className="section-eyebrow">{t.pricing.modulesEyebrow}</p>
-          <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight text-[var(--ink)] sm:text-4xl">
-            {t.pricing.modulesTitle}
-          </h2>
-          <p className="mt-3 text-[var(--muted)]">{t.pricing.modulesLead}</p>
-        </div>
-
-
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {t.pricing.modules
-            .filter((mod: any) => mod.kind === "software")
-            .map((mod: any) => (
-            <article key={mod.id} className="box-plain p-6">
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--brand)]">
-                Software
-              </p>
-              <h3 className="font-display mt-2 text-xl font-bold tracking-tight text-[var(--ink)]">
-                {mod.name}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">{mod.description}</p>
-              <p className="mt-5 text-sm font-semibold text-[var(--ink)]">{mod.price}</p>
-            </article>
-          ))}
         </div>
       </section>
 
