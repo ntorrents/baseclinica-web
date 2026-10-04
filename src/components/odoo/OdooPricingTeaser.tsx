@@ -19,14 +19,14 @@ export function OdooPricingTeaser() {
           {odooPlans.map((plan) => (
             <article
               key={plan.id}
-              className={`flex flex-col rounded-xl border bg-white p-7 ${
+              className={`relative flex flex-col rounded-xl border bg-white p-7 ${
                 plan.highlighted
                   ? "border-[var(--brand)] shadow-[0_12px_40px_rgba(59,191,247,0.18)] ring-1 ring-[var(--brand)]/30"
                   : "border-[var(--line)]"
               }`}
             >
               {plan.highlighted && (
-                <span className="mb-3 w-fit rounded bg-[var(--brand-soft)] px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-[var(--brand-deep)]">
+                <span className="absolute -top-3 left-5 z-10 rounded-full bg-[var(--brand)] px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white shadow-sm">
                   Recomendado
                 </span>
               )}

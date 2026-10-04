@@ -39,7 +39,7 @@ function PlanCard({
       }`}
     >
       {plan.recommended && (
-        <span className="absolute -top-3 left-7 rounded-full bg-[var(--brand)] px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white">
+        <span className="absolute -top-3 left-7 z-10 rounded-full bg-[var(--brand)] px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white shadow-sm">
           {labels.recommended}
         </span>
       )}
