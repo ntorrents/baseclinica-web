@@ -5,6 +5,12 @@ export type PricingPlanCard = {
   tagline: string;
   price: string;
   priceNote: string;
+  /** Precio mensual numérico (software) */
+  priceMonthly?: number;
+  /** Anual sin descuento = mensual × 12 */
+  priceAnnualFull?: number;
+  /** Anual con descuento (5%) */
+  priceAnnualAmount?: number;
   priceAnnual?: string;
   features: string[];
   recommended?: boolean;
@@ -66,7 +72,10 @@ export const erpPlans: PricingPlanCard[] = [
     tagline: "Ideal para arrancar con las bases operativas.",
     price: "49 €",
     priceNote: "/ mes",
-    priceAnnual: "529 € / año",
+    priceMonthly: 49,
+    priceAnnualFull: 588,
+    priceAnnualAmount: 559,
+    priceAnnual: "559 € / año",
     features: [
       "Agenda inteligente",
       "Base de datos de pacientes",
@@ -85,7 +94,10 @@ export const erpPlans: PricingPlanCard[] = [
     tagline: "Paz mental absoluta: seguridad legal + autopiloto fiscal.",
     price: "89 €",
     priceNote: "/ mes",
-    priceAnnual: "961 € / año",
+    priceMonthly: 89,
+    priceAnnualFull: 1068,
+    priceAnnualAmount: 1015,
+    priceAnnual: "1.015 € / año",
     recommended: true,
     features: [
       "TODO lo del Plan Gestión",
@@ -106,7 +118,10 @@ export const erpPlans: PricingPlanCard[] = [
     tagline: "Todo incluido + consultoría estratégica y multi-sede.",
     price: "199 €",
     priceNote: "/ mes",
-    priceAnnual: "2.149 € / año",
+    priceMonthly: 199,
+    priceAnnualFull: 2388,
+    priceAnnualAmount: 2269,
+    priceAnnual: "2.269 € / año",
     features: [
       "TODO lo del Plan Clínica 360",
       "Multi-sede con métricas consolidadas",

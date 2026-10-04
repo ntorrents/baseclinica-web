@@ -36,7 +36,12 @@ export function OdooPricingTeaser() {
                 {plan.price}
                 <span className="ml-1 text-base font-semibold text-[var(--muted)]">{plan.period}</span>
               </p>
-              <p className="mt-1 text-sm text-[var(--muted)]">o {plan.annual}</p>
+              <p className="mt-1.5 flex flex-wrap items-center gap-1.5 text-sm text-[var(--muted)]">
+                <span>o {plan.annual}</span>
+                <span className="inline-flex items-center rounded-full bg-emerald-50 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-700">
+                  −5%
+                </span>
+              </p>
               <ul className="mt-6 flex-1 space-y-2.5 text-sm text-[var(--ink)]">
                 {plan.features.map((f) => (
                   <li key={f} className="flex gap-2">

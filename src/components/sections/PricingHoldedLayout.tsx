@@ -12,12 +12,19 @@ type PlanView = {
   tagline: string;
   price: string;
   priceNote: string;
+  priceMonthly?: number;
+  priceAnnualFull?: number;
+  priceAnnualAmount?: number;
   priceAnnual?: string;
   features: readonly string[];
   recommended?: boolean;
   ctaLabel: string;
   ctaHref: string;
 };
+
+function formatEuro(n: number) {
+  return `${n.toLocaleString("es-ES")} €`;
+}
 
 function PlanCard({
   plan,
@@ -28,7 +35,7 @@ function PlanCard({
   billing?: "monthly" | "annual";
   labels: { recommended: string; annualBilling: string; orAnnual: string };
 }) {
-  const showAnnual = plan.kind === "software" && billing === "annual" && plan.priceAnnual;
+  const showAnnual = plan.kind === "software" && billing === "annual" && plan.priceAnnualAmount;
 
   return (
     <article
@@ -60,25 +67,66 @@ function PlanCard({
       </p>
 
       <div className="mt-7">
-        <p className="font-display text-4xl font-extrabold tracking-tight">
-          {showAnnual ? plan.priceAnnual : plan.price}
-          {!showAnnual && (
-            <span
-              className={`ml-1 text-base font-semibold ${plan.recommended ? "text-white/55" : "text-[var(--muted)]"}`}
-            >
-              {plan.priceNote}
-            </span>
-          )}
-        </p>
-        {showAnnual && (
-          <p className={`mt-1 text-sm ${plan.recommended ? "text-white/55" : "text-[var(--muted)]"}`}>
-            {labels.annualBilling}
-          </p>
-        )}
-        {!showAnnual && plan.priceAnnual && billing === "monthly" && (
-          <p className={`mt-1 text-sm ${plan.recommended ? "text-white/55" : "text-[var(--muted)]"}`}>
-            {labels.orAnnual.replace("{price}", plan.priceAnnual)}
-          </p>
+        {showAnnual && plan.priceAnnualFull && plan.priceAnnualAmount ? (
+          <div className="space-y-1.5">
+            <div className="flex flex-wrap items-center gap-2">
+              <span
+                className={`text-lg font-semibold line-through decoration-[1.5px] ${
+                  plan.recommended ? "text-white/35" : "text-[var(--muted)]/70"
+                }`}
+              >
+                {formatEuro(plan.priceAnnualFull)}
+              </span>
+              <span
+                className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${
+                  plan.recommended
+                    ? "bg-emerald-400/20 text-emerald-300"
+                    : "bg-emerald-50 text-emerald-700"
+                }`}
+              >
+                −5%
+              </span>
+            </div>
+            <p className="font-display text-4xl font-extrabold tracking-tight">
+              {formatEuro(plan.priceAnnualAmount)}
+              <span
+                className={`ml-1.5 text-base font-semibold ${plan.recommended ? "text-white/55" : "text-[var(--muted)]"}`}
+              >
+                / año
+              </span>
+            </p>
+            <p className={`text-sm ${plan.recommended ? "text-white/55" : "text-[var(--muted)]"}`}>
+              Facturación anual · ahorras{" "}
+              <span className={`font-semibold ${plan.recommended ? "text-emerald-300" : "text-emerald-600"}`}>
+                {formatEuro(plan.priceAnnualFull - plan.priceAnnualAmount)}
+              </span>
+            </p>
+          </div>
+        ) : (
+          <>
+            <p className="font-display text-4xl font-extrabold tracking-tight">
+              {plan.price}
+              <span
+                className={`ml-1 text-base font-semibold ${plan.recommended ? "text-white/55" : "text-[var(--muted)]"}`}
+              >
+                {plan.priceNote}
+              </span>
+            </p>
+            {plan.priceAnnual && billing === "monthly" && (
+              <p className={`mt-1.5 text-sm ${plan.recommended ? "text-white/55" : "text-[var(--muted)]"}`}>
+                {labels.orAnnual.replace("{price}", plan.priceAnnual)}{" "}
+                <span
+                  className={`ml-1 inline-flex items-center rounded-full px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide ${
+                    plan.recommended
+                      ? "bg-emerald-400/20 text-emerald-300"
+                      : "bg-emerald-50 text-emerald-700"
+                  }`}
+                >
+                  −5%
+                </span>
+              </p>
+            )}
+          </>
         )}
       </div>
 
@@ -135,6 +183,9 @@ export function PricingHoldedLayout() {
           tagline: plan.tagline,
           price: base.price,
           priceNote: plan.priceNote,
+          priceMonthly: base.priceMonthly,
+          priceAnnualFull: base.priceAnnualFull,
+          priceAnnualAmount: base.priceAnnualAmount,
           priceAnnual: base.priceAnnual,
           features: plan.features,
           recommended: base.recommended,
@@ -168,25 +219,39 @@ export function PricingHoldedLayout() {
             </h2>
             <p className="mt-2 max-w-lg text-sm text-[var(--muted)]">{t.pricing.erpLead}</p>
           </div>
-          <div className="inline-flex rounded-full border border-[var(--line)] bg-white p-1">
-            <button
-              type="button"
-              onClick={() => setBilling("monthly")}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                billing === "monthly" ? "bg-[var(--panel)] text-white" : "text-[var(--muted)]"
+          <div className="flex flex-wrap items-center gap-2.5">
+            <div className="inline-flex rounded-full border border-[var(--line)] bg-white p-1 shadow-sm">
+              <button
+                type="button"
+                onClick={() => setBilling("monthly")}
+                className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                  billing === "monthly" ? "bg-[var(--panel)] text-white" : "text-[var(--muted)] hover:text-[var(--ink)]"
+                }`}
+              >
+                {t.pricing.monthly}
+              </button>
+              <button
+                type="button"
+                onClick={() => setBilling("annual")}
+                className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                  billing === "annual" ? "bg-[var(--panel)] text-white" : "text-[var(--muted)] hover:text-[var(--ink)]"
+                }`}
+              >
+                {t.pricing.annual}
+              </button>
+            </div>
+            <span
+              className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-bold tracking-wide transition ${
+                billing === "annual"
+                  ? "bg-emerald-500 text-white shadow-sm shadow-emerald-500/25"
+                  : "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200/80"
               }`}
             >
-              {t.pricing.monthly}
-            </button>
-            <button
-              type="button"
-              onClick={() => setBilling("annual")}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                billing === "annual" ? "bg-[var(--panel)] text-white" : "text-[var(--muted)]"
-              }`}
-            >
-              {t.pricing.annual}
-            </button>
+              <span aria-hidden className="text-[10px] leading-none">
+                −
+              </span>
+              5% dto. anual
+            </span>
           </div>
         </div>
 

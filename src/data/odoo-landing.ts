@@ -224,7 +224,7 @@ export const odooPlans = [
     name: "Gestión",
     price: "49",
     period: "€/mes",
-    annual: "529 €/año",
+    annual: "559 €/año",
     tagline: "Las bases operativas de tu clínica.",
     features: [
       "Agenda inteligente",
@@ -242,7 +242,7 @@ export const odooPlans = [
     name: "Clínica 360",
     price: "89",
     period: "€/mes",
-    annual: "961 €/año",
+    annual: "1.015 €/año",
     tagline: "Firma, fotos, stock y autopiloto fiscal.",
     features: [
       "Todo lo de Gestión",
@@ -261,7 +261,7 @@ export const odooPlans = [
     name: "Elite",
     price: "199",
     period: "€/mes",
-    annual: "2.149 €/año",
+    annual: "2.269 €/año",
     tagline: "Todos los módulos + multi-sede + consultoría.",
     features: [
       "Todo lo de Clínica 360",
