@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { OdooHero } from "@/components/odoo/OdooHero";
 import { OdooWellDesigned } from "@/components/odoo/OdooWellDesigned";
+import { OdooEcosystem } from "@/components/odoo/OdooEcosystem";
 import { OdooModuleGroups } from "@/components/odoo/OdooModuleGroups";
 import { OdooProductShot } from "@/components/odoo/OdooProductShot";
 import { OdooPricingTeaser } from "@/components/odoo/OdooPricingTeaser";
@@ -20,6 +21,7 @@ export function OdooLandingShell({ data }: OdooLandingShellProps) {
       <main>
         <OdooHero />
         <OdooWellDesigned />
+        <OdooEcosystem />
         <OdooModuleGroups />
         <OdooProductShot
           desktopShot={data.erpScreens.desktop.src}
