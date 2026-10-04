@@ -65,7 +65,7 @@ export function OdooEcosystem() {
             Es el inicio de la cadena.
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[var(--muted)] sm:text-lg">
-            Odoo, Holded o un calendario básico te dejan módulos sueltos. Base Clínica
+            Otros softwares o un calendario básico te dejan módulos sueltos. Base Clínica
             convierte cada sesión en stock, firma, margen y seguimiento — sin que tengas
             que acordarte.
           </p>
